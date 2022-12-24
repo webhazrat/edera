@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+/* font-family: 'Roboto', sans-serif; */
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size:16px;
+    line-height: 25px;
+}
+
+.solution img{
+    width: 100%;
+}
+
+/* common css */
+.section-header{
+    font-size:44px;
+    color:#001733;
+    font-weight: 700;
+}
+
+/* header-top-nav */
+.header-top-nav{
+    padding:11px 0;
+    background-color: #001733;
+}
+.header-top-nav ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+    display: flex;
+    justify-content: end;
+}
+.header-top-nav ul li{
+    position: relative;
+}
+.header-top-nav ul li:not(:last-child){
+    padding-right:10px;
+    margin-right:10px;
+}
+.header-top-nav ul li:not(:last-child):after{
+    position: absolute;
+    right:0;
+    content:"";
+    height: 100%;
+    width: 1px;
+    background-color: #ddd;
+    transform: scaleY(0.5);
+}
+.header-top-nav ul li a{
+    text-transform: uppercase;
+    text-decoration: none;
+    font-size:14px;
+    color:#fff;
+}
+
+/* main-navigation */
+.navbar-brand img{
+    height: 32px;
+    width: auto;
+}
+.main-navigation .nav-link{
+    font-weight: 700;
+    color:#001733;
+    padding-left:10px!important;
+    padding-right:10px!important;
+}
+
+/* banner */
+.banner-item{
+    position: relative;
+    height: 700px;
+}
+#video-banner{
+    position: absolute;
+    top:0;
+    right:0;
+    width: auto;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+.banner-text h2{
+    margin-bottom: 30px;
+}
