@@ -5,6 +5,7 @@ body{
     font-family: 'Roboto', sans-serif;
     font-size:16px;
     line-height: 25px;
+    font-weight: 400;
 }
 
 .solution img{
@@ -15,6 +16,11 @@ body{
 .section-header{
     font-size:44px;
     color:#001733;
+    font-weight: 700;
+}
+.sub-header{
+    font-size:36px;
+    color:#0072B6;
     font-weight: 700;
 }
 
@@ -34,8 +40,8 @@ body{
     position: relative;
 }
 .header-top-nav ul li:not(:last-child){
-    padding-right:10px;
-    margin-right:10px;
+    padding-right:15px;
+    margin-right:15px;
 }
 .header-top-nav ul li:not(:last-child):after{
     position: absolute;
@@ -58,6 +64,9 @@ body{
     height: 32px;
     width: auto;
 }
+.main-navigation .navbar{
+    padding:15px 0!important;
+}
 .main-navigation .nav-link{
     font-weight: 700;
     color:#001733;
@@ -79,6 +88,124 @@ body{
     object-fit: cover;
     z-index: -1;
 }
-.banner-text h2{
+.banner-text p{
+    margin: 25px 0;
+}
+.banner-text a, .consultancy-item a, .offer-item a{
+    display: inline-block;
+    color:#001733;
+    font-weight: 700;
+    font-size:18px;
+    text-decoration: none;
+}
+
+/* consultancy */
+.consultancy{
+    background-color: #f2f2f2;
+}
+.consultancy .section-header{
+    margin-bottom: 40px;
+}
+.consultancy-item img{
+    height: 50px;
+    margin-bottom: 10px;
+}
+.consultancy-item p{
+    margin:15px 0;
+}
+
+/* solution */
+.solution .sub-header{
+    margin:20px 0;
+}
+
+.offer-item{
+    position: relative;
+    min-height: 450px;
+    z-index: 1;
+    color:#fff;
+    background-size: cover;
+    overflow: hidden;
+}
+.offer-item:after{
+    content:"";
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(25, 61, 114, 0) 46.35%, rgba(0, 23, 51, 0.8) 85.8%);
+    z-index: -1;
+}
+
+.offer-item .overlay{
+    position: absolute;
+    left:0;
+    top:0;
+    height: 100%;
+    width: 100%;
+    padding:30px;
+    display: flex;
+    align-items: flex-end;
+}
+
+.offer-item .overlay::before, .offer-item .overlay::after{
+    content: "";
+    position: absolute;
+    background-color: #001733;
+    left:0;
+    top:100%;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.4s ease-out;
+}
+.offer-item .overlay::after{
+    background-color: #94CC00;
+    height: 10px;
+    top:0;
+}
+
+.offer-item .overlay img{
+    height: 70px;
+    width: auto;
+    margin-bottom: 20px;
+}
+.offer-item .overlay  h3{
+    font-size:30px;
+    font-weight: 700;
+    color:#fff;
     margin-bottom: 30px;
+    position: absolute;
+    bottom:40px;
+    transition: 0.4s ease-out;
+}
+.offer-item .overlay  p{
+    margin:30px 0;
+}
+.offer-item .overlay a{
+    color:#fff;
+    font-size:16px;
+}
+
+.offer-item .overlay img, .offer-item .overlay p{
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s ease-out;
+}
+
+.offer-item:hover .overlay::before{
+    opacity: 1;
+    visibility: visible;
+    top:0;
+}
+
+.offer-item:hover .overlay::after, .offer-item:hover .overlay img, .offer-item:hover .overlay p{
+    opacity: 1;
+    visibility: visible;
+}
+.offer-item:hover .overlay h3{
+    bottom:auto;
 }
