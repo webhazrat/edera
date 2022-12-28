@@ -23,6 +23,9 @@ body{
     color:#0072B6;
     font-weight: 700;
 }
+.text-green{
+    color:#94CC00;
+}
 
 /* header-top-nav */
 .header-top-nav{
@@ -187,14 +190,14 @@ body{
 /* banner */
 .banner-item{
     position: relative;
-    height: 700px;
+    padding:200px 0;
 }
 #video-banner{
     position: absolute;
     top:0;
     right:0;
-    width: auto;
-    height: 100%;
+    /* width: auto;
+    height: 100%; */
     object-fit: cover;
     z-index: -1;
 }
@@ -541,7 +544,7 @@ a.read-more{
 
 /* page banner */
 .page-banner .banner-item{
-    height: 330px;
+    padding:60px 0;    
 }
 
 /* what makes us different */
@@ -636,4 +639,42 @@ a.read-more{
 }
 .brand-item{
     text-align: center;
+}
+
+/* how-we-make-difference */
+.why-we-exist [class*='col-']:not(:last-child) .exist-item{
+    position: relative;
+}
+.why-we-exist [class*='col-']:not(:last-child) .exist-item:after{
+    content:"";
+    position: absolute;
+    top:0;
+    right:12px;
+    width: 4px;
+    height: 100%;
+    background-color: #A2A2A2;
+    border-radius: 33px;
+}
+.exist-item h4{
+    color:#001733;
+    font-weight: 700;
+}
+
+/* who we are */
+.team{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.team-item img{
+    width: 100%;
+    transition: 0.5s ease-in-out;
+    filter: grayscale(100%);
+}
+
+.team-item:hover img{
+    filter: grayscale(0);
+}
+.team-item span{
+    font-size:14px;
 }
