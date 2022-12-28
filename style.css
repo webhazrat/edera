@@ -167,7 +167,7 @@ body{
     background-color: #94CC00;
     transition: 0.5s;
 }
-.main-navigation .nav-link:hover:before{
+.main-navigation .nav-link:hover:before, .main-navigation .nav-link.active:before{
     width: 100%;
 }
 .main-navigation .dropdown-menu{
@@ -532,6 +532,10 @@ a.read-more{
 .copyright-navigation li a{
     color:#fff;
     text-decoration: none;
+    transition: 0.5s ease-in-out;
+}
+.copyright-navigation li a:hover{
+    color:#94CC00;
 }
 
 
@@ -609,9 +613,27 @@ a.read-more{
 }
 
 /* affiliate brands */
+.affiliate-brands .nav-tabs{
+    border:0;
+    justify-content: space-around;
+}
+.affiliate-brands .nav-link, 
+.affiliate-brands .nav-tabs .nav-item.show .nav-link, 
+.affiliate-brands .nav-tabs .nav-link.active{
+    background-color: transparent;
+    border:0;
+    border-radius: 0;
+}
+.affiliate-brands .nav-tabs .nav-link img{
+    filter:grayscale(100%);
+    opacity: 0.5;
+    transition: 0.5s ease-in-out;
+}
+.affiliate-brands .nav-tabs .nav-link.active img, 
+.affiliate-brands .nav-tabs .nav-link:hover img{
+    filter:grayscale(0);
+    opacity:1;
+}
 .brand-item{
     text-align: center;
-}
-.banner-item img{
-    filter:grayscale(100%);
 }
