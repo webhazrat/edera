@@ -26,6 +26,9 @@ body{
 .text-green{
     color:#94CC00;
 }
+.text-aqua{
+    color:#0072B6;
+}
 
 /* header-top-nav */
 .header-top-nav{
@@ -695,4 +698,66 @@ a.read-more{
 }
 .how-to-work-item .item:not(:last-child){
     margin-bottom: 30px;
+}
+.how-to-work-with-us-bg{
+    padding:150px 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+}
+
+/* contact */
+.contact-us{
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.form-control:not(textarea){
+    height: 53px;
+}
+.form-control{
+    border:1px solid #B1B1B1;
+    border-radius: 10px;
+}
+.form-control:focus{
+    border:2px solid #0083C1;
+    box-shadow: none;
+}
+
+.contact-us form button[type="submit"]{
+    background-color: transparent;
+    border:0;
+    font-weight: 700;
+    font-size:18px;
+}
+
+/* what-we-do */
+.services-and-capabilities h4{
+    font-weight: 700;
+    color:#001733;
+}
+.services-item{
+    background-color: #fff;
+    padding:30px;
+    min-height:400px;
+    height: 100%;
+    position: relative;
+}
+.services-item img{
+    height: 90px;
+    margin-bottom:10px;
+}
+.services-item h6{
+    font-weight: 700;
+    font-size:18px;
+    line-height: 24px;
+    margin-bottom: 10px;
+}
+.services-item p{
+    height: 150px;
+    overflow: hidden;
+}
+.services-item > a{
+    position: absolute;
+    left:30px;
+    bottom:30px;
 }
