@@ -62,7 +62,7 @@ body{
     color:#fff;
     transition:0.5s;
 }
-.header-top-nav ul li a:hover{
+.header-top-nav ul li a:hover, .header-top-nav ul li a.active{
     color:#94CC00;
 }
 
@@ -665,16 +665,34 @@ a.read-more{
     background-repeat: no-repeat;
     background-size: cover;
 }
+.team h4{
+    color:#001733;
+    font-weight: 700;
+    font-size:30px;
+}
 
 .team-item img{
     width: 100%;
     transition: 0.5s ease-in-out;
     filter: grayscale(100%);
+    margin-bottom: 20px;
 }
 
 .team-item:hover img{
     filter: grayscale(0);
 }
 .team-item span{
-    font-size:14px;
+    color:#001733;
+    font-style: italic;
+}
+
+
+/* how-to-work-with-us */
+.how-to-work-with-us{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
+}
+.how-to-work-item .item:not(:last-child){
+    margin-bottom: 30px;
 }
