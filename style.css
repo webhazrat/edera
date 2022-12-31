@@ -8,6 +8,9 @@ body{
     font-weight: 400;
 }
 
+h1, h2, h3, h4, h5, h6{
+    font-weight: 700;
+}
 .solution img{
     width: 100%;
 }
@@ -799,18 +802,94 @@ a.read-more{
     font-weight:700;
 }
 
-.nav-pills .nav-link {
+.support-phase-tabs .nav-pills .nav-link {
     text-align: left;
 }
 
-.tab-pane{
+.support-phase-tabs .tab-pane{
     background-color: #F2F2F2;
 }
-.tab-pane img{
+.support-phase-tabs .tab-pane img{
     padding-right:100px;
     width: 100%;
     height:500px;
     object-fit: cover;
     position: relative;
     top:-80px;
+}
+
+.support-phase-tabs .tab-pane ul li{
+    padding: 5px 0;
+}
+
+.support-phase-tabs .nav-link{
+    font-weight: 700;
+    font-size:18px;
+    border-radius: 0;
+    padding:20px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color:#001733;
+    margin:10px 0;
+    transition: 0.5s;
+    position: relative;
+}
+.support-phase-tabs .nav-link::after{
+    content:"";
+    position: absolute;
+    left: 0;
+    width:0;
+    height:100%;
+    background-color:#0072B626;
+    z-index: -1;
+    transition: 0.5s;
+}
+.support-phase-tabs .nav-link:hover{
+    color:#94CC00;
+}
+.support-phase-tabs .nav-link:hover::after{
+    width:8px;
+}
+.support-phase-tabs .nav-link i{
+    font-size:28px;
+}
+
+.support-phase-tabs .nav-pills .nav-link.active, .support-phase-tabs .nav-pills .show>.nav-link {
+    background-color:transparent;
+    color:#001733;
+}
+.support-phase-tabs .nav-pills .nav-link.active::after, .support-phase-tabs .nav-pills .show>.nav-link::after{
+    width: 100%;
+}
+
+
+/* says */
+.says-area{
+    position: relative;
+}
+.says-area::before, .says-area::after{
+    content:"";
+    position: absolute;
+    left:0;
+    top:0;
+    width: 58px;
+    height: 58px;
+    background-image: url('assets/attachment/Left\ Quote\ Icon.svg');
+    background-size: contain;
+}
+.says-area::after{
+    left:auto;
+    top:auto;
+    right:0;
+    bottom:0;
+    background-image: url('assets/attachment/Right\ Quote\ Icon.svg');
+}
+.say-item{
+    padding:30px 200px;
+    text-align: center;
+    line-height:29px;
+}
+.say-item p{
+    font-size:24px;
 }
