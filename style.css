@@ -160,13 +160,13 @@ h1, h2, h3, h4, h5, h6{
 .main-navigation .navbar{
     padding:15px 0!important;
 }
-.main-navigation .nav-link{
+.main-navigation .nav-link, .banner-navigation .nav-link{
     font-weight: 700;
     color:#001733;
     padding:0!important;
     position: relative;
 }
-.main-navigation .nav-link:before{
+.main-navigation .nav-link:before, .banner-navigation .nav-link:before{
     content:"";
     position: absolute;
     left:0;
@@ -176,7 +176,9 @@ h1, h2, h3, h4, h5, h6{
     background-color: #94CC00;
     transition: 0.5s;
 }
-.main-navigation .nav-link:hover:before, .main-navigation .nav-link.active:before{
+.main-navigation .nav-link:hover:before, 
+.main-navigation .nav-link.active:before, 
+.banner-navigation .nav-link.active:before{
     width: 100%;
 }
 .main-navigation .dropdown-menu{
@@ -810,12 +812,12 @@ a.read-more{
     background-color: #F2F2F2;
 }
 .support-phase-tabs .tab-pane img{
-    padding-right:100px;
-    width: 100%;
+    width: 80%;
     height:500px;
     object-fit: cover;
     position: relative;
     top:-80px;
+    box-shadow: 0px 3px 10px #00000029;
 }
 
 .support-phase-tabs .tab-pane ul li{
@@ -892,4 +894,77 @@ a.read-more{
 }
 .say-item p{
     font-size:24px;
+}
+
+/* digital */
+.product-img img{
+    height: 300px;
+}
+
+/* quiries */
+.quiries-item h4{
+    color:#fff;
+}
+.quiries-item a{
+    color:#fff;
+}
+
+/* blog */
+.blog-items .blog-item img{
+    width: 100%;
+    height:160px;
+    object-fit: cover;
+}
+.blog-items .blog-item.full img{
+    height: auto;
+}
+
+.blog-items .blog-item .img{
+    position: relative;
+}
+.blog-items .blog-item .img span{
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    background-color:#F6AD32;
+    color:#fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom:0;
+    right:0;
+}
+
+.blog-items .blog-item:not(:last-child){
+    border-bottom:2px solid #F2F2F2;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.blog-area [class*='col-']:first-child{
+    border-right:2px solid #f2f2f2f2;
+}
+
+.right-sidebar .blog-item{
+    border-bottom: 2px solid #f2f2f2;
+    padding-bottom:10px;
+    margin-bottom: 10px;
+}
+.right-sidebar .blog-item a{
+    text-decoration: none;
+    color:#0072B6;
+}
+.right-sidebar .blog-item a:hover{
+    text-decoration: underline;
+}
+.right-sidebar .blog-item .date{
+    text-transform: uppercase;
+    font-size:12px;
+    color:#A2A2A2;
+}
+
+/* events */
+.event-item img{
+    width: 100%;
 }
