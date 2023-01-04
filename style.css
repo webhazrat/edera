@@ -203,7 +203,7 @@ h1, h2, h3, h4, h5, h6{
 /* banner */
 .banner-item{
     position: relative;
-    padding:200px 0;
+    height: 600px;
 }
 #video-banner{
     position: absolute;
@@ -247,6 +247,13 @@ a.read-more, .read-more{
 }
 .consultancy .section-header{
     margin-bottom: 40px;
+}
+
+.consultancy-item{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 .consultancy-item img{
     height: 50px;
@@ -1013,13 +1020,15 @@ a.read-more, .read-more{
     top:0;
     width: 100%;
     height: 100%;
-    background-color: #002E5F;
-    opacity: 0.8;
+    background: #0072B6!important;
+    visibility: visible;
+    opacity: 0.7;
     transition: 0.5s;
 }
 
 .item.full:hover .feature-img:after{
-    opacity: 0.9;
+    background: #002E5F!important;
+    opacity: 0.8;
 }
 .blog-area .item.full .body{
     position: absolute;
@@ -1028,6 +1037,7 @@ a.read-more, .read-more{
     width: 100%;
     padding:35px;
     color:#fff;
+    z-index: 2;
 }
 
 .item .body h4 a, 
@@ -1047,7 +1057,7 @@ a.read-more, .read-more{
     font-size:12px;
     color:#A2A2A2;
 }
-.item .body .date{
+.date{
     text-transform: uppercase;
     color:#A2A2A2;
 }
@@ -1123,6 +1133,55 @@ a.read-more, .read-more{
     transform: scale(1.1);
 }
 
+/* white papers */
+.white-papers-area .item.full .feature-img img{
+    height: 250px;
+}
+
+/* podcasts */
+audio{
+    width: 100%;
+}
+
+.item.full audio::-webkit-media-controls-play-button,
+.item.full audio::-webkit-media-controls-panel {
+  background-color: #A3C7EE;
+}
+
+/* article template */
+.breadcrumb-item+.breadcrumb-item::before {
+    content: '\F285';
+    font-family: 'bootstrap-icons';
+    color:#001733;
+}
+.breadcrumb a{
+    text-decoration: none;
+    color:#001733;
+}
+.single-content .section-header{
+    border-bottom: 1px solid #001733;
+    padding-bottom:25px;
+    margin-bottom: 25px;
+}
+.single-content .date{
+    display: inline-block;
+    text-transform: capitalize;
+    margin-bottom: 10px;
+}
+
+.single-content .column.first{
+    background-color: #0072B6;
+    padding:27px;
+    border-radius:15px;
+    color:#fff;
+}
+.single-content .column.first h4{
+    margin-bottom:15px;
+    line-height: 32px;
+}
+.single-content .column.first p{
+    margin-bottom: 0;
+}
 /* page-content */
 .page-content{
     background-position: top right;
