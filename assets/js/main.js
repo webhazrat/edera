@@ -22,3 +22,22 @@ window.onscroll = function(){
         mainNavigation.classList.remove('scroll-menu')
     }
 }
+
+const team = document.querySelectorAll('.team-item');
+team.forEach(item => {
+    item.addEventListener('click', function(e){
+        e.preventDefault();
+        let overlay = item.querySelector('.overlay-pop');
+        if (!overlay.contains(e.target)){
+            item.classList.toggle('show');
+        }
+    })
+})
+
+const close = document.querySelectorAll('.close');
+close.forEach(item => {
+    item.addEventListener('click', function(e){
+        e.preventDefault();
+        item.closest('.team-item').classList.remove('show')
+    })
+})

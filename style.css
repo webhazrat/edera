@@ -643,14 +643,36 @@ a.read-more, .read-more{
 }
 
 /* how-we-make-difference */
-.why-we-exist [class*='col-']:not(:last-child) .exist-item{
+.why-we-exist, .why-we-exist .row{
     position: relative;
+    overflow: hidden;
 }
-.why-we-exist [class*='col-']:not(:last-child) .exist-item:after{
+.why-we-exist:before, .why-we-exist:after{
+    content:"";
+    position: absolute;
+    bottom:-50px;
+    left:-70px;
+    background-image: url('assets/attachment/Our\ Mission\ Icon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: bottom left;
+    width: 250px;
+    height: 250px;
+}
+.why-we-exist:after{
+    background-image: url('assets/attachment/Our\ Purpose\ Icon.svg');
+    left:auto;
+    bottom:-30px;
+    right:-20px;
+    width: 200px;
+    height: 200px;
+}
+.why-we-exist .row:after{
     content:"";
     position: absolute;
     top:0;
-    right:12px;
+    left:50%;
+    transform: translateX(-50%);
     width: 4px;
     height: 100%;
     background-color: #A2A2A2;
@@ -665,21 +687,63 @@ a.read-more, .read-more{
 .team{
     background-repeat: no-repeat;
     background-size: cover;
+    cursor: pointer;
 }
 .team h4{
     color:#001733;
     font-weight: 700;
     font-size:30px;
 }
-
 .team-item img{
     width: 100%;
     transition: 0.5s ease-in-out;
     filter: grayscale(100%);
-    margin-bottom: 20px;
+}
+.team-item .team-img{
+    position: relative;
+}
+.team-item .overlay-pop{
+    position: absolute;
+    left:50%;
+    top:100%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    box-shadow: 0px 0px 10px #00000029;
+    min-width:30rem;
+    width: 100%;
+    padding:20px;
+    border-radius: 4px;
+    z-index: 2;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.5s ease-in-out;
+}
+.team-item.show .overlay-pop{
+    opacity: 1;
+    visibility: visible;
+}
+.team-item .overlay-pop a.close{
+    position: absolute;
+    top:20px;
+    right:20px;
+    font-size:20px;
+}
+.team-item .overlay-pop h6{
+    margin-bottom: 0;
+}
+.team-item .overlay-pop span{
+    font-size:14px;
+    color:#0072B6;
+    display: inline-block;
+    margin-bottom: 6px;
+}
+.team-item .overlay-pop p{
+    font-size:13px;
+    color:#707070;
 }
 
-.team-item:hover img{
+.team-item:hover img, 
+.team-item.show img{
     filter: grayscale(0);
 }
 .team-item span{
