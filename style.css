@@ -201,7 +201,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 /* banner */
-.banner-item{
+.banner{
     position: relative;
     height: 600px;
 }
@@ -209,8 +209,18 @@ h1, h2, h3, h4, h5, h6{
     position: absolute;
     top:0;
     right:0;
+    height: auto;
     object-fit: cover;
     z-index: -1;
+}
+
+.page-banner{
+    height: auto;
+    min-height: 300px;
+    overflow-y: hidden;
+}
+.banner-text{
+    padding:50px 0;
 }
 
 a.read-more, .read-more{
@@ -550,10 +560,6 @@ a.read-more, .read-more{
 
 
 /* page banner */
-.page-banner .banner-item{
-    padding:60px 0;
-    min-height: 400px;  
-}
 
 /* what makes us different */
 .how-item{
@@ -836,20 +842,41 @@ a.read-more, .read-more{
 .who-we-serve p a{
     color:#fff;
 }
-.serve-items [class*='col-']:not(:last-child) .item{
+
+
+.serve-items .row, 
+.serve-items .item{
     position: relative;
 }
-.serve-items [class*='col-']:not(:last-child) .item:after{
+.serve-items .row:after{
     content:"";
     position: absolute;
     top:0;
-    right: -1.5em;
+    left:50%;
     width: 4px;
     height: 100%;
     background-color: #fff;
     border-radius: 33px;
+    transform: translateX(-50%);
 }
 
+.serve-items .item{
+    height: 100%;
+}
+.serve-items .item:after{
+    content:"";
+    position: absolute;
+    right:-50px;
+    bottom:-40px;
+    background-image: url('assets/attachment/Government\ Icon\ White.svg');
+    width: 250px;
+    height: 250px;
+    background-size: contain;
+}
+.serve-items [class*='col-']:last-child .item:after{
+    background-image: url('assets/attachment/Commercial\ Icon\ White.svg');
+    left:-50px;
+}
 /* clinical */
 .support-phase-tabs{
     overflow: hidden;
