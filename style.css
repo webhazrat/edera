@@ -190,7 +190,12 @@ h1, h2, h3, h4, h5, h6{
     box-shadow: -2px 0px 30px 30px rgb(0 0 0 / 2%);
     border:0;
     min-width: 16rem;
-    top:calc(100% + 10px)
+    opacity: 0;
+    transition: 0.5s;
+}
+.main-navigation li:hover .dropdown-menu{
+    display: block!important;
+    opacity: 1;
 }
 .main-navigation .dropdown-menu .dropdown-item{
     padding:.65rem 1rem;
@@ -558,14 +563,23 @@ a.read-more, .read-more{
     color:#94CC00;
 }
 
-
-/* page banner */
-
 /* what makes us different */
 .how-item{
+    height: 466px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+.how-item .title{
+    height: 100%;
     position: relative;
 }
-.how-item .overlay{
+.how-item .title img{
+    width: 110px;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s ease-in-out;
+}
+.how-item .title .overlay{
     position: absolute;
     left:0;
     top:0;
@@ -573,9 +587,10 @@ a.read-more, .read-more{
     height: 100%;
     background-color: rgba(0, 0, 0, .6);
     padding:40px;
-    transition: 0.5s ease-in-out;
+    transition: 0.5s;
+    width: 110px;
 }
-.how-item .overlay h4{
+.how-item .title .overlay h4{
     writing-mode: vertical-rl;
     transform: rotate(180deg);
     color:#fff;
@@ -583,16 +598,7 @@ a.read-more, .read-more{
     height: 100%;
     margin:0!important;
 }
-.how-item img{
-    width: 100%;
-    height:466px;
-    object-fit: cover;
-}
-.how-item:hover .overlay{
-    width: 110px;
-}
-
-.how-item > a{
+.how-item .title a{
     width: 84px;
     height: 84px;
     background-color:rgba(62, 68, 72, .6);
@@ -612,7 +618,7 @@ a.read-more, .read-more{
     visibility: hidden;
     transition: 0.6s;
 }
-.how-item > a:before{
+.how-item .title a:before{
     content:"";
     position: absolute;
     left:0;
@@ -624,10 +630,48 @@ a.read-more, .read-more{
     transform: scale(0.7);
     z-index: -1;
 }
-.how-item:hover > a{
+.how-item.expand:hover .title a{
     opacity: 1;
     visibility: visible;
 }
+
+
+.how-item .body{
+    padding:40px;
+    display: none;
+}
+
+.how-item.expand .title img{
+    width: 466px;
+}
+.how-item.expand .body{
+   display: block;
+}
+
+/* 
+.how-item .title .overlay{
+    position: absolute;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .6);
+    padding:40px;
+    transition: 0.5s ease-in-out;
+}
+.how-item .title .overlay h4{
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    color:#fff;
+    font-size:24px;
+    height: 100%;
+    margin:0!important;
+}
+.how-item:hover .overlay{
+    width: 110px;
+}
+
+ */
 
 /* affiliate brands */
 .affiliate-brands .nav-tabs{

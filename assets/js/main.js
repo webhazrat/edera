@@ -38,6 +38,21 @@ const close = document.querySelectorAll('.close');
 close.forEach(item => {
     item.addEventListener('click', function(e){
         e.preventDefault();
-        item.closest('.team-item').classList.remove('show')
+        this.closest('.team-item').classList.remove('show')
     })
 })
+
+
+// What Makes Us Different
+const howItem = document.querySelectorAll('.how-item-title');
+howItem.forEach(item => {
+    item.addEventListener('click', function(e){
+        e.preventDefault();
+        const expand = document.querySelector('.expand');
+        if(expand){
+            expand.classList.remove('expand');
+        }
+        this.closest('.how-item').classList.add('expand');
+    })
+})
+
