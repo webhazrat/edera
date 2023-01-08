@@ -6,7 +6,6 @@
 
 @media(max-width:767px){
 
-
     .insights-area [class*='col-']:not(:last-child) .item,
     .solution .row [class*='col-']:not(:last-child) .offer-item, 
     .solution .row [class*='col-']:not(:last-child) .capabilities-item, 
