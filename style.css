@@ -1047,6 +1047,20 @@ a.read-more, .read-more{
     font-size:24px;
 }
 
+.carousel-indicators [data-bs-target] {
+   
+    width: 14px;
+    height: 14px;
+    background-color: #F2F2F2;
+    border-radius: 50%;
+    border: 1px solid #C8C8C8!important;
+    opacity: 1;
+}
+.carousel-indicators .active {
+    background-color: #94CC00;
+    border: 1px solid #94CC00!important;
+}
+
 /* digital */
 .product-img img{
     height: 300px;
@@ -1284,3 +1298,122 @@ audio{
 .pagination li:last-child a:hover::after{
     display: none;
 }
+
+/* TEST */
+.how-we-make-difference .carousel {
+    position: relative;
+    padding-bottom: 50px;
+}
+.how-we-make-difference .carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 500px;
+}
+.how-we-make-difference .carousel-item {
+    position: absolute;
+    display: block;
+    float: none;
+    width: 100%;
+    margin-right:0;
+    height: 100%;
+    transform: scale(0.9);
+    transition:.6s ease-in-out;
+    left:-95px;
+}
+.how-we-make-difference .carousel-item.active {
+    transform: scale(1);
+    width: calc(100% - 200px);
+    left:100px;
+    z-index: 2;
+}
+.how-we-make-difference .carousel-item.active ~ .carousel-item{
+    left:auto;
+    right:-95px;
+}
+
+.how-we-make-difference .carousel-control-next, 
+.how-we-make-difference .carousel-control-prev {
+    top:auto;
+    bottom: 25px;
+    width: 30px;
+    height: 30px;
+    background: rgba(0, 114, 182, 0.5);
+    border-radius: 100%;
+    left: 50%;
+    transform: translateX(-100%) translateY(50%);
+    transition: 0.5s ease-in-out;
+}
+
+.how-we-make-difference .carousel-control-next:hover, 
+.how-we-make-difference .carousel-control-prev:hover{
+    background: rgba(0, 114, 182, 1);
+}
+.how-we-make-difference .carousel-control-next{
+    transform: translateX(100%) translateY(50%);
+}
+.how-we-make-difference .carousel-item-start{
+    opacity: 0.9;
+    transition: 0.5s ease-in-out;
+}
+.how-we-make-difference .carousel-item-end{
+    opacity: 1;
+}
+
+.how-we-make-difference .carousel-control-prev-icon, 
+.how-we-make-difference .carousel-control-next-icon{
+    background-image: none;
+    position: relative;
+}
+.how-we-make-difference .carousel-control-prev-icon::after, 
+.how-we-make-difference .carousel-control-next-icon::after {
+    content: "\F135";
+    font-family: 'bootstrap-icons';
+    font-size: 30px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+.how-we-make-difference .carousel-control-prev-icon::after{
+    content: "\F12C";
+}
+
+.givebackrx-slide{
+    background: transparent linear-gradient(180deg, #16679A 0%, #0FF0B3 100%) 0% 0% no-repeat padding-box;
+    height: 100%;
+}
+.givebackrx-slide .body img{
+    filter: brightness(0) invert(1);
+}
+.how-we-make-difference .carousel-item .body img{
+    margin-bottom: 30px;
+}
+.how-we-make-difference .carousel-item .body p{
+    color:#fff;
+}
+.how-we-make-difference .carousel-item .body a{
+    color:#fff;
+}
+
+.hubzone-slide{
+    background: transparent linear-gradient(180deg, #81D0FF 0%, #0072B6 100%) 0% 0% no-repeat padding-box;
+    height: 100%;
+}
+
+.give-slide{
+    background-color:#0072B6;
+    height: 100%;
+}
+
+.leaders-slide{
+    background-color:#002E5F;
+    height: 100%;
+}
+.leaders-slide .img img{
+    width: 100%;
+}
+

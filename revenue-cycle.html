@@ -247,9 +247,22 @@
         <div class="container">
             <h3 class="sub-header mb-5">What Our Clients Say</h3>
 
-            <div class="says-area">
-                <div class="say-item">
-                    <p>The 1 hour I spent was <strong>worth infinitely more</strong> than the several hours of computer-based learning.</p>
+            <div id="saysCarousel" class="says-area carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  </div>
+                <div class="carousel-inner">
+                    <div class="say-item carousel-item active">
+                        <p>The 1 hour I spent was <strong>worth infinitely more</strong> than the several hours of computer-based learning.</p>
+                    </div>
+                    <div class="say-item carousel-item">
+                        <p>If any of you would like to sit next to me the week of 25 September, when we go live, I will have a seat and coffee waiting for you. This was the most thorough, meaningful training.</p>
+                    </div>
+                    <div class="say-item carousel-item">
+                        <p>Enjoyed the open forum and ability to talk to clinicians that have extensive knowledge on how the system works.</p>
+                    </div>
                 </div>
             </div>
         </div>
