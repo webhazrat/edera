@@ -145,9 +145,18 @@ h1, h2, h3, h4, h5, h6{
 } 
 
 /* main-navigation */
+.navbar-toggler, 
+.navbar-toggler:focus {
+    border:0;
+    opacity: 1!important;
+    box-shadow: none;
+}
 .navbar-brand img{
     height: 32px;
     width: auto;
+}
+.main-navigation{
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.05);
 }
 .main-navigation.scroll-menu{
     background-color: #FFFFFF;
@@ -495,6 +504,11 @@ a.read-more, .read-more{
     background-color: #002E5F;
     border-top:8px solid #0072B6;
 }
+.footer-item > a img{
+    width: 180px;
+    height: auto;
+    max-width: 100%;
+}
 .footer-item ul{
     list-style: none;
     padding:0;
@@ -519,11 +533,11 @@ a.read-more, .read-more{
 
 .social-links{
     display: flex;
-    gap:15px;
+    gap:12px;
 }
 .social-links img{
     height: 30px;
-    width: auto;
+    max-width: 100%;
 }
 
 /* copyright */

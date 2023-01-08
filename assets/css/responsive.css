@@ -1,0 +1,26 @@
+@media(max-width:991px){
+    .navbar-collapse{
+        padding-top:30px
+    }
+}
+
+@media(max-width:767px){
+
+
+    .insights-area [class*='col-']:not(:last-child) .item,
+    .solution .row [class*='col-']:not(:last-child) .offer-item, 
+    .solution .row [class*='col-']:not(:last-child) .capabilities-item, 
+    .consultancy [class*='col-']:not(:last-child) .consultancy-item, 
+    .footer [class*='col-']:not(:last-child) .footer-item{
+        margin-bottom: 30px;
+        display: block;
+    }
+
+    /* article template */
+    .single-content .column.first{
+        margin-bottom: 20px;
+    }
+    .single-content .row{
+        margin-bottom: 0!important;
+    }
+}
