@@ -44,15 +44,21 @@ close.forEach(item => {
 
 
 // What Makes Us Different
-const howItem = document.querySelectorAll('.how-item-title');
-howItem.forEach(item => {
+const howItemTitle = document.querySelectorAll('.how-item-title');
+howItemTitle.forEach(item => {
     item.addEventListener('click', function(e){
         e.preventDefault();
-        const expand = document.querySelector('.expand');
-        if(expand){
-            expand.classList.remove('expand');
-        }
+        const howItem = document.querySelectorAll('.how-item');
+        howItem.forEach(item2 => {
+            if (item2.classList.contains('expand')) {
+                item2.classList.remove('expand');
+                item2.style.removeProperty('width');
+            }
+        })
         this.closest('.how-item').classList.add('expand');
+
+        
+        const siblingNum = document.querySelectorAll('.how-item.expand ~ .how-item').length;
+        this.closest('.how-item').style.width=`calc(100% - ${siblingNum}*110px)`;
     })
 })
-
