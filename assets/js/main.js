@@ -27,10 +27,17 @@ const team = document.querySelectorAll('.team-item');
 team.forEach(item => {
     item.addEventListener('click', function(e){
         e.preventDefault();
-        let overlay = item.querySelector('.overlay-pop');
+        const teamItem = document.querySelectorAll('.team-item');
+        teamItem.forEach(item2 => {
+            if (item2.classList.contains('show')) {
+                item2.classList.remove('show');
+            }
+        })
+        const overlay = item.querySelector('.overlay-pop');
         if (!overlay.contains(e.target)){
             item.classList.toggle('show');
         }
+        
     })
 })
 
@@ -62,3 +69,18 @@ howItemTitle.forEach(item => {
         this.closest('.how-item').style.width=`calc(100% - ${siblingNum}*110px)`;
     })
 })
+
+// Removeable
+const contactSubmit = document.getElementById('contactSubmit');
+contactSubmit.addEventListener('click', function(e){
+    e.preventDefault();
+    this.classList.add('active');
+    this.textContent = 'Submitted';
+})
+
+
+// window.onscroll = function(e){
+//     var elem = document.querySelector('.team-item.show .overlay-pop');
+//     var bounding = elem.getBoundingClientRect();
+//     console.log(bounding)
+// }

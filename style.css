@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6{
     position: absolute;
     top:0;
     right:0;
-    height: auto;
+    height: 100%;
     object-fit: cover;
     z-index: -1;
 }
@@ -761,8 +761,24 @@ a.read-more, .read-more{
     font-weight: 700;
     font-size:18px;
     padding:0;
+    position: relative;
+    padding-right: 22px;
 }
-
+.contact-us form button[type="submit"]:before{
+    content:"\F135";
+    font-family: 'bootstrap-icons';
+    position: absolute;
+    right:0;
+    transition: 0.5s ease-in-out;
+}
+.contact-us form button[type="submit"].active:before{
+    content:"\F270";
+    color:#94CC00;
+}
+.contact-us form button[type="submit"].active:after{
+    width: 100%;
+    background-color: #94CC00;
+}
 /* what-we-do */
 .services-and-capabilities h4{
     font-weight: 700;
