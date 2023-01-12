@@ -34,6 +34,9 @@ team.forEach(item => {
             }
         })
         const overlay = item.querySelector('.overlay-pop');
+
+        
+        isElementInViewport(overlay);
         if (!overlay.contains(e.target)){
             item.classList.toggle('show');
         }
@@ -70,17 +73,22 @@ howItemTitle.forEach(item => {
     })
 })
 
+
+
+
+
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
-contactSubmit.addEventListener('click', function(e){
-    e.preventDefault();
-    this.classList.add('active');
-    this.textContent = 'Submitted';
-})
+if(contactSubmit){
+    contactSubmit.addEventListener('click', function(e){
+        e.preventDefault();
+        this.classList.add('active');
+        this.textContent = 'Submitted';
+    })
+}
 
 
-// window.onscroll = function(e){
-//     var elem = document.querySelector('.team-item.show .overlay-pop');
-//     var bounding = elem.getBoundingClientRect();
-//     console.log(bounding)
-// }
+function isElementInViewport(el){
+    let rect = el.getBoundingClientRect();
+    console.log(rect);
+}

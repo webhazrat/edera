@@ -82,6 +82,7 @@ h1, h2, h3, h4, h5, h6{
     display: flex;
     align-items: center;
     overflow: hidden;
+    justify-content: end;
 }
 .top-nav-content .search-form{
     color:#fff;
@@ -92,6 +93,7 @@ h1, h2, h3, h4, h5, h6{
 
 .top-nav-content .search-form-area{
     position: absolute;
+    max-width:500px;
     width: 100%;
     top:-2px;
     right:calc(-100% + 26px);
@@ -361,7 +363,7 @@ a.read-more, .read-more{
 .capabilities-item .overlay img{
     height: 70px;
     width: auto;
-    margin-bottom: 100px;
+    margin-bottom: 90px;
     visibility: hidden;
     opacity: 0;
     transition: 0.5s ease-out;
@@ -408,7 +410,7 @@ a.read-more, .read-more{
 
 .offer-item:hover .overlay h3, 
 .capabilities-item:hover .overlay h3{
-    bottom:256px;
+    bottom:260px;
 }
 
 /* vehicles */
@@ -445,14 +447,20 @@ a.read-more, .read-more{
 .feature-img span i{
     transition:0.3s ease-in-out;
 }
-.insights-area .item:hover .feature-img:after{
+.insights-area .item:hover .feature-img:after, 
+.events-area .item:hover .feature-img:after, 
+.blog-area .item:hover .feature-img:after{
     opacity: 1;
     visibility: visible;
 }
-.insights-area .item:hover .feature-img span{
+.insights-area .item:hover .feature-img span, 
+.events-area .item:hover .feature-img span, 
+.blog-area .item:hover .feature-img span{
     background-color: #F92F49;
 }
-.insights-area .item:hover .feature-img span i{
+.insights-area .item:hover .feature-img span i, 
+.events-area .item:hover .feature-img span i, 
+.blog-area .item:hover .feature-img span i{
     transform: scaleX(1.2);
 }
 .insights-area .item .body strong{
@@ -472,6 +480,23 @@ a.read-more, .read-more{
     transition: 0.5s ease-in-out;
 }
 .insights-area .item .body h4 a:hover{
+    color:#94CC00;
+}
+.para-content p:last-of-type{
+    display: inline;
+}
+.para-content a{
+    text-decoration: none;
+    color:#001733;
+    font-weight: 500;
+    transition: 0.5s ease-in-out;
+}
+.white .para-content a{
+    color:#fff;
+}
+.insights-area .item:hover .para-content a, 
+.events-area .item:hover .para-content a, 
+.blog-area .item:hover .para-content a{
     color:#94CC00;
 }
 
@@ -851,6 +876,9 @@ a.read-more, .read-more{
     left:-50px;
 }
 /* clinical */
+.support-phase-area .nav{
+    flex-wrap: nowrap;
+}
 .support-phase-tabs{
     overflow: hidden;
 }
@@ -862,6 +890,8 @@ a.read-more, .read-more{
     width: 320px;
     text-align: center;
     border-radius: 4px;
+    cursor: pointer;
+    border:0;
 }
 .phases i{
     font-size:30px;
@@ -1073,9 +1103,11 @@ a.read-more, .read-more{
     font-size:12px;
     color:#A2A2A2;
 }
-.date{
+.date {
     text-transform: uppercase;
-    color:#A2A2A2;
+    color: #A2A2A2;
+    display: block;
+    margin-top: 8px;
 }
 .blog-area .item.full .body .date{
     color:#fff;
@@ -1154,9 +1186,6 @@ a.read-more, .read-more{
 }
 .events-area .item:not(:last-child){
     margin-bottom: 30px;
-}
-.events-area .item:hover img{
-    transform: scale(1.1);
 }
 
 /* white papers */
@@ -1240,7 +1269,7 @@ audio{
     display: none;
 }
 
-/* TEST */
+/* how-we-make-difference */
 .how-we-make-difference .carousel {
     position: relative;
     padding-bottom: 50px;
@@ -1256,11 +1285,36 @@ audio{
     display: block;
     float: none;
     width: 100%;
-    margin-right:0;
     height: 100%;
+    margin-right:0;
     transform: scale(0.9);
     transition:.6s ease-in-out;
     left:-95px;
+}
+
+.how-we-make-difference .carousel-item.active ~ .carousel-item:last-child{
+    z-index: -1;
+}
+.how-we-make-difference .carousel-item.active ~ .carousel-item:nth-child(2){
+    z-index: 1;
+}
+.how-we-make-difference .carousel-item > div, 
+.how-we-make-difference .carousel-item > div > div, 
+.how-we-make-difference .carousel-item .img{
+    height: 100%;
+}
+.how-we-make-difference .carousel-item .full .img img{
+    min-width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.how-we-make-difference .carousel-item .full .row [class*='col-']:last-child{
+    height: 100%;
+}
+.how-we-make-difference .carousel-item .img img{
+    max-width: 400px;
+    width: 100%;
 }
 .how-we-make-difference .carousel-item.active {
     transform: scale(1);
@@ -1332,6 +1386,8 @@ audio{
 }
 .how-we-make-difference .carousel-item .body img{
     margin-bottom: 30px;
+    max-height:50px;
+    width: auto;
 }
 .how-we-make-difference .carousel-item .body p{
     color:#fff;
@@ -1347,12 +1403,10 @@ audio{
 
 .give-slide{
     background-color:#0072B6;
-    height: 100%;
 }
 
 .leaders-slide{
     background-color:#002E5F;
-    height: 100%;
 }
 .leaders-slide .img img{
     width: 100%;

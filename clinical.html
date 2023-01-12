@@ -15,14 +15,21 @@
 <body>
 
     <div class="header-top-nav">
-        <div class="container d-flex justify-content-end">
+        <div class="container">
             <div class="top-nav-content">
-                <ul>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="contract-vehicles-certifications.html">Contract Vehicles & Certifications</a></li>
-                    <li><a href="#">Affiliate Brands</a></li>
-                </ul>
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#topnavbar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="topnavbar">
+                        <ul class="navbar-nav">
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contract-vehicles-certifications.html">Contract Vehicles & Certifications</a></li>
+                            <li><a href="#">Affiliate Brands</a></li>
+                        </ul>
+                    </div>
+                </nav>
                 <span class="search-form"><i class="bi bi-search"></i></span>
                 <div class="search-form-area">
                     <form action="">
@@ -111,22 +118,22 @@
         </div>
         <div class="phases py-3" style="background: rgba(0, 114, 182, 0.25);">
             <div class="container">
-                <div class="d-flex align-items-center justify-content-around gap-2">
-                    <div class="item">
-                        <h6 class="mb-0">Planning & Analysis</h6>
-                    </div>
+                <div class="d-flex align-items-center justify-content-around gap-2 nav">
+                    <button class="nav-link item active" data-bs-toggle="pill" data-bs-target="#eip"> All EHR Implementation Phases </button>
                     <span><i class="bi bi-arrow-right"></i></span>
-                    <div class="item">
-                        <h6 class="mb-0">Design, Development & Testing</h6>
-                    </div>
+                    <button class="nav-link item" data-bs-toggle="pill" data-bs-target="#planning"> Planning & Analysis </button>
                     <span><i class="bi bi-arrow-right"></i></span>
-                    <div class="item">
-                        <h6 class="mb-0">Implementation</h6>
-                    </div>
+                    <button class="nav-link item" data-bs-toggle="pill"
+                    data-bs-target="#design"> Design, Development & Testing </button>
                     <span><i class="bi bi-arrow-right"></i></span>
-                    <div class="item">
-                        <h6 class="mb-0">Sustainment</h6>
-                    </div>
+                    <button class="nav-link item" data-bs-toggle="pill"
+                    data-bs-target="#implementation"> Implementation </button>
+                    <span><i class="bi bi-arrow-right"></i></span>
+                    <button class="nav-link item" data-bs-toggle="pill"
+                    data-bs-target="#sustainment"> Sustainment </button>
+                    <span><i class="bi bi-arrow-right"></i></span>
+                    <button class="nav-link item" data-bs-toggle="pill"
+                    data-bs-target="#cdrc"> CDRC </button>
                 </div>
             </div>
         </div>
@@ -140,22 +147,17 @@
     <div class="support-phase-tabs pt-5" style="padding-top: 130px!important;">
         <div class="container">
             <div class="row justify-content-between">
-                <div class="col-md-4">
+                <div class="col-lg-4 col-md-12">
                     <div class="nav flex-column nav-pills">
                         <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#eip">All EHR Implementation Phases <i class="bi bi-arrow-right"></i></button>
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#planning">Planning & Analysis  <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill"
-                            data-bs-target="#design">Design, Development & Testing <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill"
-                            data-bs-target="#implementation">Implementation <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill"
-                            data-bs-target="#sustainment">Sustainment <i class="bi bi-arrow-right"></i></button>
-                            
-                        <button class="nav-link" data-bs-toggle="pill"
-                        data-bs-target="#cdrc">CDRC <i class="bi bi-arrow-right"></i></button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#design">Design, Development & Testing <i class="bi bi-arrow-right"></i></button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#implementation">Implementation <i class="bi bi-arrow-right"></i></button>
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#sustainment">Sustainment <i class="bi bi-arrow-right"></i></button> 
+                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#cdrc">CDRC <i class="bi bi-arrow-right"></i></button>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-lg-8 col-md-12">
                     <div class="tab-content">
                         <div class="tab-pane fade show active" id="eip">
                             <div class="container">
@@ -171,7 +173,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_planning _ Analysis.jpeg" alt="">
+                                        <img src="assets/attachment/Clinical_EHR Implementation.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -272,7 +274,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_Sustainment.jpeg" alt="">
+                                        <img src="assets/attachment/Clinical_CDRC.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>

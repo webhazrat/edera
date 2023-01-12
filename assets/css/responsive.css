@@ -1,11 +1,82 @@
+@media(max-width:1200px){
+    .phases .nav{
+        flex-wrap: wrap;
+    }
+    .phases .nav span{
+        display: none;
+    }
+}
 @media(max-width:991px){
-    .navbar-collapse{
+    .top-nav-content{
+        display: block;
+    }
+    .top-nav-content .search-form{
+        position: absolute;
+        top:0px;
+        right:0;
+    }
+    .top-nav-content .navbar-toggler{
+        color:#fff;
+    }
+    .top-nav-content .navbar{
+        padding:0!important;
+    }
+    
+    .header-top-nav ul li:after {
+        width: 0;
+    }
+    .header-top-nav ul li{
+        margin: 0;
+        padding:12px;
+    }
+
+    .main-navigation .navbar-collapse{
         padding-top:30px
     }
+    .navbar-collapse li{
+        padding:0 12px;
+    }
+    .say-item{
+        padding:30px;
+    }
+    
+    .support-phase-tabs .nav{
+        margin-bottom:30px;
+    }
+    .support-phase-tabs .nav-link {
+        padding:20px;
+    }
+    .support-phase-tabs .tab-pane img{
+        top:auto;
+    }
+    .support-phase-tabs .phase-tab-text{
+        padding:0;
+    }
+    .support-phase-tabs .tab-pane{
+        padding:30px;
+    }
+
+    /* how-we-give */
+    .how-we-make-difference .carousel-item.active {
+        width: calc(100% - 100px);
+        left: 50px;
+    }
+    
 }
 
 @media(max-width:767px){
 
+    .blog-items{
+        border:0;
+        padding:0;
+    }
+    .pagination-area{
+        margin-bottom: 30px;
+    }
+    .upcoming-events{
+        margin-top:30px;
+    }
+    .posts-events .row [class*='col-']:not(:last-child) .item, 
     .insights-area [class*='col-']:not(:last-child) .item,
     .solution .row [class*='col-']:not(:last-child) .offer-item, 
     .solution .row [class*='col-']:not(:last-child) .capabilities-item, 
@@ -22,4 +93,20 @@
     .single-content .row{
         margin-bottom: 0!important;
     }
+
+    /* how-we-give */
+    .how-we-make-difference .carousel-item.active {
+        width: calc(100% - 50px);
+        left: 25px;
+    }
+    .how-we-make-difference .carousel-inner {
+        height: 600px;
+    }
+    .how-we-make-difference .carousel-item .img{
+        text-align: center;
+    }
+    .how-we-make-difference .carousel-item .full .img img {
+        height: auto;
+    }
+
 }

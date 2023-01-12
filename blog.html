@@ -15,14 +15,21 @@
 <body>
 
     <div class="header-top-nav">
-        <div class="container d-flex justify-content-end">
+        <div class="container">
             <div class="top-nav-content">
-                <ul>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="contract-vehicles-certifications.html">Contract Vehicles & Certifications</a></li>
-                    <li><a href="#">Affiliate Brands</a></li>
-                </ul>
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#topnavbar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="topnavbar">
+                        <ul class="navbar-nav">
+                            <li><a href="careers.html">Careers</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                            <li><a href="contract-vehicles-certifications.html">Contract Vehicles & Certifications</a></li>
+                            <li><a href="#">Affiliate Brands</a></li>
+                        </ul>
+                    </div>
+                </nav>
                 <span class="search-form"><i class="bi bi-search"></i></span>
                 <div class="search-form-area">
                     <form action="">
@@ -143,7 +150,7 @@
                 <div class="col-md-8">
 
                     <div class="blog-items">
-                        <div class="item full">
+                        <div class="item full white">
                             <div class="feature-img">
                                 <img src="assets/attachment/management-consulting.jpeg" alt="">
                             </div>
@@ -152,7 +159,10 @@
                                     <a href="#">Tag</a>
                                 </div>
                                 <h3>March 28, 2022 Defense Health Agency Awards $1.4B Contract to Transform Health Care </h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+                                <div class="para-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                    <a href="#">Continue Reading</a>
+                                </div>
                                 <span class="date">March 18, 2022</span>
                             </div>
                         </div>
@@ -171,7 +181,10 @@
                                             <a href="#">Tag</a>
                                         </div>
                                         <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
                                         <span class="date">March 18, 2022</span>
                                     </div>
                                 </div>
@@ -192,7 +205,10 @@
                                             <a href="#">Tag</a>
                                         </div>
                                         <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
                                         <span class="date">March 18, 2022</span>
                                     </div>
                                 </div>
@@ -213,7 +229,10 @@
                                             <a href="#">Tag</a>
                                         </div>
                                         <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
                                         <span class="date">March 18, 2022</span>
                                     </div>
                                 </div>
@@ -234,13 +253,36 @@
                                             <a href="#">Tag</a>
                                         </div>
                                         <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
                                         <span class="date">March 18, 2022</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        
+                        <div class="pagination-area mt-4">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link"> <i class="bi bi-chevron-left"></i> Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next <i class="bi bi-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        
                     </div>
+                    
 
                 </div>
 
@@ -266,24 +308,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="pagination-area mt-4">
-                        <nav>
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link"> <i class="bi bi-chevron-left"></i> Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next <i class="bi bi-chevron-right"></i></a>
-                                </li>
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
