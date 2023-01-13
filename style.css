@@ -228,6 +228,7 @@ h1, h2, h3, h4, h5, h6{
     height: 100%;
     object-fit: cover;
     z-index: -1;
+    width: auto;
 }
 
 .page-banner{
@@ -634,6 +635,10 @@ a.read-more, .read-more{
     min-height:430px ;
     transition: all 0.3s;
 }
+.affiliate-brands .tab-pane .img img{
+    max-width:600px;
+    width: 100%;
+}
    
 
 
@@ -925,7 +930,7 @@ a.read-more, .read-more{
     height:500px;
     object-fit: cover;
     position: relative;
-    top:-80px;
+    top:-60px;
     box-shadow: 0px 3px 10px #00000029;
 }
 
@@ -1024,7 +1029,8 @@ a.read-more, .read-more{
 
 /* digital */
 .product-img img{
-    height: 300px;
+    max-width: 400px;
+    width: 100%;
 }
 
 /* quiries */
@@ -1059,7 +1065,7 @@ a.read-more, .read-more{
     object-fit: cover;
     object-position:top;
 }
-.blog-area .item.full .feature-img:after{
+.blog-area .item.full:after{
     content:"";
     position: absolute;
     left:0;
@@ -1070,22 +1076,18 @@ a.read-more, .read-more{
     visibility: visible;
     opacity: 0.7;
     transition: 0.5s;
+    z-index: -1;
 }
 
-.item.full:hover .feature-img:after{
+.item.full:hover:after{
     background: #002E5F!important;
     opacity: 0.8;
 }
-.blog-area .item.full .body{
-    position: absolute;
-    left:0;
-    bottom:0;
-    width: 100%;
-    padding:35px;
-    color:#fff;
-    z-index: 2;
-}
 
+.item.white .body h3, 
+.item.white .body p{
+    color:#fff;
+}
 .item .body h4 a, 
 .item .body h5 a{
     text-decoration: none;
@@ -1424,13 +1426,15 @@ audio{
     cursor: pointer;
     transition: 0.5s ease;
     position: relative;
+    z-index: 1;
 }
-.how-item > div{
+/* .how-item > div{
     float: left;
-}
+} */
 .how-item .title{
     height: 100%;
     position: relative;
+    width: 466px;
 }
 .how-item .title .overlay{
     position: absolute;
@@ -1484,21 +1488,43 @@ audio{
     z-index: -1;
 }
 .how-item .title img{
-    width: 466px;
+    width: 100%;
     height:100%;
     object-fit: cover;
 }
 
-.how-item .body{
+/* .how-item .body{
     max-width: 800px;
     width: 100%;
     padding:40px;
     height: 100%;
     display: flex;
     align-items: center;
+} */
+.how-item .body {
+    position: absolute;
+    top:0;
+    left:50%;
+    max-width: 1300px;
+    width: 100%;
+    padding: 40px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 500px;
+    z-index: -1;
+    transition: 0.6s;
+    opacity: 0;
+    visibility: hidden;
+}
+.how-item.expand .body{
+    left:0;
+    opacity: 1;
+    visibility: visible;
 }
 .how-item .body .content img{
-    height:70px;
+    max-height:70px;
+    height: 100%;
     width: auto;
     margin-bottom: 20px;
 }
