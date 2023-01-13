@@ -74,8 +74,14 @@ howItemTitle.forEach(item => {
 })
 
 
-
-
+const triggerTabList = document.querySelectorAll('.nav button')
+triggerTabList.forEach(triggerEl => {
+  triggerEl.addEventListener('shown.bs.tab', event => {
+    event.preventDefault()
+    
+    //console.dir(event.target.getAttribute('data-bs-target'))
+  })
+})
 
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
