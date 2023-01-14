@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 /* font-family: 'Roboto', sans-serif; */
-
 body{
     font-family: 'Roboto', sans-serif;
     font-size:16px;
@@ -201,12 +200,7 @@ h1, h2, h3, h4, h5, h6{
     box-shadow: -2px 0px 30px 30px rgb(0 0 0 / 2%);
     border:0;
     min-width: 16rem;
-    opacity: 0;
     transition: 0.5s;
-}
-.main-navigation li:hover .dropdown-menu{
-    display: block!important;
-    opacity: 1;
 }
 .main-navigation .dropdown-menu .dropdown-item{
     padding:.65rem 1rem;
@@ -214,6 +208,18 @@ h1, h2, h3, h4, h5, h6{
 .main-navigation .dropdown-menu .dropdown-item:focus{
     background-color:#e9ecef;
     color:#1e2125;
+}
+
+.main-navigation li.dropdown > a{
+    display: inline-block;
+}
+.main-navigation li.dropdown > a ~ a{
+    text-decoration: none;
+    float: right;
+    color:#001733
+}
+.main-navigation li.dropdown > a ~ a i{
+    font-size:20px;
 }
 
 /* banner */
@@ -817,7 +823,7 @@ a.read-more, .read-more{
 .services-item{
     background-color: #fff;
     padding:30px;
-    min-height:400px;
+    min-height:420px;
     height: 100%;
     position: relative;
 }
@@ -875,6 +881,7 @@ a.read-more, .read-more{
     width: 250px;
     height: 250px;
     background-size: contain;
+    background-repeat: no-repeat;
 }
 .serve-items [class*='col-']:last-child .item:after{
     background-image: url('assets/attachment/Commercial\ Icon\ White.svg');

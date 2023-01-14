@@ -23,6 +23,8 @@ window.onscroll = function(){
     }
 }
 
+
+// team popup
 const team = document.querySelectorAll('.team-item');
 team.forEach(item => {
     item.addEventListener('click', function(e){
@@ -34,9 +36,6 @@ team.forEach(item => {
             }
         })
         const overlay = item.querySelector('.overlay-pop');
-
-        
-        isElementInViewport(overlay);
         if (!overlay.contains(e.target)){
             item.classList.toggle('show');
         }
@@ -83,6 +82,8 @@ triggerTabList.forEach(triggerEl => {
   })
 })
 
+
+
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
 if(contactSubmit){
@@ -94,7 +95,9 @@ if(contactSubmit){
 }
 
 
-function isElementInViewport(el){
-    let rect = el.getBoundingClientRect();
-    console.log(rect);
-}
+const dropdown = document.querySelectorAll('.main-navigation li.dropdown');
+dropdown.forEach(item => {
+    let link = item.children[0];
+    link.insertAdjacentHTML('afterend', '<a href="#" data-bs-toggle="dropdown" role="button"><i class="bi bi-plus"></i></a>');
+})
+

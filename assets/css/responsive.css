@@ -18,6 +18,20 @@
 
 }
 
+@media(min-width:991px){
+    /* main navigation */
+    .main-navigation li:hover .dropdown-menu{
+        display: block!important;
+        opacity: 1;
+    }
+    .main-navigation .dropdown-menu{
+        opacity: 0;
+    }
+    .main-navigation li.dropdown > a ~ a{
+        display: none;
+    }
+}
+
 @media(max-width:991px) {
     .top-nav-content {
         display: block;
@@ -27,6 +41,7 @@
         position: absolute;
         top: 0px;
         right: 0;
+        padding:0 12px;
     }
 
     .top-nav-content .navbar-toggler {
@@ -46,12 +61,15 @@
         padding: 12px;
     }
 
+    /* main navigation */
     .main-navigation .navbar-collapse {
         padding-top: 30px
     }
-
     .navbar-collapse li {
         padding: 0 12px;
+    }
+    .main-navigation li.dropdown > a ~ a{
+        display: block;
     }
 
     .say-item {
@@ -98,7 +116,10 @@
         margin-bottom: 30px;
     }
 
-    /* podcasts */
+    /* what we do */
+    .services-item{
+        min-height:450px;
+    }
 
     /* in the news */
     .upcoming-events{
@@ -143,6 +164,14 @@
 
     .single-content .row {
         margin-bottom: 0 !important;
+    }
+
+    /* who we are */
+    .team .row [class*='col-']:not(:last-child) .team-item{
+        margin-bottom: 30px;
+    }
+    .why-we-exist:before{
+        bottom: auto;
     }
 
     /* how-we-give */
@@ -191,13 +220,42 @@
         width: 100%;
     }
 
+    /* what we do */
+    .services-item, 
+    .serve-items .item{
+        min-height:auto;
+        height: auto;
+    }
+    .serve-items .item:after {
+        right:0;
+        bottom:0;
+        width: 150px;
+        height: 150px;
+    }
+    .serve-items [class*='col-']:last-child .item:after {
+        left: 0;
+    }
+    
+    .serve-items .row [class*='col-']:not(:last-child) .item{
+        margin-bottom: 50px;
+    }
+
     /* insights and events */
-    .quiries [class*='col-']:not(:last-child):after{
+    .quiries [class*='col-']:not(:last-child):after, 
+    .serve-items .row:after, 
+    .why-we-exist .row:after{
         display: none;
     }
-    .quiries [class*='col-']:not(:last-child) .quiries-item{
+    .quiries [class*='col-']:not(:last-child) .quiries-item, 
+    .services-and-capabilities .row [class*='col-']:not(:last-child) .services-item, 
+    .why-we-exist .row [class*='col-']:not(:last-child) .exist-item{
         margin-bottom: 30px;
     }
-      
+}
 
+@media(max-width:576px){
+    .team-item .overlay-pop {
+        min-width: auto;
+        max-width: 30rem;
+    }
 }
