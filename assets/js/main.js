@@ -3,10 +3,10 @@
 const navContent = document.querySelector('.top-nav-content');
 const searchFrom = document.querySelector('.search-form');
 const search = document.getElementById('search');
-searchFrom.addEventListener('mouseover', function(e){
+searchFrom.addEventListener('click', function(e){
     navContent.classList.add('search');
 })
-search.addEventListener('mouseover', function(e){
+search.addEventListener('click', function(e){
     navContent.classList.add('search');
 })
 search.addEventListener('mouseleave', function(e){
