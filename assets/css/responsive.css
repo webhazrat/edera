@@ -33,17 +33,12 @@
 }
 
 @media(max-width:991px) {
+    .header-top-nav > .container{
+        display: block!important;
+    }
     .top-nav-content {
         display: block;
     }
-
-    .top-nav-content .search-form {
-        position: absolute;
-        top: 0px;
-        right: 0;
-        padding:0 12px;
-    }
-
     .top-nav-content .navbar-toggler {
         color: #fff;
     }

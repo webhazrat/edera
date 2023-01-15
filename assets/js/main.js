@@ -1,17 +1,40 @@
 
-// top navigation search form
-const navContent = document.querySelector('.top-nav-content');
-const searchFrom = document.querySelector('.search-form');
-const search = document.getElementById('search');
-searchFrom.addEventListener('click', function(e){
-    navContent.classList.add('search');
+// header top search
+const searchBtn = document.getElementById('searchBtn');
+const searchInput = document.getElementById('search');
+const searchClose = document.getElementById('searchClose');
+const searchFrom = document.querySelector('.search-form-area');
+searchBtn.addEventListener('click', function(e){
+    if(!searchInput.value){
+        e.preventDefault();
+    }
+    searchFrom.classList.add('show');
 })
-search.addEventListener('click', function(e){
-    navContent.classList.add('search');
+searchClose.addEventListener('click', function(e){
+    e.preventDefault();
+    searchFrom.classList.remove('show');
 })
-search.addEventListener('mouseleave', function(e){
-    navContent.classList.remove('search');
-})
+
+// banner navigation search
+const insightSearchBtn = document.getElementById('insightSearchBtn');
+const searchText = document.getElementById('searchText');
+const insightSearchClose = document.getElementById('insightSearchClose');
+const searchFromArea = document.querySelector('.insight-search-area');
+if(insightSearchBtn){
+    insightSearchBtn.addEventListener('click', function(e){
+        if(!searchText.value){
+            e.preventDefault();
+        }
+        searchFromArea.classList.add('show');
+    })
+}
+
+if(insightSearchClose){
+    insightSearchClose.addEventListener('click', function(e){
+        e.preventDefault();
+        searchFromArea.classList.remove('show');
+    })
+}
 
 // main navigation scroll
 const mainNavigation = document.querySelector('.main-navigation');
@@ -72,17 +95,12 @@ howItemTitle.forEach(item => {
     })
 })
 
-
-const triggerTabList = document.querySelectorAll('.nav button')
-triggerTabList.forEach(triggerEl => {
-  triggerEl.addEventListener('shown.bs.tab', event => {
-    event.preventDefault()
-    
-    //console.dir(event.target.getAttribute('data-bs-target'))
-  })
+// mobile dropdown
+const dropdown = document.querySelectorAll('.main-navigation li.dropdown');
+dropdown.forEach(item => {
+    let link = item.children[0];
+    link.insertAdjacentHTML('afterend', '<a href="#" data-bs-toggle="dropdown" role="button"><i class="bi bi-plus"></i></a>');
 })
-
-
 
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
@@ -94,10 +112,20 @@ if(contactSubmit){
     })
 }
 
+// tabs link active
+function tabLink(target){
+    const tabList = document.querySelectorAll('.nav button')
+    tabList.forEach(triggerEl => {
+        triggerEl.classList.remove('active');
+        if(triggerEl.dataset.bsTarget == target){
+            triggerEl.classList.add('active')
+        }
+    })
+}
 
-const dropdown = document.querySelectorAll('.main-navigation li.dropdown');
-dropdown.forEach(item => {
-    let link = item.children[0];
-    link.insertAdjacentHTML('afterend', '<a href="#" data-bs-toggle="dropdown" role="button"><i class="bi bi-plus"></i></a>');
+const triggerTabList = document.querySelectorAll('.nav button')
+triggerTabList.forEach(triggerEl => {
+    triggerEl.addEventListener('shown.bs.tab', function(e){
+        tabLink(triggerEl.dataset.bsTarget)
+    })
 })
-
