@@ -91,12 +91,14 @@ howItemTitle.forEach(item => {
         e.preventDefault();
         const howItem = document.querySelectorAll('.how-item');
         howItem.forEach(item2 => {
+            item2.classList.add('closing');
             if (item2.classList.contains('expand')) {
                 item2.classList.remove('expand');
                 item2.style.removeProperty('width');
             }
         })
         this.closest('.how-item').classList.add('expand');
+        this.closest('.how-item').classList.remove('closing');
         
         const siblingNum = document.querySelectorAll('.how-item.expand ~ .how-item').length;
         this.closest('.how-item').style.width=`calc(100% - ${siblingNum}*110px)`;
@@ -122,18 +124,26 @@ if(contactSubmit){
 
 // tabs link active
 function tabLink(target){
-    const tabList = document.querySelectorAll('.nav button')
+    const tabList = document.querySelectorAll('.nav button');
     tabList.forEach(triggerEl => {
         triggerEl.classList.remove('active');
         if(triggerEl.dataset.bsTarget == target){
             triggerEl.classList.add('active')
         }
-    })
+    })    
 }
 
 const triggerTabList = document.querySelectorAll('.nav button')
 triggerTabList.forEach(triggerEl => {
     triggerEl.addEventListener('shown.bs.tab', function(e){
         tabLink(triggerEl.dataset.bsTarget)
+        
+        const tabPane = document.querySelectorAll('.clinical-tabs .tab-pane');
+        tabPane.forEach(pane => {
+            pane.classList.remove('active');
+            if('#'+pane.id == triggerEl.dataset.bsTarget){
+                pane.classList.add('active');
+            }            
+        })
     })
 })
