@@ -48,6 +48,11 @@ window.onscroll = function(){
 
 
 // team popup
+function isElementInViewport (el) {
+    var rect = el.getBoundingClientRect();
+    return rect.bottom - window.innerHeight;
+}
+
 const team = document.querySelectorAll('.team-item');
 team.forEach(item => {
     item.addEventListener('click', function(e){
@@ -61,6 +66,10 @@ team.forEach(item => {
         const overlay = item.querySelector('.overlay-pop');
         if (!overlay.contains(e.target)){
             item.classList.toggle('show');
+        }
+
+        if(isElementInViewport(overlay) > 0){
+            document.documentElement.scrollTop += isElementInViewport(overlay)+10;
         }
         
     })
@@ -88,7 +97,6 @@ howItemTitle.forEach(item => {
             }
         })
         this.closest('.how-item').classList.add('expand');
-
         
         const siblingNum = document.querySelectorAll('.how-item.expand ~ .how-item').length;
         this.closest('.how-item').style.width=`calc(100% - ${siblingNum}*110px)`;
