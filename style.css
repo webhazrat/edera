@@ -296,6 +296,7 @@ a.read-more, .read-more{
     position: relative;
 }
 
+.read-more:before, 
 .read-more:after{
     content:"";
     position: absolute;
@@ -306,9 +307,23 @@ a.read-more, .read-more{
     background-color: transparent;
     transition: 0.5s;
 }
+.read-more:before{
+    height: 1px;
+    width: 100%;
+    background-color: #f5f5f5;
+}
+.read-more.secondary::before{
+    background-color: #e9e9e9;
+}
+.read-more.default::before{
+    background-color: rgba(255, 255, 255, 0.1);
+}
 .read-more:hover:after{
     background-color:#94CC00;
     width: 100%;
+}
+.read-more.orange:hover:after{
+    background-color: #E29D3C;
 }
 
 .quiries .read-more:hover:after{
@@ -844,12 +859,17 @@ a.read-more, .read-more{
     position: relative;
     padding-right: 22px;
 }
-.contact-us form button[type="submit"]:before{
-    content:"\F135";
+.contact-us form button[type="submit"]:before {
+    content: "\F135";
     font-family: 'bootstrap-icons';
     position: absolute;
-    right:0;
+    right: 0;
+    top: 0;
+    left: auto;
     transition: 0.5s ease-in-out;
+    width: auto;
+    height: 0;
+    background: transparent;
 }
 .contact-us form button[type="submit"].active:before{
     content:"\F270";
