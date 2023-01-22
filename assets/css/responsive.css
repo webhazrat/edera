@@ -33,6 +33,7 @@
 }
 
 @media(max-width:991px) {
+
     .header-top-nav > .container{
         display: block!important;
     }
@@ -54,6 +55,11 @@
     .header-top-nav ul li {
         margin: 0;
         padding: 12px;
+    }
+
+    /* banner */
+    .banner video{
+        display: none;
     }
 
     /* main navigation */

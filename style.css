@@ -675,6 +675,9 @@ a.read-more, .read-more{
     border:0;
     justify-content: space-around;
 }
+.affiliate-brands .nav-item:not(:last-child) {
+    margin-bottom: 15px;
+}
 .affiliate-brands .nav-link, 
 .affiliate-brands .nav-tabs .nav-item.show .nav-link, 
 .affiliate-brands .nav-tabs .nav-link.active{

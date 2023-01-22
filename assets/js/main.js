@@ -50,7 +50,12 @@ window.onscroll = function(){
 // team popup
 function isElementInViewport (el) {
     var rect = el.getBoundingClientRect();
-    return rect.bottom - window.innerHeight;
+
+    return {
+        'hV' : rect.bottom - window.innerHeight, 
+        'wL' : rect.left - window.innerWidth,
+        'wR' : rect.right - window.innerWidth
+    };
 }
 
 const team = document.querySelectorAll('.team-item');
@@ -68,8 +73,8 @@ team.forEach(item => {
             item.classList.toggle('show');
         }
 
-        if(isElementInViewport(overlay) > 0){
-            document.documentElement.scrollTop += isElementInViewport(overlay)+10;
+        if(isElementInViewport(overlay).hV > 0){
+            document.documentElement.scrollTop += isElementInViewport(overlay).hV+10;
         }
         
     })
