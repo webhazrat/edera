@@ -1,3 +1,12 @@
+// video play once
+const video = document.getElementById('video-banner');
+if(video){
+    video.addEventListener('timeupdate', function(){
+        if(Math.ceil(this.currentTime) >= Math.floor(this.duration)){
+            this.pause();
+        }
+    })
+}
 
 // header top search
 const searchBtn = document.getElementById('searchBtn');
