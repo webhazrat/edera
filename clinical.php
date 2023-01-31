@@ -19,7 +19,7 @@
             </div>
             <div class="text-end">
                 <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="assets/attachment/videos/Edera Header Clinical 1440 336.mp4" type="video/mp4">
+                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/videos/Edera Header Clinical 1440 336.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -45,7 +45,6 @@
                     <span><i class="bi bi-arrow-right"></i></span>
                     <button class="nav-link item" data-bs-toggle="pill"
                     data-bs-target="#sustainment"> Sustainment </button>
-                    
                 </div>
             </div>
         </div>
@@ -85,7 +84,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_EHR Implementation.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_EHR Implementation.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -106,7 +105,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_planning _ Analysis.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_planning _ Analysis.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -126,7 +125,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_Design,Development.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Design,Development.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +146,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_Implementation.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Implementation.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -166,7 +165,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_Sustainment.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Sustainment.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +185,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/Clinical_CDRC.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_CDRC.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>

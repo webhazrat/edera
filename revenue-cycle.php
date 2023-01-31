@@ -19,7 +19,7 @@
             </div>
             <div class="text-end">
                 <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="assets/attachment/videos/Edera Header Revcycle 1440 336.mp4" type="video/mp4">
+                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/videos/Edera Header Revcycle 1440 336.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
@@ -56,7 +56,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_FE Process.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_FE Process.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_Rev Integrity Process.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_Rev Integrity Process.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_BackEndProcess.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_BackEndProcess.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_CDRC.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_CDRC.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -136,7 +136,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_RCO.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_RCO.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -156,7 +156,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="assets/attachment/RevCycle_RevReconciliation.jpeg" alt="">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_RevReconciliation.jpeg" alt="">
                                     </div>
                                 </div>
                             </div>
