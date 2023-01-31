@@ -236,7 +236,8 @@ h1, h2, h3, h4, h5, h6{
 .main-navigation .dropdown-menu .dropdown-item{
     padding:.65rem 1rem;
 }
-.main-navigation .dropdown-menu .dropdown-item:focus{
+.main-navigation .dropdown-menu .dropdown-item:focus, 
+.main-navigation .dropdown-menu .dropdown-item.active{
     background-color:#e9ecef;
     color:#1e2125;
 }
