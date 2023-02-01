@@ -4,10 +4,19 @@
         function edera_theme_setup(){
             add_theme_support('title-tag');
 
+            add_theme_support('custom-logo', array(
+                'height' => 32,
+                'width' => 180,
+                'flex-height' => true,
+                'flex-width' => true
+            ));
+
             register_nav_menus(
                 array(
-                    'secondary' => 'Header Top Manu',
-                    'primary' => 'Main Menu'
+                    'menu1' => 'Top Navigation',
+                    'menu2' => 'Main Navigation',
+                    'menu3' => 'Banner Navigation',
+                    'menu4' => 'Footer Navigation'
                 )
             );
 
@@ -29,7 +38,44 @@
     }
     add_action('wp_enqueue_scripts', 'edera_theme_scripts');
 
+    function edera_widgets(){
+        register_sidebar(array(
+            'name' => 'Footer First Column',
+            'id' => 'footer_first_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>'
+        ));
 
+        register_sidebar(array(
+            'name' => 'Footer Second Column',
+            'id' => 'footer_second_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>'
+        ));
+
+        register_sidebar(array(
+            'name' => 'Footer Third Column',
+            'id' => 'footer_third_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>'
+        ));
+
+        register_sidebar(array(
+            'name' => 'Footer Fourth Column',
+            'id' => 'footer_fourth_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h4>',
+            'after_title' => '</h4>'
+        ));
+    }
+    add_action('widgets_init', 'edera_widgets');
 
 
 

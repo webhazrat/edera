@@ -58,7 +58,7 @@
         </div>
     </div>
 
-    <div class="team py-5" style="background-image: url('assets/attachment/who-we-are-bg-pattern.svg');">
+    <div class="team py-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/who-we-are-bg-pattern.svg');">
         <div class="container">
             <h4>At the wheel</h4>
 
@@ -67,7 +67,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/kevin-carr.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/kevin-carr.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Dr. Kevin Carr, MD</h6>
@@ -85,7 +85,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/jason-lasalle.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/jason-lasalle.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Jason LaSalle, MBA, PMP</h6>
@@ -103,7 +103,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/larnie-yuson.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/larnie-yuson.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Larnie Yuson, Esq.</h6>
@@ -128,7 +128,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/mark-cads.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/mark-cads.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Mark Cads, OCS, OCA, PMP</h6>
@@ -147,7 +147,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/nina-miranda.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/nina-miranda.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Nina Miranda</h6>
@@ -166,7 +166,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/felishia-perry.svg" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/felishia-perry.svg" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Felishia Perry, MHA-IF, BSN, RN-BC, CCMP, PROSCI®</h6>
@@ -186,7 +186,7 @@
                 <div class="col-lg-3 col-md-6">
                     <div class="team-item">
                         <div class="team-img">
-                            <img src="assets/attachment/joletter-van-vuuren.png" alt="">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/joletter-van-vuuren.png" alt="">
                             <div class="overlay-pop">
                                 <a href="#" class="close"><i class="bi bi-x"></i></a>
                                 <h6>Jolette van Vuuren, PMP</h6>
