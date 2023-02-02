@@ -79,6 +79,31 @@
     }
     add_action('widgets_init', 'edera_widgets');
 
+    function custom_post_types(){
+        register_post_type('solutions', array(
+            'labels' => array(
+                'name' => __('Solutions'),
+                'singular_name' => __('Solution')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-buddicons-groups',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'has_archive'  => true,
+            'show_in_rest' => true,
+            'taxonomies'   => array( 'solutions_categories' )
+        ));
+        register_taxonomy( 'solutions_categories', array('solutions'), array(
+            'hierarchical' => true, 
+            'label' => 'Categories', 
+            'singular_label' => 'Category', 
+            'rewrite' => array( 'slug' => 'categories', 'with_front'=> false ),
+            'show_in_rest' => true
+            )
+        );
 
+    }
+    add_action('init', 'custom_post_types');
+
+    require 'inc/custom_meta_boxes.php';
 
 ?>
