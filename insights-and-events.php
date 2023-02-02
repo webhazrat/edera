@@ -64,46 +64,36 @@
         <div class="container">
             <h3 class="sub-header text-green mb-4">Featured Insights</h3>
             <div class="row">
+                <?php 
+                    $featured = new WP_Query(array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 3,
+                        'order' => 'DESC'
+                    ));
+
+                    if($featured->have_posts()) :
+                        while($featured->have_posts()) : $featured->the_post(); 
+                ?>
+
                 <div class="col-md-4">
                     <div class="item">
                         <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight1.jpeg" alt="">
+                            <?php the_post_thumbnail('medium'); ?>
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Defense Health Agency Awards $1.4B Contract to Transform Health Care</a>
+                            <div class="date my-3"><?php echo get_the_date(); ?></div>
+                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
+                            <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Agency Awards $1.4B Contract to Transform Health Care</a></h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Health Agency Awards $1.4B Contract to Transform Health Care</a></h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
+                <?php 
+                        endwhile;
+                    endif;
+                ?>
             </div>
         </div>
     </div>
@@ -173,46 +163,37 @@
         <div class="container">
             <h3 class="sub-header text-green mb-4">Edera In The News</h3>
             <div class="row">
+
+                <?php 
+                    $inTheNews = new WP_Query(array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 3,
+                        'order' => 'DESC'
+                    ));
+                    if($inTheNews->have_posts()) : 
+                        while($inTheNews->have_posts()) : $inTheNews->the_post();
+                ?>
+
                 <div class="col-md-4">
                     <div class="item">
                         <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight1.jpeg" alt="">
+                            <?php the_post_thumbnail('medium'); ?>
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Defense Health Agency Awards $1.4B Contract to Transform Health Care</a>
+                            <div class="date my-3"><?php echo get_the_date(); ?></div>
+                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
                             </h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
+                            <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Agency Awards $1.4B Contract to Transform Health Care</a></h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3">March 28, 2022</div>
-                            <h4><a href="#">Health Agency Awards $1.4B Contract to Transform Health Care</a></h4>
-                            <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
+                
+                <?php
+                        endwhile;
+                    endif;
+                ?>
+                
             </div>
         </div>
     </div>

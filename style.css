@@ -82,7 +82,8 @@ h1, h2, h3, h4, h5, h6{
     color:#fff;
     transition:0.5s;
 }
-.header-top-nav ul li a:hover, .header-top-nav ul li a.active{
+.header-top-nav ul li a:hover, 
+.header-top-nav ul li.current-menu-item a{
     color:#94CC00;
 }
 
@@ -404,6 +405,10 @@ a.read-more, .read-more{
     flex-direction: column;
     justify-content: space-between;
 }
+.offer-item .body, 
+.capabilities-item .body{
+    padding-top:160px;
+}
 
 .offer-item .overlay::before, 
 .offer-item .overlay::after, 
@@ -435,10 +440,12 @@ a.read-more, .read-more{
 .capabilities-item .overlay img{
     height: 70px;
     width: auto;
-    margin-bottom: 90px;
     visibility: hidden;
     opacity: 0;
     transition: 0.5s ease-out;
+    position: absolute;
+    top:30px;
+    left:30px;
 }
 .offer-item .overlay  h3, 
 .capabilities-item .overlay  h3{

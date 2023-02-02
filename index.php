@@ -170,42 +170,36 @@
         <div class="container">
             <h2 class="section-header mb-4">Insights & Events</h2>
             <div class="row">
+
+                <?php 
+                    $posts = new WP_Query(array(
+                        'post_type' => 'post',
+                        'posts_per_page' => 3,
+                        'order' => 'DESC'
+                    ));
+
+                    if($posts->have_posts()) :
+                        while($posts->have_posts()) : $posts->the_post(); 
+                ?>
+
                 <div class="col-md-4">
                     <div class="item">
                         <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight1.jpeg" alt="">
+                            <?php the_post_thumbnail('medium'); ?>
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">
-                            <strong>March 28, 2022</strong>
-                            <h4><a href="#">March 28, 2022 Defense Health Agency Awards $1.4B Contract to Transform Health Care — Edera L3C Selected</a></h4>
+                            <strong><?php echo get_the_date(); ?></strong>
+                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <strong>March 26, 2021</strong>
-                            <h4><a href="#">May 26, 2021 Edera L3C Awarded U.S. General Services Administration Multiple Award Schedule Contract</a></h4>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <strong>February 21, 2021</strong>
-                            <h4><a href="#">February 15, 2021 Edera L3C Reaches Agreement to Make Compass Product Suite Available Through Salesforce App</a></h4>
-                        </div>
-                    </div>
-                </div>
+
+                <?php 
+                        endwhile; 
+                    endif;
+                ?>
+               
             </div>
             <div class="text-end mt-4">
                 <a href="insights-and-events.html" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
