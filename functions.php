@@ -101,6 +101,25 @@
             )
         );
 
+        register_post_type('what_we_do', array(
+            'labels' => array(
+                'name' => __('What We Do'),
+                'singular_name' => __('What We Do')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-editor-ul',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'has_archive' => true,
+            'show_in_rest' => true,
+            'taxonomies' => array('what_we_do_categories')
+        ));
+        register_taxonomy( 'what_we_do_categories', array('what_we_do'), array(
+            'hierarchical' => true,
+            'label' => 'Categories',
+            'singular_label' => 'Category',
+            'show_in_rest' => true
+        ));
+
     }
     add_action('init', 'custom_post_types');
 

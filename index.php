@@ -75,8 +75,8 @@
                         while($offerings->have_posts()) : $offerings->the_post(); 
                         $attachment_id = get_post_thumbnail_id( $post->ID );
                         $background_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
-                        $button_text = get_post_meta($post->ID, 'solutions_btn_text', true);
-                        $button_link = get_post_meta($post->ID, 'solutions_btn_link', true);
+                        $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                        $btn_link = get_post_meta($post->ID, 'btn_link', true);
 
                         $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
                         $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0];
@@ -91,8 +91,8 @@
                                 <?php the_content(); ?>
                             </div>
                             <div>
-                                <?php if($button_text) : ?>
-                                <a href="<?php echo get_permalink($button_link); ?>" class="read-more default"> <?php echo $button_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                                <?php if($btn_text) : ?>
+                                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
                                 <?php endif; ?>
                             </div>
                         </div>
@@ -126,8 +126,8 @@
                         $image_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
                         $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
                         $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0]; 
-                        $button_text =  get_post_meta($post->ID, 'solutions_btn_text', true);                      
-                        $button_link =  get_post_meta($post->ID, 'solutions_btn_link', true);                      
+                        $btn_text =  get_post_meta($post->ID, 'btn_text', true);                      
+                        $btn_link =  get_post_meta($post->ID, 'btn_link', true);                      
                 ?>
                 <div class="col-md-4">
                     <div class="capabilities-item"
@@ -139,8 +139,8 @@
                                 <?php the_content(); ?>
                             </div>
                             <div>
-                                <?php if($button_text) : ?>
-                                <a href="<?php echo get_permalink($button_link); ?>" class="read-more default"> <?php echo $button_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                                <?php if($btn_text) : ?>
+                                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
                                 <?php endif; ?>
                             </div>
                         </div>

@@ -1,33 +1,35 @@
 <?php
 
 function meta_boxes(){
-    add_meta_box('solutions_id', __('Button'), 'solutions_meta_boxes_function', 'solutions', 'normal', 'high');
-    add_meta_box('solutions_id2', __('Icon'), 'solutions2_meta_boxes_function', 'solutions', 'side', 'low');
+    add_meta_box('solutions_id', __('Button'), 'page_btn_meta_boxes_function', 'solutions', 'normal', 'high');
+    add_meta_box('solutions_id2', __('Icon'), 'icon_meta_boxes_function', 'solutions', 'side', 'low');
+
+    add_meta_box('what_we_do_id', __('Button'), 'page_btn_meta_boxes_function', 'what_we_do', 'normal', 'high');
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
 
-function solutions_meta_boxes_function($post){
+function page_btn_meta_boxes_function($post){
     wp_nonce_field(basename(__FILE__), 'wp_nonce');
     
-    $solutions_btn_text = get_post_meta($post->ID, "solutions_btn_text", true);
-    $solutions_btn_link = get_post_meta($post->ID, "solutions_btn_link", true);
+    $btn_text = get_post_meta($post->ID, "btn_text", true);
+    $btn_link = get_post_meta($post->ID, "btn_link", true);
     
 ?>
     <div class="tablenav">
         <div class="alignleft actions">
-            <label for="solutions_btn_text">Button Text</label>
-            <input type="text" name="solutions_btn_text" value="<?php echo $solutions_btn_text; ?>" id="solutions_btn_text">
+            <label for="btn_text">Button Text</label>
+            <input type="text" name="btn_text" value="<?php echo $btn_text; ?>" id="btn_text">
         </div>
         <div class="alignleft">
-            <label for="solutions_btn_link">Button Link</label>
-            <select name="solutions_btn_link" id="solutions_btn_link">
+            <label for="btn_link">Button Link</label>
+            <select name="btn_link" id="btn_link">
                 <option value="">Select Page</option>
                 <?php
                 $pages = get_pages();
                 foreach($pages as $page){ 
                     echo $page->ID;
-                    $selected = ( $page->ID == $solutions_btn_link ) ?'selected' : '';
+                    $selected = ( $page->ID == $btn_link ) ?'selected' : '';
                     ?>
                     <option <?php echo $selected; ?> value="<?php echo $page->ID; ?>"><?php echo $page->post_title; ?></option>
                 <?php }
@@ -39,7 +41,7 @@ function solutions_meta_boxes_function($post){
 <?php 
 }
 
-function solutions2_meta_boxes_function($post){
+function icon_meta_boxes_function($post){
     wp_nonce_field(basename(__FILE__), 'wp_nonce'); 
     $solutions_icon = get_post_meta( $post->ID, 'solutions_icon', true);
     $image_url = $solutions_icon != '' && wp_get_attachment_image_src($solutions_icon) ? wp_get_attachment_image_src($solutions_icon)[0] : ''; 
@@ -70,13 +72,12 @@ function save_meta_box($post_id, $post){
     }
     
     // save data to database
-    $solutions_btn_text = isset($_POST["solutions_btn_text"]) ? sanitize_text_field($_POST["solutions_btn_text"]) : "";
-    $solutions_btn_link = isset($_POST["solutions_btn_link"]) ? sanitize_text_field($_POST["solutions_btn_link"]) : "";
+    $btn_text = isset($_POST["btn_text"]) ? sanitize_text_field($_POST["btn_text"]) : "";
+    $btn_link = isset($_POST["btn_link"]) ? sanitize_text_field($_POST["btn_link"]) : "";
 
     $solutions_icon = isset($_POST["solutions_icon"]) ? $_POST["solutions_icon"] : "";
     
-
-    update_post_meta($post_id, "solutions_btn_text", $solutions_btn_text);
-    update_post_meta($post_id, "solutions_btn_link", $solutions_btn_link);
+    update_post_meta($post_id, "btn_text", $btn_text);
+    update_post_meta($post_id, "btn_link", $btn_link);
     update_post_meta($post_id, "solutions_icon", $solutions_icon);
 }

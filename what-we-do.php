@@ -33,36 +33,37 @@
             <h4 class="text-center mb-4">Sevice Offerings</h4>
 
             <div class="row mb-4">
+                <?php 
+                    $offerings = new WP_Query(array(
+                        'post_type' => 'what_we_do',
+                        'posts_per_page' => 3,
+                        'taxonomy' => 'what_we_do_categories',
+                        'term' => 'offerings',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    if($offerings->have_posts()) :
+                        while($offerings->have_posts()) : $offerings->the_post();
+                        $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                        $btn_link = get_post_meta($post->ID, 'btn_link', true);
+                ?>
                 <div class="col-md-4">
                     <div class="services-item">
                         <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical EHR Icon.svg" alt="">
+                            <?php the_post_thumbnail('thumbnail'); ?>
                         </div>
-                        <h6>Clinical Electronic Health Record (EHR) Support</h6>
-                        <p>Our Clinical Team provides exceptional, experienced clinicians from a wide variety of disciplines to support clients at every phase of electronic health record (EHR) implementation and optimization.</p>
-                        <a href="clinical.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                        <h6><?php the_title(); ?></h6>
+                        <?php the_content(); ?>
+                        <?php if($btn_text) : ?>
+                        <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"><?php echo $btn_text; ?><i class="bi bi-arrow-right-short"></i></a>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="services-item">
-                        <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Quality Icon.svg" alt="">
-                        </div>
-                        <h6>Quality</h6>
-                        <p>Our Clinical Quality Team supports and shapes initiatives with leading organizations in quality monitoring, measurement, and development.</p>
-                        <a href="quality.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="services-item">
-                        <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Rev Cycle Support Icon.svg" alt="">
-                        </div>
-                        <h6>Revenue Cycle Support</h6>
-                        <p>Health care providers face significant challenges trying to remain “revenue neutral” during transition. Whether it is an acute or ambulatory setting, our certified, dedicated team will make an immediate impact within Patient Access, Health Information</p>
-                        <a href="revenue-cycle.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
+                <?php 
+                          endwhile;
+                    endif;
+                    wp_reset_query();
+                ?>
                 
             </div>
 
