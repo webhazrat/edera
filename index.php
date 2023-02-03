@@ -61,97 +61,97 @@
             <h2 class="section-header">Solution and Service</h2>
             <h3 class="sub-header">Our Offerings</h3>
             <div class="row">
+
+                <?php 
+                    $offerings = new WP_Query(array(
+                        'post_type' => 'solutions',
+                        'posts_per_page' => 3,
+                        'taxonomy' => 'solutions_categories',
+                        'term' => 'offerings',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    if($offerings->have_posts()) : 
+                        while($offerings->have_posts()) : $offerings->the_post(); 
+                        $attachment_id = get_post_thumbnail_id( $post->ID );
+                        $background_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
+                        $button_text = get_post_meta($post->ID, 'solutions_btn_text', true);
+                        $button_link = get_post_meta($post->ID, 'solutions_btn_link', true);
+
+                        $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
+                        $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0];
+                    ?>
+                
                 <div class="col-md-4">
-                    <div class="offer-item" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/clinical-support.jpg')">
+                    <div class="offer-item" style="background-image:url('<?php echo $background_url; ?>')">
                         <div class="overlay">
                             <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/clinical-support-icon.svg" alt="">
-                                <h3>Clinical Support</h3>
-                                <p>Our Clinical Team provides exceptional, experienced clinicians from a wide variety of disciplines to support clients at every phase of electronic health record (EHR) implementation and optimization. We establish local teams and build their skill sets for optimal levels of adoption and ongoing sustainment.</p>
+                                <img src="<?php echo $icon_url; ?>" alt="">
+                                <h3><?php the_title(); ?></h3>
+                                <?php the_content(); ?>
                             </div>
                             <div>
-                                <a href="clinical.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                                <?php if($button_text) : ?>
+                                <a href="<?php echo get_permalink($button_link); ?>" class="read-more default"> <?php echo $button_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="offer-item" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/revenue-cycle.jpeg')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/revenue-cycle-support-icon.svg" alt="">
-                                <h3>Revenue Cycle Support</h3>
-                                <p>Our certified, dedicated team will make an immediate impact within Patient Access, Health Information Management (HIM) Coding, Patient Billing, and Account Management Services.</p>
-                            </div>
-                            <div>
-                                <a href="revenue-cycle.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="offer-item" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/quality.jpeg')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/quality-icon.svg" alt="">
-                                <h3>Quality</h3>
-                                <p>Our Clinical Quality Team supports and shapes initiatives with leading organizations in quality monitoring, measurement, and development.</p>
-                            </div>
-                            <div>
-                                <a href="quality.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <?php 
+                        endwhile;
+                    endif;
+                    wp_reset_query();
+                ?>
 
             </div>
 
             <h3 class="sub-header">Our Capabilities</h3>
             <div class="row">
+
+                <?php 
+                    $capabilities = new WP_Query(array(
+                        'post_type' => 'solutions',
+                        'posts_per_page' => 3,
+                        'taxonomy' => 'solutions_categories',
+                        'term' => 'capabilities',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+
+                    if($capabilities->have_posts()) : 
+                        while($capabilities->have_posts()) : $capabilities->the_post();
+                        $attachment_id = get_post_thumbnail_id($post->ID);
+                        $image_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
+                        $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
+                        $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0]; 
+                        $button_text =  get_post_meta($post->ID, 'solutions_btn_text', true);                      
+                        $button_link =  get_post_meta($post->ID, 'solutions_btn_link', true);                      
+                ?>
                 <div class="col-md-4">
                     <div class="capabilities-item"
-                        style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/management-consulting.jpeg')">
+                        style="background-image:url('<?php echo $image_url; ?>')">
                         <div class="overlay">
                             <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/management-consulting-icon.svg" alt="">
-                                <h3>Management Consulting</h3>
-                                <p>Our Management Consultants deliver ingenuous, end-to-end solutions to help advance the mission of the Quadruple Aim for healthcare transformations and more.</p>
+                                <img src="<?php echo $icon_url; ?>" alt="">
+                                <h3><?php the_title(); ?></h3>
+                                <?php the_content(); ?>
                             </div>
                             <div>
-                                <a href="management-consulting.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                                <?php if($button_text) : ?>
+                                <a href="<?php echo get_permalink($button_link); ?>" class="read-more default"> <?php echo $button_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                                <?php endif; ?>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="capabilities-item" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/creative.jpeg')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/creative-icon.svg" alt="">
-                                <h3>Creative</h3>
-                                <p>Our Creative Team partners with clients to break down complex information, clearly communicate impact, and drive action through compelling narratives and visuals.</p>
-                            </div>
-                            <div>
-                                <a href="creative.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="capabilities-item"
-                        style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/digital-solutions.jpeg')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/digital-solutions-icon.svg" alt="">
-                                <h3>Digital Solutions</h3>
-                                <p>Our Technology Specialists bring our clinical ideations to life, with the patient at the center. Our scalable innovations drive growth and continuous improvement for health delivery organizations.</p>
-                            </div>
-                            <div>
-                                <a href="digital.html" class="read-more default">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                <?php
+                        endwhile;
+                    endif;
+                    wp_reset_query();
+                ?>
 
             </div>
         </div>
@@ -198,6 +198,7 @@
                 <?php 
                         endwhile; 
                     endif;
+                    wp_reset_query();
                 ?>
                
             </div>

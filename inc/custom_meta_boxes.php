@@ -3,7 +3,6 @@
 function meta_boxes(){
     add_meta_box('solutions_id', __('Button'), 'solutions_meta_boxes_function', 'solutions', 'normal', 'high');
     add_meta_box('solutions_id2', __('Icon'), 'solutions2_meta_boxes_function', 'solutions', 'side', 'low');
-    // add_meta_box('feedback_id', __('Feedback Information'), 'feedback_meta_boxes_function', 'feedback', 'normal', 'low');
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
