@@ -996,6 +996,9 @@ a.read-more, .read-more{
 .phases i{
     font-size:30px;
 }
+.phases .nav .item:last-of-type ~ span{
+    display: none!important;
+}
 
 .section-title-area h6{
     font-weight:700;

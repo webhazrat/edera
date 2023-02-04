@@ -97,7 +97,9 @@
             'label' => 'Categories', 
             'singular_label' => 'Category', 
             'rewrite' => array( 'slug' => 'categories', 'with_front'=> false ),
-            'show_in_rest' => true
+            'show_in_rest' => true,
+            'show_admin_column' => true, 
+            'sort' => true
             )
         );
 
@@ -117,7 +119,9 @@
             'hierarchical' => true,
             'label' => 'Categories',
             'singular_label' => 'Category',
-            'show_in_rest' => true
+            'show_in_rest' => true,
+            'show_admin_column' => true,
+            'sort' => true
         ));
 
     }

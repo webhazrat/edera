@@ -32,6 +32,16 @@
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">
+                        <?php
+                            $revenue_cycle = new WP_Query(array(
+                                'post_type' => 'what_we_do',
+                                'posts_per_page' => -1,
+                                'taxonomy' => 'what_we_do_categories',
+                                'term' => 'revenue-cycle',
+                                'orderby' => 'menu_order',
+                                
+                            ));
+                        ?>
                         <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#fe">Front-End Process <i class="bi bi-arrow-right"></i></button>
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ri">Revenue Integrity Process <i class="bi bi-arrow-right"></i></button>
                         <button class="nav-link" data-bs-toggle="pill" data-bs-target="#be">Back-End Process <i class="bi bi-arrow-right"></i></button>

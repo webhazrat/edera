@@ -69,36 +69,37 @@
 
             <h4 class="text-center mb-4">Capabilities</h4>
             <div class="row">
+                <?php
+                    $capabilities = new WP_Query(array(
+                        'post_type' => 'what_we_do',
+                        'posts_per_page' => 3,
+                        'taxonomy' => 'what_we_do_categories',
+                        'term' => 'capabilities',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    if($capabilities->have_posts()) :
+                        while($capabilities->have_posts()) : $capabilities->the_post();
+                        $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                        $btn_link = get_post_meta($post->ID, 'btn_link', true);
+                ?>
                 <div class="col-md-4">
                     <div class="services-item">
                         <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Management Consulting Icon.png" alt="">
+                            <?php the_post_thumbnail('thumbnail'); ?>
                         </div>
-                        <h6>Management Consulting</h6>
-                        <p>Our certified, dedicated team will make an immediate impact within Patient Access, Health Information Management (HIM) Coding, Patient Billing, and Account Management Services.</p>
-                        <a href="management-consulting.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                        <h6><?php the_title(); ?></h6>
+                        <?php the_content(); ?>
+                        <?php if($btn_text): ?>
+                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                        <?php endif; ?>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="services-item">
-                        <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Digital Icon.svg" alt="">
-                        </div>
-                        <h6>Digital</h6>
-                        <p>Our Technology Specialists bring our clinical ideations to life, with the patient at the center. Our scalable innovations drive growth and continuous improvement for health delivery organizations.</p>
-                        <a href="digital.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="services-item">
-                        <div class="icon text-center">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Creative Icon.svg" alt="">
-                        </div>
-                        <h6>Creative</h6>
-                        <p>Our Creative Team partners with clients to break down complex information, clearly communicate impact, and drive action through compelling narratives and visuals.</p>
-                        <a href="creative.html" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
+                <?php
+                        endwhile;
+                    endif;
+                    wp_reset_query();
+                ?>
                 
             </div>
             

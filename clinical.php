@@ -34,17 +34,32 @@
         </div>
         <div class="phases py-3" style="background: rgba(0, 114, 182, 0.25);">
             <div class="container">
-                <div class="d-flex align-items-center justify-content-around gap-2 nav">
-                    <button class="nav-link item" data-bs-toggle="pill" data-bs-target="#planning"> Planning & Analysis </button>
+                <div class="d-flex align-items-center justify-content-center gap-2 nav">
+                    <?php 
+                        $clinical = new WP_Query(array(
+                            'post_type' => 'what_we_do',
+                            'posts_per_page' => -1,
+                            'taxonomy' => 'what_we_do_categories',
+                            'term' => 'clinical',
+                            'orderby' => 'menu_order',
+                            'order' => 'ASC'
+                        ));
+                        if($clinical->have_posts()) :
+                            $count = $clinical->found_posts; 
+                            $i=0;
+                            while($clinical->have_posts()) : $clinical->the_post();
+                            $i++;
+                            if($i != 1 && $i != $count) :
+                    ?>
+
+                    <button class="nav-link item" data-bs-toggle="pill" data-bs-target="#clinical<?php echo $post->ID; ?>"> <?php the_title(); ?> </button>
                     <span><i class="bi bi-arrow-right"></i></span>
-                    <button class="nav-link item" data-bs-toggle="pill"
-                    data-bs-target="#design"> Design, Development & Testing </button>
-                    <span><i class="bi bi-arrow-right"></i></span>
-                    <button class="nav-link item" data-bs-toggle="pill"
-                    data-bs-target="#implementation"> Implementation </button>
-                    <span><i class="bi bi-arrow-right"></i></span>
-                    <button class="nav-link item" data-bs-toggle="pill"
-                    data-bs-target="#sustainment"> Sustainment </button>
+
+                    <?php 
+                            endif;
+                            endwhile;
+                        endif;
+                    ?>
                 </div>
             </div>
         </div>
@@ -60,136 +75,51 @@
             <div class="row justify-content-between">
                 <div class="col-lg-4 col-md-12">
                     <div class="nav flex-column nav-pills">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#eip">All EHR Implementation Phases <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#planning">Planning & Analysis  <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#design">Design, Development & Testing <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#implementation">Implementation <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#sustainment">Sustainment <i class="bi bi-arrow-right"></i></button> 
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#cdrc">CDRC <i class="bi bi-arrow-right"></i></button>
+
+                        <?php 
+                            if($clinical->have_posts()) : 
+                                $i = 0;
+                                while($clinical->have_posts()) : $clinical->the_post();
+                                $i++;
+
+                        ?>
+                        <button class="nav-link <?php if($i == 1) {echo 'active'; }?>" data-bs-toggle="pill" data-bs-target="#clinical<?php echo $post->ID; ?>"><?php the_title(); ?><i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
+
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-12">
                     <div class="tab-content clinical-tabs">
-                        <div class="tab-pane fade show active" id="eip">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>During transition, a sharp increase in time demands will highly tax your entire team, including clinicians, leadership, administration, and informaticians. We specialize in bringing the right industry expertise to drive the project forward, lead events, reduce the operational impact on your organization, and help inform quick and safe decision-making. Our EHR implementation staffing support services include:</p>
-                                            <ul>
-                                                <li>Clinical program and project management</li>
-                                                <li>Clinical informatics roles support</li>
-                                                <li>Staff augmentation to lead implementation</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_EHR Implementation.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="planning">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Clinical Program and Project Management</li>
-                                                <li>Clinical Informatics Role Support</li>
-                                                <li>Staff Augmentation to Lead Implementation</li>
-                                                <li>System Design Decisions and Data Collection</li>
-                                                <li>Current State Reviews</li>
-                                                <li>Organizational Change Management</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_planning _ Analysis.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="design">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Productivity Studies</li>
-                                                <li>Standardized Guidance / Policy and Procedures</li>
-                                                <li>Workflow Development</li>
-                                                <li>Pre-Conversion Readiness Assessment with Intervention</li>
-                                                <li>Testing & Validation</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Design,Development.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="implementation">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Mock Go-Live</li>
-                                                <li>Provider Adoption</li>
-                                                <li>Training, Learning Management System</li>
-                                                <li>Super User Bootcamp</li>
-                                                <li>Favorites Fair</li>
-                                                <li>Cutover and Go-Live Support</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Implementation.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="sustainment">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Change Governance Program</li>
-                                                <li>Health Checks (Post Go-Live)</li>
-                                                <li>Call Center Operations</li>
-                                                <li>Clinical Optimization and Sustainment</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_Sustainment.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        
-                        <div class="tab-pane fade" id="cdrc">
+                        <?php 
+                            if($clinical->have_posts()) :
+                                $i = 0;
+                                while($clinical->have_posts()) : $clinical->the_post();
+                                $i++;
+                        ?>
+                        <div class="tab-pane fade <?php if($i == 1) {echo 'show active';} ?>" id="clinical<?php echo $post->ID; ?>">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <div class="phase-tab-text">
-                                            <p>We provide clinically driven revenue cycle (CDRC) support to assure a collaborative operation and bridge communication between clinicians and the patient accounting team. Our CDRC optimization offerings help clients:</p>
-                                            <ul>
-                                                <li>Improve clinical documentation quality</li>
-                                                <li>Achieve desired revenue cycle key performance indicators (KPIs)</li>
-                                            </ul>
+                                            <?php the_content(); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Clinical_CDRC.jpeg" alt="">
+                                        <?php the_post_thumbnail('medium'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
+                        
                         
                     </div>
                 </div>
