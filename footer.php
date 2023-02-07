@@ -38,7 +38,8 @@
                     wp_nav_menu(array(
                         'menu_class' => 'copyright-navigation',
                         'container' => 'ul',
-                        'theme_location' => 'menu4'
+                        'theme_location' => 'menu4',
+                        'fallback_cb' => '__return_false'
                     ));
                 ?>
             </div>

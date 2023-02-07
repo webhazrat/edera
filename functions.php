@@ -40,46 +40,21 @@
     }
     add_action('wp_enqueue_scripts', 'edera_theme_scripts');
 
-    function edera_widgets(){
-        register_sidebar(array(
-            'name' => 'Footer First Column',
-            'id' => 'footer_first_column',
-            'before_widget' => '<div class="footer-item">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4>',
-            'after_title' => '</h4>'
-        ));
-
-        register_sidebar(array(
-            'name' => 'Footer Second Column',
-            'id' => 'footer_second_column',
-            'before_widget' => '<div class="footer-item">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4>',
-            'after_title' => '</h4>'
-        ));
-
-        register_sidebar(array(
-            'name' => 'Footer Third Column',
-            'id' => 'footer_third_column',
-            'before_widget' => '<div class="footer-item">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4>',
-            'after_title' => '</h4>'
-        ));
-
-        register_sidebar(array(
-            'name' => 'Footer Fourth Column',
-            'id' => 'footer_fourth_column',
-            'before_widget' => '<div class="footer-item">',
-            'after_widget' => '</div>',
-            'before_title' => '<h4>',
-            'after_title' => '</h4>'
-        ));
-    }
-    add_action('widgets_init', 'edera_widgets');
-
     function custom_post_types(){
+        // for page section
+        register_post_type('section', array(
+            'labels' => array(
+                'name' => __('Sections'),
+                'singular_name' => __('Section')
+            ),
+            'public' => true,
+            'show_in_menu' => 'edit.php?post_type=page',
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'has_archive' => true,
+            'show_in_rest' => true, 
+            'hierachical' => true
+        ));
+
         register_post_type('solutions', array(
             'labels' => array(
                 'name' => __('Solutions'),
@@ -124,9 +99,64 @@
             'sort' => true
         ));
 
+        // for team
+        register_post_type('team', array(
+            'labels' => array(
+                'name' => __('Teams'),
+                'singular_name' => __('Team')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-groups',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'has_archive' => true,
+            'show_in_rest' => true
+        ));
+
     }
     add_action('init', 'custom_post_types');
 
     require 'inc/custom_meta_boxes.php';
+    require 'inc/custom_columns.php';
+
+    function edera_widgets(){
+        register_sidebar(array(
+            'name' => 'Footer First Column',
+            'id' => 'footer_first_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2>',
+            'after_title' => '</h2>'
+        ));
+
+        register_sidebar(array(
+            'name' => 'Footer Second Column',
+            'id' => 'footer_second_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2>',
+            'after_title' => '</h2>'
+        ));
+
+        register_sidebar(array(
+            'name' => 'Footer Third Column',
+            'id' => 'footer_third_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2>',
+            'after_title' => '</h2>'
+        ));
+
+        register_sidebar(array(
+            'name' => 'Footer Fourth Column',
+            'id' => 'footer_fourth_column',
+            'before_widget' => '<div class="footer-item">',
+            'after_widget' => '</div>',
+            'before_title' => '<h2>',
+            'after_title' => '</h2>'
+        ));
+    }
+    add_action('widgets_init', 'edera_widgets');
+
+
 
 ?>

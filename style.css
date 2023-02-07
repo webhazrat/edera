@@ -493,8 +493,10 @@ a.read-more, .read-more{
 }
 
 /* vehicles */
-.vehicles .sub-header{
+.vehicles h3{
     color:#fff;
+    font-size:36px;
+    font-weight: 700;
 }
 .vehicles a{
     color:#fff;
@@ -631,9 +633,10 @@ a.read-more, .read-more{
     color:#94CC00;
 }
 
-.footer-item h4{
+.footer-item h2{
     text-transform: uppercase;
     color:#fff;
+    font-size:24px;
 }
 
 .footer .row [class*='col-']:first-child .footer-item img{

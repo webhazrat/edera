@@ -1,24 +1,59 @@
-<?php get_header(); ?>
+<?php 
+    /*
+        Template Name: Home
+    */
+get_header(); ?>
 
     <div class="banner">
         <div class="banner-item">
+            <?php
+                $page_id = get_queried_object_id();
+                $banner = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Banner'
+                        )
+                    )
+                ));
+
+                while($banner->have_posts()) : $banner->the_post();
+                $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                $btn_link = get_post_meta($post->ID, 'btn_link', true);
+
+                $attachment_id = get_post_meta($post->ID, 'attachment', true);
+                $attachment_url = wp_get_attachment_url($attachment_id);
+            ?>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="banner-text py-5">
-                            <h2 class="section-header">A Technology-Powered Health Care Consultancy</h2>
-                            <p>Edera L3C develops, implements, and operates executable strategies that empower our organizations to embrace change within an ever-changing health care ecosystem. With a heighted focus on delivery excellence and social impact, we partner with you to ideate, build, implement and sustain innovative, human-centric business solutions.</p>
-                            <a href="#" class="read-more">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                            <h2 class="section-header"><?php the_title(); ?></h2>
+                            <?php the_content(); ?>
+                            <?php if($btn_text) : ?>
+                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"><?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-end">
                 <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/videos/Edera Header Home 1440 700_comp.mp4" type="video/mp4">
+                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <?php 
+                endwhile;
+                wp_reset_query();
+            ?>
         </div>
     </div>
 
@@ -74,11 +109,11 @@
                     if($offerings->have_posts()) : 
                         while($offerings->have_posts()) : $offerings->the_post(); 
                         $attachment_id = get_post_thumbnail_id( $post->ID );
-                        $background_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
+                        $background_url = wp_get_attachment_image_src($attachment_id, 'large')[0];
                         $btn_text = get_post_meta($post->ID, 'btn_text', true);
                         $btn_link = get_post_meta($post->ID, 'btn_link', true);
 
-                        $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
+                        $icon_id = get_post_meta($post->ID, 'attachment', true);
                         $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0];
                     ?>
                 
@@ -123,8 +158,8 @@
                     if($capabilities->have_posts()) : 
                         while($capabilities->have_posts()) : $capabilities->the_post();
                         $attachment_id = get_post_thumbnail_id($post->ID);
-                        $image_url = wp_get_attachment_image_src($attachment_id, 'medium')[0];
-                        $icon_id = get_post_meta($post->ID, 'solutions_icon', true);
+                        $image_url = wp_get_attachment_image_src($attachment_id, 'large')[0];
+                        $icon_id = get_post_meta($post->ID, 'attachment', true);
                         $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0]; 
                         $btn_text =  get_post_meta($post->ID, 'btn_text', true);                      
                         $btn_link =  get_post_meta($post->ID, 'btn_link', true);                      
@@ -159,10 +194,35 @@
 
     <div class="vehicles py-5" style="background-color: #0072B6;">
         <div class="container">
-            <h2 class="section-header">Our Contact Vehicles & Certifications</h2>
-            <h3 class="sub-header">Our team has centuries of collective experience working for and with the federal government and private companies, specializing in large-scale health care transformations.</h3>
-            <a href="contact.html" class="read-more default">See How You Can Work With Us <i class="bi bi-arrow-right-short"></i></a>
-            <p>The world at large has faced unprecedented changes. As we deal with the aftermath of the post-pandemic era, we continue to find new ways of working. Return-to-work hybrid models have become normalized, but a pressing need for automated solutions to streamline workflows continues to drive forward new interventions. Join us on the journey with the following contract vehicles.</p>
+            <?php 
+                $cvc = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section', 
+                            'value' => 'Our Contact Vehicles & Certifications'
+                        )
+                    )
+                )); 
+                while($cvc->have_posts()) : $cvc->the_post();
+                $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                $btn_link = get_post_meta($post->ID, 'btn_link', true);
+            ?>
+            <h2 class="section-header"><?php the_title(); ?></h2>
+            <?php the_content(); ?>
+            <?php if($btn_text) : ?>
+                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"><?php echo $btn_text; ?><i class="bi bi-arrow-right-short"></i></a>
+            <?php endif; ?>
+            <?php 
+                endwhile;
+                wp_reset_query();
+            ?>
         </div>
     </div>
 
@@ -185,7 +245,7 @@
                 <div class="col-md-4">
                     <div class="item">
                         <div class="feature-img">
-                            <?php the_post_thumbnail('medium'); ?>
+                            <?php the_post_thumbnail('large'); ?>
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">

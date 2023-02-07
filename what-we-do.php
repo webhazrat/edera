@@ -8,22 +8,47 @@
 
     <div class="banner page-banner large">
         <div class="banner-item">
+            <?php 
+                $page_id = get_queried_object_id();
+                $banner = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Banner'
+                        )
+                    )
+                ));
+                while($banner->have_posts()) : $banner->the_post();
+                $attachment_id = get_post_meta($post->ID, 'attachment', true);
+                $attachment_url = wp_get_attachment_url($attachment_id);
+            ?>
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-lg-6">
                         <div class="banner-text">
-                            <h2 class="section-header">Peerless Performance</h2>
-                            <p>Edera was created to be a different kind of health care consulting firm. We were founded to bring best practices from private sector health care to the public sector and vice versa. Edera forms customized, multidisciplinary teams comprised of industry and health care experts to deliver integrated solutions. Add leading-edge technology services and a creative team that excels at communicating content in a compelling way, and you have a winning formula that successfully delivers innovative solutions in clinical and business operations to your organization.</p>
+                            <h2 class="section-header"><?php the_title(); ?></h2>
+                            <?php the_content(); ?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-end">
                 <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/videos/Edera Header Whatwedo 1440 530.mp4" type="video/mp4">
+                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <?php 
+                endwhile;
+                wp_reset_query();
+            ?>
         </div>
     </div>
 
