@@ -1,15 +1,13 @@
 <?php 
-    /*
-        Template Name: Home
-    */
-get_header(); ?>
+    get_header();
+?>
 
-    <div class="banner">
+    <div class="banner page-banner">
         <div class="banner-item">
-            <?php
+            <?php 
                 $page_id = get_queried_object_id();
                 $banner = new WP_Query(array(
-                    'post_type' => 'section',
+                    'post_type' => 'section', 
                     'posts_per_page' => 1,
                     'meta_query' => array(
                         'relation' => 'AND',
@@ -23,23 +21,16 @@ get_header(); ?>
                         )
                     )
                 ));
-
                 while($banner->have_posts()) : $banner->the_post();
-                $btn_text = get_post_meta($post->ID, 'btn_text', true);
-                $btn_link = get_post_meta($post->ID, 'btn_link', true);
-
                 $attachment_id = get_post_meta($post->ID, 'attachment', true);
                 $attachment_url = wp_get_attachment_url($attachment_id);
             ?>
-            <div class="container">
-                <div class="row">
+            <div class="container" style="height: 100%;">
+                <div class="row align-items-center" style="height: 100%;">
                     <div class="col-md-6">
-                        <div class="banner-text py-5">
+                        <div class="banner-text">
                             <h2 class="section-header"><?php the_title(); ?></h2>
                             <?php the_content(); ?>
-                            <?php if($btn_text) : ?>
-                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"><?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
-                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -57,240 +48,202 @@ get_header(); ?>
         </div>
     </div>
 
-    <div class="consultancy py-5">
+    <div class="banner-navigation py-2" style="background-color: #f2f2f2;">
         <div class="container">
-            <h2 class="section-header">A Different Kind of Consultancy</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="consultancy-item">
-                        <div class="body">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/brilliance.svg" alt="">
-                            <h3 class="sub-header">Brilliance-Infused Solutions</h3>
-                            <p>Edera powers the National Coordination Center (NCC), a national network of Industry Best Practice Advisors (IBPAs). We tailor multidisciplinary teams of IBPAs and consultants to address all aspects of your unique challenges, resulting in enduring solutions.</p>
-                        </div>
-                        <div>
-                            <a href="what-we-do.html" class="read-more secondary">How We Work <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
+            <div class="banner-navigation-content">
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar2">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbar2">
+                        <?php 
+                            wp_nav_menu(array(
+                                'menu_class' => 'navbar-nav gap-4',
+                                'container' => 'ul',
+                                'theme_location' => 'menu3',
+                                'fallback_cb' => '__return_false',
+                                'walker' => new bootstrap_5_wp_nav_menu_walker()
+                            ));
+                        ?>
                     </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="consultancy-item">
-                        <div class="body">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/driven.svg" alt="">
-                            <h3 class="sub-header">Driven to Make a Difference</h3>
-                            <p>Edera is a “purpose before profit” social enterprise venture driven by socially
-                                beneficial missions. We exist to help organizations build better businesses and effect
-                                positive change in society.</p>
+                </nav>
+                <div class="insight-search-area">
+                    <form action="">
+                        <div class="control-icon">
+                            <input type="search" name="searchText" id="searchText">
+                            <button type="submit" id="insightSearchBtn"><i class="bi bi-search"></i></button>
+                            <button type="button" id="insightSearchClose"><i class="bi bi-x"></i></button>
                         </div>
-                        <div>
-                            <a href="how-we-give.html" class="read-more secondary">How We Give Back <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="solution pb-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/home-bg-pattern.svg');">
+    <div class="blog-area py-5">
         <div class="container">
-            <h2 class="section-header">Solution and Service</h2>
-            <h3 class="sub-header">Our Offerings</h3>
             <div class="row">
-
-                <?php 
-                    $offerings = new WP_Query(array(
-                        'post_type' => 'solutions',
-                        'posts_per_page' => 3,
-                        'taxonomy' => 'solutions_categories',
-                        'term' => 'offerings',
-                        'orderby' => 'menu_order',
-                        'order' => 'ASC'
-                    ));
-                    if($offerings->have_posts()) : 
-                        while($offerings->have_posts()) : $offerings->the_post(); 
-                        $attachment_id = get_post_thumbnail_id( $post->ID );
-                        $background_url = wp_get_attachment_image_src($attachment_id, 'large')[0];
-                        $btn_text = get_post_meta($post->ID, 'btn_text', true);
-                        $btn_link = get_post_meta($post->ID, 'btn_link', true);
-
-                        $icon_id = get_post_meta($post->ID, 'attachment', true);
-                        $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0];
-                    ?>
-                
-                <div class="col-md-4">
-                    <div class="offer-item" style="background-image:url('<?php echo $background_url; ?>')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo $icon_url; ?>" alt="">
-                                <h3><?php the_title(); ?></h3>
-                                <?php the_content(); ?>
-                            </div>
-                            <div>
-                                <?php if($btn_text) : ?>
-                                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <?php 
-                        endwhile;
-                    endif;
-                    wp_reset_query();
-                ?>
-
-            </div>
-
-            <h3 class="sub-header">Our Capabilities</h3>
-            <div class="row">
-
-                <?php 
-                    $capabilities = new WP_Query(array(
-                        'post_type' => 'solutions',
-                        'posts_per_page' => 3,
-                        'taxonomy' => 'solutions_categories',
-                        'term' => 'capabilities',
-                        'orderby' => 'menu_order',
-                        'order' => 'ASC'
-                    ));
-
-                    if($capabilities->have_posts()) : 
-                        while($capabilities->have_posts()) : $capabilities->the_post();
-                        $attachment_id = get_post_thumbnail_id($post->ID);
-                        $image_url = wp_get_attachment_image_src($attachment_id, 'large')[0];
-                        $icon_id = get_post_meta($post->ID, 'attachment', true);
-                        $icon_url = wp_get_attachment_image_src($icon_id, 'thumbnail')[0]; 
-                        $btn_text =  get_post_meta($post->ID, 'btn_text', true);                      
-                        $btn_link =  get_post_meta($post->ID, 'btn_link', true);                      
-                ?>
-                <div class="col-md-4">
-                    <div class="capabilities-item"
-                        style="background-image:url('<?php echo $image_url; ?>')">
-                        <div class="overlay">
-                            <div class="body">
-                                <img src="<?php echo $icon_url; ?>" alt="">
-                                <h3><?php the_title(); ?></h3>
-                                <?php the_content(); ?>
-                            </div>
-                            <div>
-                                <?php if($btn_text) : ?>
-                                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <?php
-                        endwhile;
-                    endif;
-                    wp_reset_query();
-                ?>
-
-            </div>
-        </div>
-    </div>
-
-    <div class="vehicles py-5" style="background-color: #0072B6;">
-        <div class="container">
-            <?php 
-                $cvc = new WP_Query(array(
-                    'post_type' => 'section',
-                    'posts_per_page' => 1,
-                    'meta_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'page_id',
-                            'value' => $page_id
-                        ),
-                        array(
-                            'key' => 'section', 
-                            'value' => 'Our Contact Vehicles & Certifications'
-                        )
-                    )
-                )); 
-                while($cvc->have_posts()) : $cvc->the_post();
-                $btn_text = get_post_meta($post->ID, 'btn_text', true);
-                $btn_link = get_post_meta($post->ID, 'btn_link', true);
-            ?>
-            <h2 class="section-header"><?php the_title(); ?></h2>
-            <?php the_content(); ?>
-            <?php if($btn_text) : ?>
-                <a href="<?php echo get_permalink($btn_link); ?>" class="read-more default"><?php echo $btn_text; ?><i class="bi bi-arrow-right-short"></i></a>
-            <?php endif; ?>
-            <?php 
-                endwhile;
-                wp_reset_query();
-            ?>
-        </div>
-    </div>
-
-    <div class="insights-area py-5">
-        <div class="container">
-            <h2 class="section-header mb-4">Insights & Events</h2>
-            <div class="row">
-
-                <?php 
-                    $posts = new WP_Query(array(
-                        'post_type' => 'post',
-                        'posts_per_page' => 3,
-                        'order' => 'DESC'
-                    ));
-
-                    if($posts->have_posts()) :
-                        while($posts->have_posts()) : $posts->the_post(); 
-                ?>
-
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <?php the_post_thumbnail('large'); ?>
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <strong><?php echo get_the_date(); ?></strong>
-                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
-                        </div>
-                    </div>
-                </div>
-
-                <?php 
-                        endwhile; 
-                    endif;
-                    wp_reset_query();
-                ?>
-               
-            </div>
-            <div class="text-end mt-4">
-                <a href="insights-and-events.html" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-            </div>
-        </div>
-    </div>
-
-    <div class="upcoming mb-5">
-        <div class="container">
-            <div class="row g-0">
-                <div class="col-md-4">
-                    <div class="upcoming-logo p-5">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/upcoming-logo.png" alt="">
-                    </div>
-                </div>
                 <div class="col-md-8">
-                    <div class="upcoming-text">
-                        <span>Upcoming | March 18, 2022</span>
-                        <h3>Featured Upcoming Event</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ab ut nulla provident
-                            debitis, possimus facilis officia fugit qui expedita quos non facere tenetur, sapiente
-                            voluptatibus commodi soluta quae modi.</p>
-                        <a href="#" class="read-more secondary">Learn More <i class="bi bi-arrow-right-short"></i></a>
+
+                    <div class="blog-items">
+                        <div class="item full white p-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/management-consulting.jpeg');">
+                            <div class="body">
+                                <div class="tags">
+                                    <a href="#">Tag</a>
+                                </div>
+                                <h3>March 28, 2022 Defense Health Agency Awards $1.4B Contract to Transform Health Care </h3>
+                                <div class="para-content">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                    <a href="#">Continue Reading</a>
+                                </div>
+                                <span class="date">March 18, 2022</span>
+                            </div>
+                        </div>
+    
+                        <div class="item">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="feature-img">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
+                                        <span><i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="body">
+                                        <div class="tags">
+                                            <a href="#">Tag</a>
+                                        </div>
+                                        <h5>March 28, 2022 Defense Health Agency Awards</h5>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
+                                        <span class="date">March 18, 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+    
+                        <div class="item align-items-center">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="feature-img">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
+                                        <span><i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="body">
+                                        <div class="tags">
+                                            <a href="#">Tag</a>
+                                        </div>
+                                        <h5>March 28, 2022 Defense Health Agency Awards</h5>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
+                                        <span class="date">March 18, 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="item align-items-center">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="feature-img">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
+                                        <span><i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="body">
+                                        <div class="tags">
+                                            <a href="#">Tag</a>
+                                        </div>
+                                        <h5>March 28, 2022 Defense Health Agency Awards</h5>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
+                                        <span class="date">March 18, 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="item align-items-center">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="feature-img">
+                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
+                                        <span><i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="body">
+                                        <div class="tags">
+                                            <a href="#">Tag</a>
+                                        </div>
+                                        <h5>March 28, 2022 Defense Health Agency Awards</h5>
+                                        <div class="para-content">
+                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco...</p>
+                                            <a href="#">Continue Reading</a>
+                                        </div>
+                                        <span class="date">March 18, 2022</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="pagination-area mt-4">
+                            <nav>
+                                <ul class="pagination justify-content-center">
+                                    <li class="page-item">
+                                        <a class="page-link"> <i class="bi bi-chevron-left"></i> Previous</a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">4</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#">Next <i class="bi bi-chevron-right"></i></a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        
+                    </div>
+                    
+
+                </div>
+
+                <div class="col-md-4">
+                    <div class="right-sidebar sticky-top">
+                        <h4 class="mb-4">Latest News</h4>
+                        <div class="blog-item">
+                            <h6><a href="">Defense Health Agency Awards</a></h6>
+                            <span class="date">March 28, 2022</span>
+                        </div>
+                        <div class="blog-item">
+                            <h6><a href="">Edera produces a wide range of resources</a></h6>
+                            <span class="date">March 28, 2022</span>
+                        </div>
+                        <div class="blog-item">
+                            <h6><a href="">About our initiatives and impact, including</a></h6>
+                            <span class="date">March 28, 2022</span>
+                        </div>
+                        <div class="blog-item">
+                            <h6><a href="">Defense Health Agency Awards</a></h6>
+                            <span class="date">March 28, 2022</span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="text-end mt-4">
-                <a href="brightest-minds-webinars.html" class="read-more">See All Brightest Minds Events <i class="bi bi-arrow-right-short"></i></a>
+
+
             </div>
         </div>
     </div>
 
-<?php get_footer(); ?>
+ <?php get_footer(); ?>

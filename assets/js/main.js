@@ -165,7 +165,9 @@ triggerTabList.forEach(triggerEl => {
 
 // dom replace
 const readMore = document.querySelector('.vehicles .read-more');
-const html = readMore.outerHTML;
-readMore.remove();
-document.querySelector('.vehicles p').insertAdjacentHTML('beforebegin', html);
+if(readMore){
+    const html = readMore.outerHTML;
+    readMore.remove();
+    document.querySelector('.vehicles p').insertAdjacentHTML('beforebegin', html);
+}
 

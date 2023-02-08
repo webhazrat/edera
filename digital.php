@@ -7,22 +7,47 @@
 
     <div class="banner page-banner">
         <div class="banner-item">
+            <?php 
+                $page_id = get_queried_object_id();
+                $banner = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Banner'
+                        )
+                    )
+                ));
+                while($banner->have_posts()) : $banner->the_post();
+                $attachment_id = get_post_meta($post->ID, 'attachment', true);
+                $attachment_url = wp_get_attachment_url($attachment_id);
+            ?>
             <div class="container" style="height: 100%;">
                 <div class="row align-items-center" style="height: 100%;">
                     <div class="col-md-6">
                         <div class="banner-text">
-                            <h2 class="section-header">Digital</h2>
-                            <p>Edera’s technology team creates value by helping our clients design user-centered solutions and build scalable innovations that drive growth and bring efficiencies. Our team uses its deep industry expertise to build solutions using leading tech platforms such as Salesforce and Amazon Web Services (AWS) to solve our clients’ complex and critical challenges. We leverage the power of our high-caliber partnerships to bring operational efficiency and transformative change to the way our clients do work.</p>
+                            <h2 class="section-header"><?php the_title(); ?></h2>
+                            <?php the_content(); ?>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="text-end">
                 <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/videos/Edera Header Digital 1440 336.mp4" type="video/mp4">
+                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>
+            <?php 
+                endwhile;
+                wp_reset_query();
+            ?>
         </div>
     </div>
 
