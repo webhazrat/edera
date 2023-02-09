@@ -57,32 +57,35 @@
         <div class="container">
             <h2 class="section-header">A Different Kind of Consultancy</h2>
             <div class="row">
+                <?php 
+                    $consultancy = new WP_Query(array(
+                        'post_type' => 'consultancy',
+                        'posts_per_page' => 2,
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    while($consultancy->have_posts()) : $consultancy->the_post();
+                    $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                    $btn_link = get_post_meta($post->ID, 'btn_link', true);
+                ?>
                 <div class="col-md-6">
                     <div class="consultancy-item">
                         <div class="body">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/brilliance.svg" alt="">
-                            <h3 class="sub-header">Brilliance-Infused Solutions</h3>
-                            <p>Edera powers the National Coordination Center (NCC), a national network of Industry Best Practice Advisors (IBPAs). We tailor multidisciplinary teams of IBPAs and consultants to address all aspects of your unique challenges, resulting in enduring solutions.</p>
+                            <?php the_post_thumbnail('thumbnail'); ?>
+                            <h3 class="sub-header"><?php the_title(); ?></h3>
+                            <?php the_content(); ?>
                         </div>
                         <div>
-                            <a href="what-we-do.html" class="read-more secondary">How We Work <i class="bi bi-arrow-right-short"></i></a>
+                            <?php if($btn_text) : ?>
+                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more secondary"> <?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="consultancy-item">
-                        <div class="body">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/driven.svg" alt="">
-                            <h3 class="sub-header">Driven to Make a Difference</h3>
-                            <p>Edera is a “purpose before profit” social enterprise venture driven by socially
-                                beneficial missions. We exist to help organizations build better businesses and effect
-                                positive change in society.</p>
-                        </div>
-                        <div>
-                            <a href="how-we-give.html" class="read-more secondary">How We Give Back <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                    endwhile;
+                    wp_reset_query();
+                ?>
             </div>
         </div>
     </div>

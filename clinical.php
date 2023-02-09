@@ -134,7 +134,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <?php the_post_thumbnail('medium'); ?>
+                                        <?php the_post_thumbnail('large'); ?>
                                     </div>
                                 </div>
                             </div>

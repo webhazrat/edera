@@ -9,6 +9,9 @@ function meta_boxes(){
     ));
     add_meta_box('__section_button', __('Button'), 'page_btn_meta_boxes_function', 'section', 'normal', 'high');
 
+    // consultancy
+    add_meta_box('consulanty_button', __('Button'), 'page_btn_meta_boxes_function', 'consultancy', 'normal', 'high');
+
     // solutions
     add_meta_box('solutions_id', __('Button'), 'page_btn_meta_boxes_function', 'solutions', 'normal', 'high');
     add_meta_box('solution_icon', __('Icon'), 'attachment_meta_box_function', 'solutions', 'side', 'low', array( 'type' => 'image'));

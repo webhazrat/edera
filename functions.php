@@ -54,7 +54,18 @@
             'show_in_rest' => true, 
             'hierachical' => true
         ));
-
+        register_post_type('consultancy', array(
+            'labels' => array(
+                'name' => __('Consultancy'),
+                'singular_name' => __('Consultancy')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-share-alt',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'has_archive'  => true,
+            'show_in_rest' => true,
+            'taxonomies'   => array( 'solutions_categories' )
+        ));
         register_post_type('solutions', array(
             'labels' => array(
                 'name' => __('Solutions'),
@@ -77,7 +88,6 @@
             'sort' => true
             )
         );
-
         register_post_type('what_we_do', array(
             'labels' => array(
                 'name' => __('What We Do'),
@@ -97,6 +107,10 @@
             'show_in_rest' => true,
             'show_admin_column' => true,
             'sort' => true
+        ));
+
+        register_post_type('', array(
+            
         ));
 
         // for team

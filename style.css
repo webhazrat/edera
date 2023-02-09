@@ -354,9 +354,10 @@ a.read-more, .read-more{
     justify-content: space-between;
     height: 100%;
 }
-.consultancy-item img{
+.consultancy-item img {
     height: 50px;
     margin-bottom: 10px;
+    width: auto;
 }
 .consultancy-item p{
     margin:15px 0;

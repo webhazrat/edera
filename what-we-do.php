@@ -63,7 +63,7 @@
                         'post_type' => 'what_we_do',
                         'posts_per_page' => 3,
                         'taxonomy' => 'what_we_do_categories',
-                        'term' => 'offerings',
+                        'term' => 'services',
                         'orderby' => 'menu_order',
                         'order' => 'ASC'
                     ));
