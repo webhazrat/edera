@@ -60,142 +60,58 @@
                         <?php
                             $revenue_cycle = new WP_Query(array(
                                 'post_type' => 'what_we_do',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'what_we_do_categories',
+                                        'field' => 'slug',
+                                        'terms' => 'revenue-cycle',
+                                        'include_children' => false
+                                    )
+                                ),
                                 'posts_per_page' => -1,
-                                'taxonomy' => 'what_we_do_categories',
-                                'term' => 'revenue-cycle',
                                 'orderby' => 'menu_order',
-                                
+                                'order' => 'ASC'
                             ));
+
+                            if($revenue_cycle->have_posts()) :
+                                $i = 0;
+                                while($revenue_cycle->have_posts()) : $revenue_cycle->the_post();
+                                $i++;
                         ?>
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#fe">Front-End Process <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ri">Revenue Integrity Process <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#be">Back-End Process <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#cdrc">CDRC <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#rco">Revenue Cycle Operations (RCO) <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#rr">Revenue Reconciliation <i class="bi bi-arrow-right"></i></button>
+                            <button class="nav-link <?php if( $i == 1 ){ echo 'active'; } ?>" data-bs-toggle="pill" data-bs-target="#revenueCycle<?php echo $post->ID; ?>"> <?php the_title(); ?><i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="fe">
+                        <?php 
+                           if($revenue_cycle->have_posts()) :
+                                $i = 0;
+                                while($revenue_cycle->have_posts()) : $revenue_cycle->the_post(); 
+                                $i++;
+                        ?>
+                        <div class="tab-pane fade <?php if( $i == 1 ){ echo 'show active'; } ?>" id="revenueCycle<?php echo $post->ID; ?>">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Registration/Scheduling</li>
-                                                <li>Establish Patient Record to Initiate Clinical Events</li>
-                                                <li>Preauthorization</li>
-                                                <li>Care Coordination</li>
-                                            </ul>
+                                            <?php the_content(); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_FE Process.jpeg" alt="">
+                                        <?php the_post_thumbnail('large'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="ri">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Order/Charge Reconciliation</li>
-                                                <li>Clinical Documentation Review and Accuracy</li>
-                                                <li>HIM Coding (Acute and Ambulatory)</li>
-                                                <li>Charge Services</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_Rev Integrity Process.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="be">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul class="mb-3">
-                                                <li>Billing</li>
-                                                <li>Account Management</li>
-                                                <li>Accounts Receivable (AR) Follow-Up</li>
-                                                <li>Review Claim Edits and Denials to Improve Upstream Clinical Processes</li>
-                                            </ul>
-                                            <p>Using the NCC Fusion Methodology framework, we leverage our processes and network of IBPAs to deliver world-class end-to-end revenue cycle support.</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_BackEndProcess.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="cdrc">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>We provide CDRC support to assure a collaborative operation and bridge communication between clinicians and the patient accounting team. Our CDRC optimization offerings help clients:</p>
-                                            <ul>
-                                                <li>Improve clinical documentation quality</li>
-                                                <li>Achieve desired revenue cycle key performance indicators (KPIs)</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_CDRC.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="rco">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>NCC creates frameworks and leverages its expertise across our RCO team to include:</p>
-                                            <ul>
-                                                <li>Data Entry</li>
-                                                <li>Charge Services</li>
-                                                <li>Coding</li>
-                                                <li>Revenue Utilization Review</li>
-                                                <li>Registration/Scheduling</li>
-                                                <li>Account Management</li>
-                                                <li>Billing/Reporting</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_RCO.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="rr">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>To assure upstream clinical processes are generating accurate and timely revenue, we provide:</p>
-                                            <ul>
-                                                <li>Preparation and development of clinical (charge) process guides</li>
-                                                <li>Training assistance prior to the Go-Live event on clinical (charge) process guides</li>
-                                                <li>Daily reconciliation process assistance at the department level during the Go-Live period</li>
-                                                <li>Daily dashboard reporting</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/RevCycle_RevReconciliation.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
+
                     </div>
                 </div>
             </div>

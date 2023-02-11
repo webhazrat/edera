@@ -53,75 +53,63 @@
 
     <div class="support-phase-tabs py-5" style="padding-top: 130px!important;">
         <div class="container">
-            <h4 class="sub-header mb-4">Services</h4>
+            <h4 class="text-aqua mb-4">Services</h4>
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#isas">IT Strategy & Advisory Services <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#ii">IT Innovations <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#sda">Solution Design & Architecture <i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                            $digital = new WP_Query(array(
+                                'post_type' => 'what_we_do',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'what_we_do_categories', 
+                                        'field' => 'slug',
+                                        'terms' => 'digital',
+                                        'include_children' => false
+                                    )
+                                ),
+                                'posts_per_page' => -1,
+                                'orderby' => 'menu_order',
+                                'order' => 'ASC'
+                            ));
+                            if($digital->have_posts()) :
+                                $i = 0; 
+                                while($digital->have_posts()) : $digital->the_post();
+                                $i++;
+                        ?>
+                        <button class="nav-link <?php if($i == 1){ echo 'active'; } ?>" data-bs-toggle="pill" data-bs-target="#digital<?php echo $post->ID; ?>"><?php the_title(); ?> <i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="isas">
+                        <?php 
+                            if($digital->have_posts()) : 
+                                $i = 0;
+                                while($digital->have_posts()) : $digital->the_post();
+                                $i++;
+                        ?>
+                        <div class="tab-pane fade <?php if($i == 1){ echo 'show active'; } ?>" id="digital<?php echo $post->ID; ?>">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Implementation Assessment</li>
-                                                <li>Technology Stack Analysis</li>
-                                                <li>IT Governance</li>
-                                                <li>Technology Capability Planning</li>
-                                                <li>IT Optimization</li>
-                                            </ul>
+                                            <?php the_content(); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Digital_IT Strategy and Advisory Services.jpeg" alt="">
+                                        <?php the_post_thumbnail('large'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="ii">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>Rapid Prototyping</li>
-                                                <li>Digital Optimization and Automation</li>
-                                                <li>Digital Engagement and Performance</li>
-                                                <li>Amplified Intelligence and Analytics</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Digital_IT Innovations.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="sda">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <ul>
-                                                <li>User-Centric and Experience-Driven Desi/li>
-                                                <li>Integrated Tools</li>
-                                                <li>Cloud Enablement</li>
-                                                <li>Application Integration</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Digital_SolutionDesignArch.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>  
 
                     </div>
                 </div>

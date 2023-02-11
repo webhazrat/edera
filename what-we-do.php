@@ -61,9 +61,15 @@
                 <?php 
                     $offerings = new WP_Query(array(
                         'post_type' => 'what_we_do',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'what_we_do_categories',
+                                'field' => 'slug',
+                                'terms' => 'services',
+                                'include_children' => false
+                            )
+                        ),
                         'posts_per_page' => 3,
-                        'taxonomy' => 'what_we_do_categories',
-                        'term' => 'services',
                         'orderby' => 'menu_order',
                         'order' => 'ASC'
                     ));
@@ -97,9 +103,15 @@
                 <?php
                     $capabilities = new WP_Query(array(
                         'post_type' => 'what_we_do',
+                        'tax_query' => array(
+                            array(
+                                'taxonomy' => 'what_we_do_categories',
+                                'field' => 'slug',
+                                'terms' => 'capabilities',
+                                'include_children' => false
+                            )
+                        ),
                         'posts_per_page' => 3,
-                        'taxonomy' => 'what_we_do_categories',
-                        'term' => 'capabilities',
                         'orderby' => 'menu_order',
                         'order' => 'ASC'
                     ));

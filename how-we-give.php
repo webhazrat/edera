@@ -63,6 +63,8 @@
         <div class="container-fluid px-0">
             <div id="giveCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000000">
                 <div class="carousel-inner">
+
+
                     <div class="carousel-item active">
                         <div class="givebackrx-slide">
                             <div class="row justify-content-center align-items-center">
@@ -81,6 +83,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="carousel-item">
                         <div class="hubzone-slide">
                             <div class="row justify-content-center align-items-center">
@@ -98,6 +102,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="carousel-item">
                         <div class="give-slide full">
                             <div class="row justify-content-center align-items-center">
@@ -121,6 +127,8 @@
                             </div>
                         </div>
                     </div>
+
+
                     <div class="carousel-item">
                         <div class="leaders-slide full">
                             <div class="row align-items-center">
@@ -140,6 +148,8 @@
                             </div>
                         </div>
                     </div>
+
+                    
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#giveCarousel" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>

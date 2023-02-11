@@ -57,74 +57,63 @@
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#csid">Creative Strategy and Information Design <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#cgdb"> Custom Graphics, Design, and Branding <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#twe">Technical Writing & Editing <i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                            $creative = new WP_Query(array(
+                                'post_type' => 'what_we_do',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'what_we_do_categories',
+                                        'field' => 'slug',
+                                        'terms' => 'creative',
+                                        'include_children' => false
+                                    )
+                                ),
+                                'posts_per_page' => -1,
+                                'orderby' => 'menu_order',
+                                'order' => 'ASC'
+                            ));
+                            if($creative->have_posts()) :
+                                $i = 0;
+                                while($creative->have_posts()) : $creative->the_post();
+                                $i++;
+                        ?>
+                        <button class="nav-link <?php if($i == 1){ echo 'active'; } ?>" data-bs-toggle="pill" data-bs-target="#creative<?php echo $post->ID; ?>"><?php the_title(); ?> <i class="bi bi-arrow-right"></i></button>
+
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
+                        
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="csid">
+
+                        <?php 
+                            if($creative->have_posts()) : 
+                                $i = 0;
+                                while($creative->have_posts()) : $creative->the_post();
+                                $i++;
+                        ?>
+
+                        <div class="tab-pane fade <?php if($i == 1){ echo 'show active'; }?>" id="creative<?php echo $post->ID; ?>">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <div class="phase-tab-text">
-                                            <p>We know that information must be communicated in a clear, consumable to drive the desired impact. Our Creative Team fuses design thinking with gorgeous graphics to transform complex data and information into attractive, persuasive visual stories that break through the noise of mass communications, empowering your audience to quickly understand the importance, meaning, and desired action.</p>
-                                            <ul>
-                                                <li>Visual storytelling and presentation design</li>
-                                                <li>Infographics</li>
-                                                <li>User-journey visualization</li>
-                                                <li>Dashboard development</li>
-                                                <li>Capability model visualization</li>
-                                            </ul>
+                                            <?php the_content(); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Creative_Data Vis.jpeg" alt="">
+                                        <?php the_post_thumbnail('large'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="cgdb">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>Our designers specialize in fusing form with function. We create compelling designs and collateral that capture audience attention and aligns and elevates your existing branding..</p>
-                                            <ul>
-                                                <li>Digital, web and mobile</li>
-                                                <li>User experience (UX)/user interface (UI)</li>
-                                                <li>Art direction, layout design and 508 compliance</li>
-                                                <li>Marketing, social media, and events</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Creative_CustomGraphics_Design.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="twe">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>Our approach to technical writing and editing focuses on our client’s success throughout the creative process, allowing us to deliver professional, easily consumable content that resonates with audiences.</p>
-                                            <ul>
-                                                <li>Professional, technically proficient writing</li>
-                                                <li>Clean and error-free written materials</li>
-                                                <li>Style guide and federal 508 compliance</li>
-                                                <li>Clear and concise messaging</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Creative_Tech Writing and Editing.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
                         
                     </div>
                 </div>

@@ -65,66 +65,37 @@
 
             
             <div class="how-items d-flex">
+
+                <?php 
+                    $how_we_work = new WP_Query(array(
+                        'post_type' => 'how_we_work',
+                        'posts_per_page' => -1, 
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    if($how_we_work->have_posts()) :
+                        while($how_we_work->have_posts()) : $how_we_work->the_post();
+                ?>
                 
                 <div class="how-item">
                     <div class="title how-item-title">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/multidisciplinary-teams.jpeg" alt="">
+                        <?php the_post_thumbnail('large'); ?>
                         <div class="overlay">
-                            <h4>Multidisciplinary Teams</h4>
+                            <h4><?php the_title(); ?></h4>
                         </div>
                         <a href="#"><i class="bi bi-zoom-in"></i></a>
                     </div>
                     <div class="body">
                         <div class="content">
-                            <p>Our multidisciplinary teams have a variety of perspectives and deep expertise to solve your toughest challenges. Our experts include clinicians, digital strategists, cloud architects, strategic communicators, change management practitioners, and many more. Our deep expertise helps us cut through the noise to get to the right answer faster.</p>
+                            <?php the_content(); ?>
                         </div>
                     </div>
                 </div>
 
-                <div class="how-item">
-                    <div class="title how-item-title">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/brilliance-infused-solutions.jpeg" alt="">
-                        <div class="overlay">
-                            <h4>Brilliance-Infused Solutions</h4>
-                        </div>
-                        <a href="#"><i class="bi bi-zoom-in"></i></a>
-                    </div>
-                    <div class="body">
-                        <div class="content">
-                            <p>At the center of Edera’s commitment to delivery excellence is our promise to deliver superior quality in all materials, artifacts, and deliverables we produce. We emphasize the creation of powerful, concise narratives and messages, and package them in a way that is consumable and effective. Our clients receive deliverables that are “client-ready” the first time they receive them due to our unique quality assurance (QA) methodology that institutes a meticulous review process. This rigorous methodology enables our staff to produce deliverables that meet the quality standards established by our company and expected by our clients.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="how-item">
-                    <div class="title how-item-title">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/fusion-methodology.jpeg" alt="">
-                        <div class="overlay">
-                            <h4>Fusion Methodology</h4>
-                        </div>
-                        <a href="#"><i class="bi bi-zoom-in"></i></a>
-                    </div>
-                    <div class="body">
-                        <div class="content">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Fusion Methodology Logo.svg" alt="">
-                            <p>Edera’s notable strength in delivery excellence is deeply rooted in our Fusion Methodology. Our robust, repeatable processes for our service offerings incorporate best-in-class management consulting protocols, industry-specific best practices, and bespoke technology tools into a uniquely designed and branded package.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="how-item">
-                    <div class="title how-item-title">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/voice.jpeg" alt="">
-                        <div class="overlay">
-                            <h4>Voice</h4>
-                        </div>
-                        <a href="#"><i class="bi bi-zoom-in"></i></a>
-                    </div>
-                    <div class="body">
-                        <div class="content">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/VOICE Logo.svg" alt="">
-                            <p>VOICE, the Virtual Operations and Impact Center of Excellence, features an innovative approach of virtual infrastructure and operational staff to deliver revenue cycle, information technology (IT), and clinical transition services in health care. With client end goals in mind, the VOICE business operations transition services (BOTS) team targets client-specific needs, providing on-site and/or virtual staff to assist and further client experiences and outcomes, skillfully supporting transformation.</p>
-                        </div>
-                    </div>
-                </div>
+                <?php 
+                        endwhile;
+                    endif;
+                ?> 
 
 
             </div>

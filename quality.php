@@ -57,72 +57,60 @@
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">
-                        <button class="nav-link active" data-bs-toggle="pill" data-bs-target="#cc">Communications & Collaboration <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#qfpm">Quality-Focused Project Management <i class="bi bi-arrow-right"></i></button>
-                        <button class="nav-link" data-bs-toggle="pill" data-bs-target="#qdm">Quality Data Management <i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                            $quality = new WP_Query(array(
+                                'post_type' => 'what_we_do',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'what_we_do_categories', 
+                                        'field' => 'slug', 
+                                        'terms' => 'quality', 
+                                        'include_children' => false
+                                    )
+                                ),
+                                'posts_per_page' => -1,
+                                'orderby' => 'menu_order',
+                                'order' => 'ASC'
+                            ));
+                            if($quality->have_posts()) : 
+                                $i = 0;
+                                while($quality->have_posts()) : $quality->the_post();
+                                $i++;
+                        ?>
+                        <button class="nav-link <?php if($i == 1){ echo 'active'; } ?>" data-bs-toggle="pill" data-bs-target="#quality<?php echo $post->ID; ?>"><?php the_title(); ?> <i class="bi bi-arrow-right"></i></button>
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="tab-content">
-                        <div class="tab-pane fade show active" id="cc">
+                        <?php 
+                            if($quality->have_posts()) :
+                                $i = 0;
+                                while($quality->have_posts()) : $quality->the_post();
+                                $i++;
+                        ?>
+                        <div class="tab-pane fade <?php if($i == 1){ echo 'show active'; } ?>" id="quality<?php echo $post->ID; ?>">
                             <div class="container">
                                 <div class="row align-items-center">
                                     <div class="col-md-6">
                                         <div class="phase-tab-text">
-                                            <p>We bring FedRAMP-certified collaboration and communication tools to make sure a broad stakeholder group is engaged, while at the same time managing data or information securely across collaborators, including:</p>
-                                            <ul>
-                                                <li>Event registration and management</li>
-                                                <li>Parking lot (idea) management</li>
-                                                <li>Graphics and creative design</li>
-                                                <li>Communication planning and execution</li>
-                                                <li>Subject matter expert (SME) contracting support</li>
-                                            </ul>
+                                            <?php the_content(); ?>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Quality_Comms and Collab.jpeg" alt="">
+                                        <?php the_post_thumbnail(); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="qfpm">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>We leverage our Fusion Methodology to bring project delivery best practices across both the commercial and public sectors. Alternatively, Edera can execute and manage projects using client-specific methodologies and tools.</p>
-                                            <ul>
-                                                <li>Project management</li>
-                                                <li>Deliverable expectation management</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Quality_QF PM.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade" id="qdm">
-                            <div class="container">
-                                <div class="row align-items-center">
-                                    <div class="col-md-6">
-                                        <div class="phase-tab-text">
-                                            <p>We bring knowledge and relationships from key vendors and health care organizations that often become the source of data required for quality measure development. In addition, we have technology assets from multiple vendors that allow us to rapidly respond to client needs.</p>
-                                            <ul>
-                                                <li>Data transformation</li>
-                                                <li>Data mapping</li>
-                                                <li>Analytics (including Natural Language Processing [NLP], AI, and voice analysis)</li>
-                                                <li>Reporting</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Quality_QD Management.jpeg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
+                        <?php 
+                                endwhile;
+                            endif;
+                        ?>
+                         
 
                     </div>
                 </div>

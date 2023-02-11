@@ -153,8 +153,37 @@
     </div>
 
     <div class="clients-say py-5">
+        <?php 
+            $say = new WP_Query(array(
+                'post_type' => 'section',
+                'meta_query' => array(
+                    'relation' => 'AND',
+                    array(
+                        'key' => 'page_id',
+                        'value' => $page_id
+                    ),
+                    array(
+                        'key' => 'section',
+                        'value' => 'What Our Clients Say'
+                    )
+                )
+            ));
+            while($say->have_posts()) : $say->the_post();
+
+        ?>
         <div class="container">
-            <h3 class="sub-header mb-5">What Our Clients Say</h3>
+            <h3 class="sub-header mb-5"><?php the_title(); ?></h3>
+
+            <?php        
+                
+                $dom = new DOMDocument;
+                $dom->loadHTML(get_the_content()); 
+                $lis = $dom->getElementsByTagName("li");
+                foreach($lis as $li){
+                    echo $li->textContent;
+                    echo '<br>';
+                }
+            ?>
 
             <div id="saysCarousel" class="says-area carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
@@ -175,6 +204,10 @@
                 </div>
             </div>
         </div>
+        <?php 
+            endwhile;
+            wp_reset_query();
+        ?>
     </div>
     
 <?php get_footer(); ?>

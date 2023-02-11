@@ -5,20 +5,24 @@ function meta_boxes(){
     add_meta_box('section_page_list', __('Page'), 'page_list_meta_box_function', 'section', 'side', 'low');
     add_meta_box('section_video', __('Featured Video'), 'attachment_meta_box_function', 'section', 'side', 'high', array( 'type' => 'video'));
     add_meta_box('__section_name', __('Section'), 'custom_options', 'section', 'side', 'low', array( 
-        'options' => ['Banner', 'Our Contact Vehicles & Certifications']
+        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'What Our Clients Say']
     ));
-    add_meta_box('__section_button', __('Button'), 'page_btn_meta_boxes_function', 'section', 'normal', 'high');
+    add_meta_box('__section_button', __('Button'), 'btn_text_link_meta_boxes_function', 'section', 'normal', 'high');
 
     // consultancy
-    add_meta_box('consulanty_button', __('Button'), 'page_btn_meta_boxes_function', 'consultancy', 'normal', 'high');
+    add_meta_box('consulanty_button', __('Button'), 'btn_text_link_meta_boxes_function', 'consultancy', 'normal', 'high');
 
     // solutions
-    add_meta_box('solutions_id', __('Button'), 'page_btn_meta_boxes_function', 'solutions', 'normal', 'high');
+    add_meta_box('solutions_id', __('Button'), 'btn_text_link_meta_boxes_function', 'solutions', 'normal', 'high');
     add_meta_box('solution_icon', __('Icon'), 'attachment_meta_box_function', 'solutions', 'side', 'low', array( 'type' => 'image'));
 
-    add_meta_box('what_we_do_id', __('Button'), 'page_btn_meta_boxes_function', 'what_we_do', 'normal', 'high');
+    add_meta_box('what_we_do_id', __('Button'), 'btn_text_link_meta_boxes_function', 'what_we_do', 'normal', 'high');
+
+    // teams
+    add_meta_box('team_meta', __('Button'), 'btn_text_link_meta_boxes_function', 'team', 'normal', 'high', array('type' => 'external_link'));
 }
 add_action('add_meta_boxes', 'meta_boxes');
+
 
 // page list
 function page_list_meta_box_function($post){
@@ -40,8 +44,9 @@ function page_list_meta_box_function($post){
 }
 
 function attachment_meta_box_function($post, $arg){
-    $type = $arg['args']['type'];
     wp_nonce_field(basename(__FILE__), 'wp_nonce'); 
+    
+    $type = $arg['args']['type'];
     $attachment = get_post_meta( $post->ID, 'attachment', true);
     $attachment_url = $attachment != '' && wp_get_attachment_url($attachment) ? wp_get_attachment_url($attachment) : '';
 ?>  
@@ -83,9 +88,10 @@ function custom_options($post, $arg){
 }
 
 
-function page_btn_meta_boxes_function($post){
+function btn_text_link_meta_boxes_function($post, $arg){
     wp_nonce_field(basename(__FILE__), 'wp_nonce');
     
+    $type = $arg['args']['type'];
     $btn_text = get_post_meta($post->ID, "btn_text", true);
     $btn_link = get_post_meta($post->ID, "btn_link", true);
     
@@ -97,17 +103,21 @@ function page_btn_meta_boxes_function($post){
         </div>
         <div class="alignleft">
             <label for="btn_link">Link</label>
-            <select name="btn_link" id="btn_link">
-                <option value="">Select Page</option>
-                <?php
-                $pages = get_pages();
-                foreach($pages as $page){ 
-                    $selected = ( $page->ID == $btn_link ) ? 'selected' : '';
+            <?php if($type == 'external_link') : ?>
+                <input type="text" name="btn_link" value="<?php echo $btn_link; ?>" id="btn_link">
+            <?php else :  ?>
+                <select name="btn_link" id="btn_link">
+                    <option value="">Select Page</option>
+                    <?php
+                    $pages = get_pages();
+                    foreach($pages as $page){ 
+                        $selected = ( $page->ID == $btn_link ) ? 'selected' : '';
+                        ?>
+                        <option <?php echo $selected; ?> value="<?php echo $page->ID; ?>"><?php echo $page->post_title; ?></option>
+                    <?php }
                     ?>
-                    <option <?php echo $selected; ?> value="<?php echo $page->ID; ?>"><?php echo $page->post_title; ?></option>
-                <?php }
-                ?>
-            </select>
+                </select>
+            <?php endif; ?>
         </div>
     </div>
     

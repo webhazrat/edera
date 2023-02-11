@@ -109,8 +109,28 @@
             'sort' => true
         ));
 
-        register_post_type('', array(
-            
+        register_post_type('clients_say', array(
+            'labels' => array(
+                'name' => __('Clients Say'),
+                'singular_name' => __('Client Say')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-format-quote',
+            'supports' => array('title', 'editor', 'page-attributes'),
+            'has_archive' => true,
+            'show_in_rest' => true,
+        ));
+
+        // how we work
+        register_post_type('how_we_work', array(
+            'labels' => array(
+                'name' => __('How We Work'),
+                'singular_name' => __('How We Work'),
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-rest-api',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'show_in_rest' => true
         ));
 
         // for team
@@ -124,6 +144,14 @@
             'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
             'has_archive' => true,
             'show_in_rest' => true
+        ));
+        register_taxonomy('team_categories', array('team'), array(
+            'hierarchical' => true,
+            'label' => 'Categories',
+            'singular_label' => 'Category',
+            'show_in_rest' => true,
+            'show_admin_column' => true,
+            'sort' => true
         ));
 
     }
