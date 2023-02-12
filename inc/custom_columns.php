@@ -1,4 +1,34 @@
 <?php 
+
+    function order_custom_columns( $columns ){
+        unset( $columns['date'] );
+        $columns['menu_order'] = 'Order';
+        $columns['date'] = 'Date';
+        return $columns;
+    }
+    add_filter( 'manage_team_posts_columns', 'order_custom_columns' );
+    add_filter( 'manage_consultancy_posts_columns', 'order_custom_columns' );
+    add_filter( 'manage_solutions_posts_columns', 'order_custom_columns' );
+    add_filter( 'manage_what_we_do_posts_columns', 'order_custom_columns' );
+    add_filter( 'manage_how_we_work_posts_columns', 'order_custom_columns' );
+
+    function show_order_column($name){
+        global $post;
+        switch ($name) {
+          case 'menu_order':
+            $order = $post->menu_order;
+            echo $order;
+            break;
+         default:
+            break;
+         }
+    }
+    add_action('manage_team_posts_custom_column','show_order_column');
+    add_action('manage_consultancy_posts_custom_column','show_order_column');
+    add_action('manage_solutions_posts_custom_column','show_order_column');
+    add_action('manage_what_we_do_posts_custom_column','show_order_column');
+    add_action('manage_how_we_work_posts_custom_column','show_order_column');
+
     function section_custom_columns( $columns ){
         unset( $columns['date'] );
         $columns['page'] = 'Page';

@@ -19,10 +19,31 @@ function meta_boxes(){
     add_meta_box('what_we_do_id', __('Button'), 'btn_text_link_meta_boxes_function', 'what_we_do', 'normal', 'high');
 
     // teams
-    add_meta_box('team_meta', __('Button'), 'btn_text_link_meta_boxes_function', 'team', 'normal', 'high', array('type' => 'external_link'));
+    add_meta_box('team_info_meta', __('Info'), 'input_box', 'team', 'normal', 'high', array('type' => 'external_link'));
+    add_meta_box('team_btn_meta', __('Button'), 'btn_text_link_meta_boxes_function', 'team', 'normal', 'high', array('type' => 'external_link'));
+
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
+// designation
+function input_box($post){
+    wp_nonce_field(basename(__FILE__), 'wp_nonce');
+    $full_name = get_post_meta($post->ID, "full_name", true);
+    $designation = get_post_meta($post->ID, "designation", true);
+?>  
+
+    <div class="tablenav">
+        <div class="alignleft actions">
+            <label for="full_name">Full Name</label> <br>
+            <input type="text" name="full_name" value="<?php echo $full_name; ?>" id="full_name">
+        </div>
+        <div class="alignleft">
+            <label for="designation">Designation</label> <br>
+            <input type="text" name="designation" value="<?php echo $designation; ?>" id="designation">
+        </div>
+    </div>
+<?php    
+}
 
 // page list
 function page_list_meta_box_function($post){
@@ -70,9 +91,8 @@ function admin_enqueue_function() {
 
 function custom_options($post, $arg){
     wp_nonce_field(basename(__FILE__), 'wp_nonce');
-    $section = get_post_meta($post->ID, "section", true);
-
     $options = $arg['args']['options'];
+    $section = get_post_meta($post->ID, "section", true);
 ?>
     <select name="section" id="section" style="max-width:205px;width:100%">
         <option value="">Select Section</option>
@@ -98,11 +118,11 @@ function btn_text_link_meta_boxes_function($post, $arg){
 ?>
     <div class="tablenav">
         <div class="alignleft actions">
-            <label for="btn_text">Text</label>
+            <label for="btn_text">Text</label> <br>
             <input type="text" name="btn_text" value="<?php echo $btn_text; ?>" id="btn_text">
         </div>
         <div class="alignleft">
-            <label for="btn_link">Link</label>
+            <label for="btn_link">Link</label> <br>
             <?php if($type == 'external_link') : ?>
                 <input type="text" name="btn_link" value="<?php echo $btn_link; ?>" id="btn_link">
             <?php else :  ?>
@@ -142,14 +162,14 @@ function save_meta_box($post_id, $post){
 
     $section = isset($_POST["section"]) ? $_POST["section"] : "";
     update_post_meta($post_id, "section", $section);
-
+    
+    $full_name = isset($_POST["full_name"]) ? $_POST["full_name"] : "";
+    $designation = isset($_POST["designation"]) ? $_POST["designation"] : "";
+    update_post_meta($post_id, "full_name", $full_name);   
+    update_post_meta($post_id, "designation", $designation);   
+    
     $btn_text = isset($_POST["btn_text"]) ? sanitize_text_field($_POST["btn_text"]) : "";
     $btn_link = isset($_POST["btn_link"]) ? sanitize_text_field($_POST["btn_link"]) : "";
-
-    
-    
-    
-
     update_post_meta($post_id, "btn_text", $btn_text);
     update_post_meta($post_id, "btn_link", $btn_link);
 }

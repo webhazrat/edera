@@ -59,7 +59,6 @@ window.onscroll = function(){
 // team popup
 function isElementInViewport (el) {
     var rect = el.getBoundingClientRect();
-
     return {
         'hV' : rect.bottom - window.innerHeight, 
         'wL' : rect.left - window.innerWidth,
@@ -70,16 +69,17 @@ function isElementInViewport (el) {
 const team = document.querySelectorAll('.team-item');
 team.forEach(item => {
     item.addEventListener('click', function(e){
-        e.preventDefault();
+
         const teamItem = document.querySelectorAll('.team-item');
         teamItem.forEach(item2 => {
             if (item2.classList.contains('show')) {
                 item2.classList.remove('show');
             }
         })
+
         const overlay = item.querySelector('.overlay-pop');
         if (!overlay.contains(e.target)){
-            item.classList.toggle('show');
+            item.classList.add('show');
         }
 
         if(isElementInViewport(overlay).hV > 0){

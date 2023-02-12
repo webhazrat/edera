@@ -8,8 +8,12 @@
 
     <div class="contact-us py-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/Kaleidescope\ Pattern.svg');">
         <div class="container">
-            <h2 class="section-header mb-4">Contact Us</h2>
-            <h4 class="text-aqua mb-4">Get in touch and we’ll get back to you as soon as we can. <br> We look forward to hearing from you!</h4>
+
+            <?php while(have_posts()) : the_post(); ?>
+                <h2 class="section-header mb-4"><?php the_title(); ?></h2>
+
+                <?php the_content(); ?>
+            <?php endwhile; ?>
 
             <form action="">
 
