@@ -199,6 +199,20 @@
     }
     add_action('widgets_init', 'edera_widgets');
 
-
+    function bootstrap_pagination($total_pages, $current_page){
+        $paginate = paginate_links(array(
+            'type' => 'list',
+            'total' => $total_pages,
+            'current' => $current_page, 
+            'prev_text'    => __('<i class="bi bi-chevron-left"></i> Previous'),
+            'next_text'    => __('Next  <i class="bi bi-chevron-right"></i>')
+        ));
+        $paginate = str_replace("<ul class='page-numbers'>", '<ul class="pagination justify-content-center">', $paginate);
+        $paginate = str_replace('page-numbers', 'page-link', $paginate);
+        $paginate = str_replace('<li>', '<li class="page-item">', $paginate);
+        $paginate = str_replace('<li class="page-item"><span aria-current="page" class="page-link current">',
+        '<li class="page-item"><span aria-current="page" class="page-link active">', $paginate);
+        echo $paginate;
+    }
 
 ?>

@@ -16,7 +16,10 @@ function set_attachment(key, type){
         var attachment_url = attachment['url'];
         var attachment_id = attachment['id'];
         $wrapper.find('input#'+key).val(attachment_id);
-        var html = type === 'video' ? `<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="${attachment_url}" type="video/mp4"> Your browser does not support the video tag. </video></span>` : `<span class="components-responsive-wrapper"><img src="${attachment_url}"></span>`;
+        var html = type === 'video' ? `<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="${attachment_url}" type="video/mp4"> Your browser does not support the video tag. </video></span>` : type == 'audio' ? `<span class="components-responsive-wrapper"><audio controls class="mt-2">
+        <source src="${attachment_url}" type="audio/mpeg">
+        Your browser does not support the audio element.
+        </audio> </span>` : `<span class="components-responsive-wrapper"><img src="${attachment_url}"></span>`;
 
         $wrapper.find('img').show();
         $wrapper.find(`a.remove${type}`).show();

@@ -22,6 +22,8 @@ function meta_boxes(){
     add_meta_box('team_info_meta', __('Info'), 'input_box', 'team', 'normal', 'high', array('type' => 'external_link'));
     add_meta_box('team_btn_meta', __('Button'), 'btn_text_link_meta_boxes_function', 'team', 'normal', 'high', array('type' => 'external_link'));
 
+    // post
+    add_meta_box('podcasts_audio', __('Audio'), 'attachment_meta_box_function', 'post', 'side', 'high', array( 'type' => 'audio'));
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
@@ -74,7 +76,7 @@ function attachment_meta_box_function($post, $arg){
     <div id="<?php echo 'attachment'; ?>_wrapper">
         <div class="editor-post-featured-image__container">
             <button type="button" class="add<?php echo $type; ?> components-button <?php echo $attachment_url != '' ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle' ;?>" onclick="set_attachment('<?php echo 'attachment'; ?>', '<?php echo $type; ?>');">
-                <?php echo $attachment_url != '' ? $type === 'image' ? '<span class="components-responsive-wrapper"><img src="'.$attachment_url.'"></span>' : '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>' : 'Set featured '. $type ; ?>
+                <?php echo $attachment_url != '' ? $type === 'image' ? '<span class="components-responsive-wrapper"><img src="'.$attachment_url.'"></span>' : $type === 'audio' ? '<span class="components-responsive-wrapper"><audio controls class="mt-2"> <source src="'.$attachment_url.'" type="audio/mpeg"> Your browser does not support the audio element. </audio></span>' : '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>' : 'Set featured '. $type ; ?>
             </button>
         </div>
 
