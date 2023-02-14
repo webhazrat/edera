@@ -1161,10 +1161,12 @@ a.read-more, .read-more{
 }
 
 /* blog */
-.blog-area .item.full, 
-.feature-img{
+.blog-area .item.full, .feature-img {
     position: relative;
     z-index: 1;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:center;
 }
 .blog-area .item.full .feature-img img{
     height: 350px;
@@ -1240,12 +1242,13 @@ a.read-more, .read-more{
     z-index: 1;
     transition: 0.5s ease-in-out;
 }
-
-.blog-area .item.item:not(:last-child), 
+.blog-area .item:first-child{
+    margin-top: 15px;
+}
+.blog-area .item:not(:last-child), 
 .upcoming-events .item{
     padding-bottom: 15px;
     margin-bottom: 15px;
-    padding-top: 15px;
 }
 .blog-area .item:not(.full), 
 .upcoming-events .item:not(:last-child){

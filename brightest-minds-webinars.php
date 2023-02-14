@@ -7,37 +7,7 @@
 
     <?php get_template_part('template_parts/banner-video', 'brightest_minds_webniars', array('size' => '')); ?>
 
-    <div class="banner-navigation py-2" style="background-color: #f2f2f2;">
-        <div class="container">
-            <div class="banner-navigation-content">
-                <nav class="navbar navbar-expand-lg">
-                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar2">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbar2">
-                        <?php
-                            wp_nav_menu(array(
-                                'menu_class' => 'navbar-nav gap-4',
-                                'container' => 'ul',
-                                'theme_location' => 'menu3',
-                                'fallback_cb' => '__return_false',
-                                'walker' => new bootstrap_5_wp_nav_menu_walker()
-                            ));
-                        ?>
-                    </div>
-                </nav>
-                <div class="insight-search-area">
-                    <form action="">
-                        <div class="control-icon">
-                            <input type="search" name="searchText" id="searchText">
-                            <button type="submit" id="insightSearchBtn"><i class="bi bi-search"></i></button>
-                            <button type="button" id="insightSearchClose"><i class="bi bi-x"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-navigation', 'brightest-minds-webinars'); ?>
 
     <div class="upcoming mt-4 mb-4">
         <div class="container">
@@ -66,41 +36,80 @@
             <div class="row">
                 <div class="col-lg-6">
 
+                    <?php 
+
+                        // recent today and before last 2 <=
+                        // past today and before offset 2 <=
+                        // featured upcoming after today date > last 1
+                        // featured upcoming after today date > offset 1
+
+                        $today = date( 'Y-m-d' );
+                        $brightestTest = new WP_Query(array(
+                            'post_type' => 'event',
+                            'orderby' => 'event_date',
+                            'order' => 'DESC',
+                            'meta_query' => array(
+                                array(
+                                    'key' => 'event_date',
+                                    'compare' => '<=',
+                                    'value' => $today
+                                )
+                            )
+                        ));
+                        while($brightestTest->have_posts()) : $brightestTest->the_post();
+                        $event_date = date('F d, Y', strtotime(get_post_meta($post->ID, 'event_date', true)));
+
+                        echo get_post_meta($post->ID, 'event_date', true);
+
+                        the_title(); echo " | " . $event_date;
+                        echo '<br>';
+
+                    endwhile;
+                    ?>
+
                     <h4 class="mb-4">Recent Events</h4>
+
+                    <?php 
+                        $brightest = new WP_Query(array(
+                            'post_type' => 'post',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field' => 'slug',
+                                    'terms' => 'events',
+                                    'include_children' => false
+                                )
+                            ),
+                            'date_query'    => array(
+                                'column'  => 'post_date',
+                                'after'   => $today
+                            ),
+                            'posts_per_page' => 2,
+                            'orderby' => 'post_date',
+                            'order' => 'DESC'
+                        ));
+                        while($brightest->have_posts()) : $brightest->the_post();
+                    ?>
                     <div class="item">
                         <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
+                            <?php the_post_thumbnail('large'); ?>
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">
-                            <div class="tags">
-                                <a href="#">Tag</a>
-                            </div>
-                            <h4><a href="#">Possimus facilis officia fugit qui expedita</a></h4>
+                            <?php if(has_tag()) : ?>
+                                <div class="tags d-flex gap-2">
+                                    <?php echo get_the_tag_list(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                             <div class="para-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                <a href="#">Continue Reading</a>
+                                <p><?php echo wp_trim_words(get_the_content(), 20, '...'); ?></p>
+                                <a href="<?php the_permalink(); ?>">Continue Reading</a>
                             </div>
-                            <span class="date">March 23, 2022</span>
+                            <span class="date"><?php echo get_the_date(); ?></span>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="feature-img">
-                            <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="tags">
-                                <a href="#">Tag</a>
-                            </div>
-                            <h4><a href="#">Possimus facilis officia fugit qui expedita</a></h4>
-                            <div class="para-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                <a href="#">Continue Reading</a>
-                            </div>
-                            <span class="date">March 23, 2022</span>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>
 
                 </div>
 
@@ -108,78 +117,54 @@
                     <div class="upcoming-events">
 
                         <h4 class="mb-4">Upcoming Events</h4>
-
+                        <?php 
+                            $brightest_upcoming = new WP_Query(array(
+                                'post_type' => 'post',
+                                'tax_query' => array(
+                                    array(
+                                        'taxonomy' => 'category',
+                                        'field' => 'slug',
+                                        'terms' => 'events',
+                                        'include_children' => false
+                                    )
+                                ),
+                                'date_query'    => array(
+                                    'column'  => 'post_date',
+                                    'after'   => $today
+                                ),
+                                'posts_per_page' => 3,
+                                'orderby' => 'post_date',
+                                'order' => 'DESC'
+                            ));
+                            while($brightest_upcoming->have_posts()) : $brightest_upcoming->the_post();
+                        ?>
                         <div class="item">
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="feature-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
+                                        <?php the_post_thumbnail('medium'); ?>
                                         <span><i class="bi bi-arrow-right"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="body">
-                                        <div class="tags">
-                                            <a href="#">Tag</a>
-                                        </div>
-                                        <h5><a href="#">March 28, 2022 Defense Health Agency Awards</a></h5>
+                                        <?php if(has_tag()) : ?>
+                                            <div class="tags d-flex gap-2">
+                                                <?php echo get_the_tag_list(); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <h5><a href="#"><?php the_title(); ?></a></h5>
                                         <div class="para-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                            <a href="#">Continue Reading</a>
+                                            <p><?php echo wp_trim_words(get_the_content(), 20, '...'); ?></p>
+                                            <a href="<?php the_permalink(); ?>">Continue Reading</a>
                                         </div>
-                                        <span class="date">March 18, 2022</span>
+                                        <span class="date"><?php echo get_the_date(); ?></span>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="feature-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                        <span><i class="bi bi-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="body">
-                                        <div class="tags">
-                                            <a href="#">Tag</a>
-                                        </div>
-                                        <h5><a href="#">March 28, 2022 Defense Health Agency Awards</a></h5>
-                                        <div class="para-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                            <a href="#">Continue Reading</a>
-                                        </div>
-                                        <span class="date">March 18, 2022</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="feature-img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                        <span><i class="bi bi-arrow-right"></i></span>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="body">
-                                        <div class="tags">
-                                            <a href="#">Tag</a>
-                                        </div>
-                                        <h5><a href="#">March 28, 2022 Defense Health Agency Awards</a></h5>
-                                        <div class="para-content">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...</p>
-                                            <a href="#">Continue Reading</a>
-                                        </div>
-                                        <span class="date">March 18, 2022</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <?php endwhile; ?>  
 
                     </div>
 
@@ -193,70 +178,62 @@
             <div class="container mt-4">
                 <h4 class="mb-4">Past Events</h4>
                 <div class="row">
+                    <?php
+                        $current_page = get_query_var('paged');
+                        $current_page = max(1, $current_page);
+
+                        $posts_per_page = 3;
+                        $offset_start = 2;
+                        $offset = ($current_page - 1) * $posts_per_page + $offset_start;
+                        $brightest_offset = new WP_Query(array(
+                            'post_type' => 'post',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field' => 'slug',
+                                    'terms' => 'events',
+                                    'include_children' => false
+                                )
+                            ),
+                            'date_query'    => array(
+                                'column'  => 'post_date',
+                                'after'   => $today
+                            ),
+                            'posts_per_page' => $posts_per_page,
+                            'offset' => $offset,
+                            'orderby' => 'post_date',
+                            'order' => 'DESC'
+                        ));
+                        
+                        $total_rows = max(0, $brightest_offset->found_posts - $offset_start);
+                        $total_pages = ceil($total_rows / $posts_per_page);
+                        while($brightest_offset->have_posts()) : $brightest_offset->the_post();
+                    ?>
                     <div class="col-md-4">
                         <div class="item">
                             <div class="feature-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight1.jpeg" alt="">
+                                <?php the_post_thumbnail('medium'); ?>
                                 <span><i class="bi bi-arrow-right"></i></span>
                             </div>
                             <div class="body">
-                                <div class="tags">
-                                    <a href="#">Tag</a>
-                                </div>
-                                <h4 class="mb-3"><a href="#">Health Agency Awards $1.4B Contract to Transform Health Care</a></h4>
-                                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                                <div class="mt-2 date">March 23, 2022</div>
+                                <?php if(has_tag()) : ?>
+                                    <div class="tags d-flex gap-2">
+                                        <?php echo get_the_tag_list(); ?>
+                                    </div>
+                                <?php endif; ?>
+                                <h4 class="mb-3"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
+                                <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
+                                <div class="mt-2 date"><?php echo get_the_date(); ?></div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="item">
-                            <div class="feature-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                <span><i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="body">
-                                <div class="tags">
-                                    <a href="#">Tag</a>
-                                </div>
-                                <h4><a href="#">General Services Administration Multiple Award Schedule Contract</a></h4>
-                                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                                <div class="mt-2 date">March 23, 2022</div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="item">
-                            <div class="feature-img">
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight3.jpeg" alt="">
-                                <span><i class="bi bi-arrow-right"></i></span>
-                            </div>
-                            <div class="body">
-                                <div class="tags">
-                                    <a href="#">Tag</a>
-                                </div>
-                                <h4><a href="#">Reaches Agreement to Make Compass Product Suite Available</a></h4>
-                                <a href="#" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                                <div class="mt-2 date">March 23, 2022</div>
-                            </div>
-                        </div>
-                    </div>
+                    <?php endwhile; ?>  
+
                 </div> 
     
                 <div class="pagination-area mt-4">
                     <nav>
-                        <ul class="pagination justify-content-center">
-                            <li class="page-item">
-                                <a class="page-link"> <i class="bi bi-chevron-left"></i> Previous</a>
-                            </li>
-                            <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next <i class="bi bi-chevron-right"></i></a>
-                            </li>
-                        </ul>
+                        <?php bootstrap_pagination($total_pages, $current_page); ?>
                     </nav>
                 </div> 
     

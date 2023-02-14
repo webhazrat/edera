@@ -21,11 +21,22 @@ function meta_boxes(){
     // teams
     add_meta_box('team_info_meta', __('Info'), 'input_box', 'team', 'normal', 'high', array('type' => 'external_link'));
     add_meta_box('team_btn_meta', __('Button'), 'btn_text_link_meta_boxes_function', 'team', 'normal', 'high', array('type' => 'external_link'));
+    
+    // event
+    add_meta_box('event_date', __('Event Date'), 'date_calendar', 'event', 'side', 'high');
 
-    // post
-    add_meta_box('podcasts_audio', __('Audio'), 'attachment_meta_box_function', 'post', 'side', 'high', array( 'type' => 'audio'));
+    // podcast
+    add_meta_box('podcasts_audio', __('Audio'), 'attachment_meta_box_function', 'podcast', 'side', 'high', array( 'type' => 'audio'));
 }
 add_action('add_meta_boxes', 'meta_boxes');
+
+// event
+function date_calendar($post){
+    wp_nonce_field(basename(__FILE__), 'wp_nonce');
+    $event_date = get_post_meta($post->ID, 'event_date', true);
+?>
+    <input style="max-width:230px;width:100%" type="datetime-local" id="event_date" name="event_date" value="<?php echo $event_date; ?>">
+<?php }
 
 // designation
 function input_box($post){
@@ -33,7 +44,6 @@ function input_box($post){
     $full_name = get_post_meta($post->ID, "full_name", true);
     $designation = get_post_meta($post->ID, "designation", true);
 ?>  
-
     <div class="tablenav">
         <div class="alignleft actions">
             <label for="full_name">Full Name</label> <br>
@@ -174,4 +184,8 @@ function save_meta_box($post_id, $post){
     $btn_link = isset($_POST["btn_link"]) ? sanitize_text_field($_POST["btn_link"]) : "";
     update_post_meta($post_id, "btn_text", $btn_text);
     update_post_meta($post_id, "btn_link", $btn_link);
+
+    // event
+    $event_date = isset($_POST["event_date"]) ? sanitize_text_field($_POST["event_date"]) : "";
+    update_post_meta($post_id, "event_date", $event_date);
 }

@@ -5,51 +5,7 @@
     get_header();
 ?>
 
-    <div class="banner page-banner">
-        <div class="banner-item">
-            <?php 
-                $page_id = get_queried_object_id();
-                $banner = new WP_Query(array(
-                    'post_type' => 'section', 
-                    'posts_per_page' => 1,
-                    'meta_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'page_id',
-                            'value' => $page_id
-                        ),
-                        array(
-                            'key' => 'section',
-                            'value' => 'Banner'
-                        )
-                    )
-                ));
-                while($banner->have_posts()) : $banner->the_post();
-                $attachment_id = get_post_meta($post->ID, 'attachment', true);
-                $attachment_url = wp_get_attachment_url($attachment_id);
-            ?>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="banner-text">
-                            <h2 class="section-header"><?php the_title(); ?></h2>
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <?php 
-                endwhile;
-                wp_reset_query();
-            ?>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-video', 'white_papers', array('size' => '')); ?>
 
     <?php get_template_part('template_parts/banner-navigation'); ?>
 
@@ -57,136 +13,108 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
+                    <?php 
+                        $white_papers = new WP_Query(array(
+                            'post_type' => 'post',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field' => 'slug',
+                                    'terms' => 'white-papers',
+                                    'include_children' => false
+                                )
+                            ),
+                            'posts_per_page' => 1,
+                            'orderby' => 'post_date',
+                            'order' => 'DESC'
+                        ));
 
-                    <div class="item full white p-5" style="background-image:url('<?php echo get_template_directory_uri(); ?>/assets/attachment/management-consulting.jpeg')">
+                        while($white_papers->have_posts()) : $white_papers->the_post();
+                        $attachment_id = get_post_thumbnail_id($post->ID);
+                        $attachment_url = wp_get_attachment_image_src($attachment_id, 'large')[0];
+                    ?> 
+
+                    <div class="item full white p-5" style="background-image:url('<?php echo $attachment_url; ?>')">
                         <div class="body">
-                            <div class="tags">
-                                <a href="#">Tag</a>
-                            </div>
-                            <h3>March 28, 2022 Defense Health Agency Awards $1.4B Contract to Transform Health Care </h3>
+                            <?php if(has_tag()) : ?>
+                                <div class="tags d-flex gap-2">
+                                    <?php echo get_the_tag_list(); ?>
+                                </div>
+                            <?php endif; ?>
+                            <h3><?php the_title(); ?></h3>
                             <div class="para-content">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
-                                <a href="#">Continue Reading</a>
+                                <p><?php echo wp_trim_words(get_the_content(), 30, '...'); ?></p>
+                                <a href="<?php the_permalink(); ?>">Continue Reading</a>
                             </div>
-                            <span class="date mt-5">March 18, 2022</span>
+                            <span class="date mt-5"><?php echo get_the_date(); ?></span>
                         </div>
                     </div>
+
+                    <?php endwhile; ?>
 
                 </div>
 
                 <div class="col-md-10">
-                    <div class="item">
-                        <div class="row align-items-center">
-                            <div class="col-md-3">
-                                <div class="feature-img">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                    <span><i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="body">
-                                    <div class="tags">
-                                        <a href="#">Tag</a>
-                                    </div>
-                                    <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                    <div class="para-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
-                                        <a href="#">Continue Reading</a>
-                                    </div>
-                                    <span class="date">March 18, 2022</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div> 
+                    <?php 
+                        $current_page = get_query_var('paged');
+                        $current_page = max(1, $current_page);
 
-                    <div class="item align-items-center">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="feature-img">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                    <span><i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="body">
-                                    <div class="tags">
-                                        <a href="#">Tag</a>
-                                    </div>
-                                    <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                    <div class="para-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
-                                        <a href="#">Continue Reading</a>
-                                    </div>
-                                    <span class="date">March 18, 2022</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        $posts_per_page = 5;
+                        $offset_start = 1;
+                        $offset = ($current_page - 1) * $posts_per_page + $offset_start;
+                        $white_papers_offset = new WP_Query(array(
+                            'post_type' => 'post',
+                            'tax_query' => array(
+                                array(
+                                    'taxonomy' => 'category',
+                                    'field' => 'slug', 
+                                    'terms' => 'white-papers', 
+                                    'include_children' => false
+                                )
+                            ),
+                            'posts_per_page' => $posts_per_page, 
+                            'offset' => $offset,
+                            'orderby' => 'post_date',
+                            'order' => 'DESC' 
+                        ));
 
-                    <div class="item align-items-center">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="feature-img">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                    <span><i class="bi bi-arrow-right"></i></span>
+                        $total_rows = max(0, $white_papers_offset->found_posts - $offset_start);
+                        $total_pages = ceil($total_rows / $posts_per_page);
+                        while($white_papers_offset->have_posts()) : $white_papers_offset->the_post();
+                    ?>
+                        <div class="item">
+                            <div class="row align-items-center">
+                                <div class="col-md-3">
+                                    <div class="feature-img">
+                                        <?php the_post_thumbnail('medium'); ?>
+                                        <span><i class="bi bi-arrow-right"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="body">
+                                        <?php if(has_tag()) : ?>
+                                            <div class="tags d-flex gap-2">
+                                                <?php echo get_the_tag_list(); ?>
+                                            </div>
+                                        <?php endif; ?>
+                                        <h5><?php the_title(); ?></h5>
+                                        <div class="para-content">
+                                            <?php echo wp_trim_words(get_the_content(), 26, '...'); ?>
+                                            <a href="<?php the_permalink(); ?>">Continue Reading</a>
+                                        </div>
+                                        <span class="date"><?php echo get_the_date(); ?></span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-md-9">
-                                <div class="body">
-                                    <div class="tags">
-                                        <a href="#">Tag</a>
-                                    </div>
-                                    <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                    <div class="para-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
-                                        <a href="#">Continue Reading</a>
-                                    </div>
-                                    <span class="date">March 18, 2022</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        </div> 
+                    <?php endwhile; ?>   
 
-                    <div class="item align-items-center">
-                        <div class="row">
-                            <div class="col-md-3">
-                                <div class="feature-img">
-                                    <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/insight2.jpeg" alt="">
-                                    <span><i class="bi bi-arrow-right"></i></span>
-                                </div>
-                            </div>
-                            <div class="col-md-9">
-                                <div class="body">
-                                    <div class="tags">
-                                        <a href="#">Tag</a>
-                                    </div>
-                                    <h5>March 28, 2022 Defense Health Agency Awards</h5>
-                                    <div class="para-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi...</p>
-                                        <a href="#">Continue Reading</a>
-                                    </div>
-                                    <span class="date">March 18, 2022</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="col-md-10">
                     <div class="pagination-area mt-4">
                         <nav>
-                            <ul class="pagination justify-content-center">
-                                <li class="page-item">
-                                    <a class="page-link"> <i class="bi bi-chevron-left"></i> Previous</a>
-                                </li>
-                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item"><a class="page-link" href="#">4</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Next <i class="bi bi-chevron-right"></i></a>
-                                </li>
-                            </ul>
+                            <?php bootstrap_pagination($total_pages, $current_page); ?>
                         </nav>
                     </div>
                 </div>

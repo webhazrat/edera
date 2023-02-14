@@ -12,6 +12,25 @@
     add_filter( 'manage_what_we_do_posts_columns', 'order_custom_columns' );
     add_filter( 'manage_how_we_work_posts_columns', 'order_custom_columns' );
 
+    // event
+    function event_date_columns($columns){
+        unset( $columns['date'] );
+        $columns['event_date'] = 'Event Date';
+        $columns['date'] = 'Date';
+        return $columns;
+    }
+    add_filter( 'manage_event_posts_columns', 'event_date_columns' );
+
+    function event_date_values($column, $post_id){
+        switch( $column ) {
+            case 'event_date' : 
+                echo date('Y/m/d h:i a', strtotime(get_post_meta($post_id, 'event_date', true)));
+            break;
+        }
+    }
+    add_action( 'manage_event_posts_custom_column', 'event_date_values', 10, 2);
+    // end event
+
     function show_order_column($name){
         global $post;
         switch ($name) {
@@ -49,8 +68,6 @@
                 echo get_post_meta($post_id, 'section', true);
             break;
         }
-       
-       
     }
     add_action( 'manage_section_posts_custom_column', 'section_custom_columns_value', 10, 2);
 

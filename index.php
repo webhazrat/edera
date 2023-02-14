@@ -2,90 +2,30 @@
     get_header();
 ?>
 
-    <div class="banner page-banner">
-        <div class="banner-item">
-            <?php 
-                $page_id = get_queried_object_id();
-                $banner = new WP_Query(array(
-                    'post_type' => 'section', 
-                    'posts_per_page' => 1,
-                    'meta_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'page_id',
-                            'value' => $page_id
-                        ),
-                        array(
-                            'key' => 'section',
-                            'value' => 'Banner'
-                        )
-                    )
-                ));
-                while($banner->have_posts()) : $banner->the_post();
-                $attachment_id = get_post_meta($post->ID, 'attachment', true);
-                $attachment_url = wp_get_attachment_url($attachment_id);
-            ?>
-            <div class="container" style="height: 100%;">
-                <div class="row align-items-center" style="height: 100%;">
-                    <div class="col-md-6">
-                        <div class="banner-text">
-                            <h2 class="section-header"><?php the_title(); ?></h2>
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <?php 
-                endwhile;
-                wp_reset_query();
-            ?>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-video', 'blog', array('size' => '')); ?>
 
-    <div class="banner-navigation py-2" style="background-color: #f2f2f2;">
-        <div class="container">
-            <div class="banner-navigation-content">
-                <nav class="navbar navbar-expand-lg">
-                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar2">
-                        <i class="bi bi-list"></i>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbar2">
-                        <?php 
-                            wp_nav_menu(array(
-                                'menu_class' => 'navbar-nav gap-4',
-                                'container' => 'ul',
-                                'theme_location' => 'menu3',
-                                'fallback_cb' => '__return_false',
-                                'walker' => new bootstrap_5_wp_nav_menu_walker()
-                            ));
-                        ?>
-                    </div>
-                </nav>
-                <div class="insight-search-area">
-                    <form action="">
-                        <div class="control-icon">
-                            <input type="search" name="searchText" id="searchText">
-                            <button type="submit" id="insightSearchBtn"><i class="bi bi-search"></i></button>
-                            <button type="button" id="insightSearchClose"><i class="bi bi-x"></i></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-navigation', 'blog'); ?>
 
     <div class="blog-area py-5">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-
+                    
                     <div class="blog-items">
+                        <?php 
+                            $blog = new WP_Query(array(
+                                'post_type' => 'post',
+                                'posts_per_page' => -1,
+                                'orderby' => 'post_date',
+                                'order' => 'DESC'
+                            ));
+
+                            while($blog->have_posts()) : $blog->the_post();
+
+                                the_title(); echo ' | '.get_the_date();
+                                echo '<br>';
+                            endwhile;
+                        ?>
                         <div class="item full white p-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/management-consulting.jpeg');">
                             <div class="body">
                                 <div class="tags">
