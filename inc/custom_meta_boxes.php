@@ -94,17 +94,19 @@ function attachment_meta_box_function($post, $arg){
     <div id="<?php echo 'attachment'; ?>_wrapper">
         <div class="editor-post-featured-image__container">
             <button type="button" class="add<?php echo $type; ?> components-button <?php echo $attachment_url != '' ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle' ;?>" onclick="set_attachment('<?php echo 'attachment'; ?>', '<?php echo $type; ?>');">
+                
                 <?php if($attachment_url != ''){
                     if($type === 'image') {
                         echo '<span class="components-responsive-wrapper"><img src="'.$attachment_url.'"></span>';
                     }elseif($type === 'audio'){
                         echo '<span class="components-responsive-wrapper"><audio controls class="mt-2"> <source src="'.$attachment_url.'" type="audio/mpeg"> Your browser does not support the audio element. </audio></span>';
                     }elseif($type === 'video'){
-                        '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>';
+                        echo '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>';
                     }
                 }else{
                     echo 'Set featured '. $type ;
                 } ?>
+
             </button>
         </div>
 
