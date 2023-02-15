@@ -5,29 +5,9 @@
     get_header();
 ?>
 
-    <div class="banner page-banner">
-        <div class="banner-item">
-            <div class="container" style="height: 100%;">
-                <div class="row align-items-center" style="height: 100%;">
-                    <div class="col-md-6">
-                        <div class="banner-text">
-                            <h2 class="section-header">Reliable Resources and Impactful Insight</h2>
-                            <p>Edera produces a wide range of resources about our initiatives and impact, including
-                                white papers, case studies, news articles, press releases, and more.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo get_template_directory_uri(); ?>/assets/attachment/what-makes-us-different.m4v" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-video', 'podcasts', array('size' => '')); ?>
 
-    <?php get_template_part('template_parts/banner-navigation'); ?>
+    <?php get_template_part('template_parts/banner-navigation', 'podcasts'); ?>
 
     <div class="blog-area white-papers-area py-5">
         <div class="container">
@@ -35,15 +15,7 @@
                 <div class="col-md-12">
                     <?php 
                         $podcasts = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug',
-                                    'terms' => 'podcasts',
-                                    'include_children' => false
-                                )
-                            ),
+                            'post_type' => 'podcast',
                             'posts_per_page' => 1,
                             'orderby' => 'post_date',
                             'order' => 'DESC'
@@ -88,15 +60,7 @@
                         $offset_start = 1;
                         $offset = ($current_page - 1) * $posts_per_page + $offset_start;
                         $podcasts_offset = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug',
-                                    'terms' => 'podcasts',
-                                    'include_children' => false
-                                )
-                            ),
+                            'post_type' => 'podcast',
                             'posts_per_page' => $posts_per_page,
                             'offset' => $offset,
                             'orderby' => 'post_date',
@@ -143,15 +107,15 @@
                     <?php endwhile; ?> 
                 
                 </div>
-                <?php if(bootstrap_pagination($total_pages, $current_page)) : ?>
+                
                 <div class="col-md-10">
-                    <div class="pagination-area mt-4">
+                    <div class="pagination-area mt-5">
                         <nav>
                             <?php bootstrap_pagination($total_pages, $current_page); ?>
                         </nav>
                     </div>
                 </div>
-                <?php endif; ?>
+                
             </div>
         </div>
     </div>

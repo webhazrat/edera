@@ -1,3 +1,11 @@
+/*
+Theme Name: Edera
+Theme URI: http://itwindow.co
+Author: Md. Hazrat Ali
+Author URI: http://itwindow.co
+Description: This theme made for Edera
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 /* font-family: 'Roboto', sans-serif; */
 body{
@@ -1134,9 +1142,10 @@ a.read-more, .read-more{
 }
 
 /* digital */
-.product-img img{
+.product-img img {
     max-width: 400px;
     width: 100%;
+    height: auto;
 }
 
 /* quiries */

@@ -5,7 +5,7 @@ function meta_boxes(){
     add_meta_box('section_page_list', __('Page'), 'page_list_meta_box_function', 'section', 'side', 'low');
     add_meta_box('section_video', __('Featured Video'), 'attachment_meta_box_function', 'section', 'side', 'high', array( 'type' => 'video'));
     add_meta_box('__section_name', __('Section'), 'custom_options', 'section', 'side', 'low', array( 
-        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'What Our Clients Say']
+        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'Products', 'Who We Serve', 'Media Contacts']
     ));
     add_meta_box('__section_button', __('Button'), 'btn_text_link_meta_boxes_function', 'section', 'normal', 'high');
 
@@ -16,7 +16,11 @@ function meta_boxes(){
     add_meta_box('solutions_id', __('Button'), 'btn_text_link_meta_boxes_function', 'solutions', 'normal', 'high');
     add_meta_box('solution_icon', __('Icon'), 'attachment_meta_box_function', 'solutions', 'side', 'low', array( 'type' => 'image'));
 
+    // what we do
     add_meta_box('what_we_do_id', __('Button'), 'btn_text_link_meta_boxes_function', 'what_we_do', 'normal', 'high');
+
+    // client say
+    add_meta_box('client_say_page_list', __('Page'), 'page_list_meta_box_function', 'clients_say', 'side', 'low');
 
     // teams
     add_meta_box('team_info_meta', __('Info'), 'input_box', 'team', 'normal', 'high', array('type' => 'external_link'));
@@ -27,6 +31,10 @@ function meta_boxes(){
 
     // podcast
     add_meta_box('podcasts_audio', __('Audio'), 'attachment_meta_box_function', 'podcast', 'side', 'high', array( 'type' => 'audio'));
+
+    // affiliate brands
+    add_meta_box('brand_logo', __('Brand Logo'), 'attachment_meta_box_function', 'brands', 'side', 'high', array( 'type' => 'image'));
+    add_meta_box('brand_text_link', __('Button'),  'btn_text_link_meta_boxes_function', 'brands', 'normal', 'high', array('type' => 'external_link'));
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
@@ -86,7 +94,17 @@ function attachment_meta_box_function($post, $arg){
     <div id="<?php echo 'attachment'; ?>_wrapper">
         <div class="editor-post-featured-image__container">
             <button type="button" class="add<?php echo $type; ?> components-button <?php echo $attachment_url != '' ? 'editor-post-featured-image__preview' : 'editor-post-featured-image__toggle' ;?>" onclick="set_attachment('<?php echo 'attachment'; ?>', '<?php echo $type; ?>');">
-                <?php echo $attachment_url != '' ? $type === 'image' ? '<span class="components-responsive-wrapper"><img src="'.$attachment_url.'"></span>' : $type === 'audio' ? '<span class="components-responsive-wrapper"><audio controls class="mt-2"> <source src="'.$attachment_url.'" type="audio/mpeg"> Your browser does not support the audio element. </audio></span>' : '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>' : 'Set featured '. $type ; ?>
+                <?php if($attachment_url != ''){
+                    if($type === 'image') {
+                        echo '<span class="components-responsive-wrapper"><img src="'.$attachment_url.'"></span>';
+                    }elseif($type === 'audio'){
+                        echo '<span class="components-responsive-wrapper"><audio controls class="mt-2"> <source src="'.$attachment_url.'" type="audio/mpeg"> Your browser does not support the audio element. </audio></span>';
+                    }elseif($type === 'video'){
+                        '<span class="components-responsive-wrapper"><video width="100%" height="160" controls> <source src="'.$attachment_url.'" type="video/mp4"> Your browser does not support the video tag. </video></span>';
+                    }
+                }else{
+                    echo 'Set featured '. $type ;
+                } ?>
             </button>
         </div>
 

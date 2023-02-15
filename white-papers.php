@@ -15,15 +15,7 @@
                 <div class="col-md-12">
                     <?php 
                         $white_papers = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug',
-                                    'terms' => 'white-papers',
-                                    'include_children' => false
-                                )
-                            ),
+                            'post_type' => 'paper',
                             'posts_per_page' => 1,
                             'orderby' => 'post_date',
                             'order' => 'DESC'
@@ -62,25 +54,19 @@
                         $posts_per_page = 5;
                         $offset_start = 1;
                         $offset = ($current_page - 1) * $posts_per_page + $offset_start;
-                        $white_papers_offset = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug', 
-                                    'terms' => 'white-papers', 
-                                    'include_children' => false
-                                )
-                            ),
-                            'posts_per_page' => $posts_per_page, 
+                        $podcasts_offset = new WP_Query(array(
+                            'post_type' => 'paper',
+                            'posts_per_page' => $posts_per_page,
                             'offset' => $offset,
                             'orderby' => 'post_date',
-                            'order' => 'DESC' 
+                            'order' => 'DESC'
                         ));
 
-                        $total_rows = max(0, $white_papers_offset->found_posts - $offset_start);
+                        $total_rows = max(0, $podcasts_offset->found_posts - $offset_start);
                         $total_pages = ceil($total_rows / $posts_per_page);
-                        while($white_papers_offset->have_posts()) : $white_papers_offset->the_post();
+
+                        while($podcasts_offset->have_posts()) : $podcasts_offset->the_post();
+                        $audio_url = wp_get_attachment_url(get_post_meta($post->ID, 'attachment', true));
                     ?>
                         <div class="item">
                             <div class="row align-items-center">

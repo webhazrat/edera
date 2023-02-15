@@ -18,15 +18,7 @@
 
                     <?php 
                         $latest_news = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug',
-                                    'terms' => 'news',
-                                    'include_children' => false
-                                )
-                            ),
+                            'post_type' => 'news',
                             'posts_per_page' => 2,
                             'orderby' => 'post_date',
                             'order' => 'DESC'
@@ -63,15 +55,7 @@
                         <h4 class="mb-4">Recent Articles</h4>
                         <?php 
                             $recent_news = new WP_Query(array(
-                                'post_type' => 'post',
-                                'tax_query' => array(
-                                    array(
-                                        'taxonomy' => 'category',
-                                        'field' => 'slug',
-                                        'terms' => 'news',
-                                        'include_children' => false
-                                    )
-                                ),
+                                'post_type' => 'news',
                                 'posts_per_page' => 3,
                                 'orderby' => 'post_date',
                                 'offset' => 2,
@@ -129,15 +113,7 @@
                         $offset = ($current_page - 1) * $posts_per_page + $offset_start;
 
                         $past_news = new WP_Query(array(
-                            'post_type' => 'post',
-                            'tax_query' => array(
-                                array(
-                                    'taxonomy' => 'category',
-                                    'field' => 'slug',
-                                    'terms' => 'news',
-                                    'include_children' => false
-                                )
-                            ),
+                            'post_type' => 'news',
                             'posts_per_page' => $posts_per_page,
                             'orderby' => 'post_date',
                             'offset' => $offset,

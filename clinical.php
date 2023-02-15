@@ -3,6 +3,7 @@
         Template Name: Clinical
     */
     get_header();
+    $page_id = get_queried_object_id();
 ?>
 
     <?php get_template_part('template_parts/banner-video', 'clinical', array('size' => '')); ?>
@@ -62,7 +63,6 @@
                                 $i = 0;
                                 while($clinical->have_posts()) : $clinical->the_post();
                                 $i++;
-
                         ?>
                         <button class="nav-link <?php if($i == 1) {echo 'active'; }?>" data-bs-toggle="pill" data-bs-target="#clinical<?php echo $post->ID; ?>"><?php the_title(); ?><i class="bi bi-arrow-right"></i></button>
                         <?php 
@@ -111,57 +111,40 @@
     <div class="clients-say py-5">
         <?php 
             $say = new WP_Query(array(
-                'post_type' => 'section',
-                'meta_query' => array(
-                    'relation' => 'AND',
-                    array(
-                        'key' => 'page_id',
-                        'value' => $page_id
-                    ),
-                    array(
-                        'key' => 'section',
-                        'value' => 'What Our Clients Say'
-                    )
-                )
+                'post_type' => 'clients_say',
+                'meta_key' => 'page_id',
+                'meta_value' => $page_id, 
+                'orderby' => 'menu_order',
+                'order' => 'ASC'
             ));
-            while($say->have_posts()) : $say->the_post();
-
         ?>
         <div class="container">
-            <h3 class="sub-header mb-5"><?php the_title(); ?></h3>
-
-            <?php        
-                
-                $dom = new DOMDocument;
-                $dom->loadHTML(get_the_content()); 
-                $lis = $dom->getElementsByTagName("li");
-                foreach($lis as $li){
-                    echo $li->textContent;
-                    echo '<br>';
-                }
-            ?>
+            <h3 class="sub-header mb-5">What Our Clients Say</h3>
 
             <div id="saysCarousel" class="says-area carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <?php 
+                        $i = -1;
+                        while($say->have_posts()) : $say->the_post();
+                        $i++;
+                    ?>
+                        <button type="button" data-bs-target="#saysCarousel" data-bs-slide-to="<?php echo $i; ?>" class="<?php if($i == 0){ echo 'active'; } ?>"></button>
+                    <?php endwhile; ?>
                   </div>
                 <div class="carousel-inner">
-                    <div class="say-item carousel-item active">
-                        <p>The 1 hour I spent was <strong>worth infinitely more</strong> than the several hours of computer-based learning.</p>
+                    <?php 
+                        $i = 0;
+                        while($say->have_posts()) : $say->the_post();
+                        $i++;
+                    ?>
+                    <div class="say-item carousel-item <?php if($i == 1){ echo 'active'; } ?>">
+                        <?php the_content(); ?>
                     </div>
-                    <div class="say-item carousel-item">
-                        <p>If any of you would like to sit next to me the week of 25 September, when we go live, I will have a seat and coffee waiting for you. This was the most thorough, meaningful training.</p>
-                    </div>
-                    <div class="say-item carousel-item">
-                        <p>Enjoyed the open forum and ability to talk to clinicians that have extensive knowledge on how the system works.</p>
-                    </div>
+                    <?php endwhile; ?>
                 </div>
             </div>
         </div>
         <?php 
-            endwhile;
             wp_reset_query();
         ?>
     </div>

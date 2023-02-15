@@ -3,53 +3,10 @@
         Template Name: Digital
     */
     get_header();
+    $page_id = get_queried_object_id();
 ?>
 
-    <div class="banner page-banner">
-        <div class="banner-item">
-            <?php 
-                $page_id = get_queried_object_id();
-                $banner = new WP_Query(array(
-                    'post_type' => 'section',
-                    'posts_per_page' => 1,
-                    'meta_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'page_id',
-                            'value' => $page_id
-                        ),
-                        array(
-                            'key' => 'section',
-                            'value' => 'Banner'
-                        )
-                    )
-                ));
-                while($banner->have_posts()) : $banner->the_post();
-                $attachment_id = get_post_meta($post->ID, 'attachment', true);
-                $attachment_url = wp_get_attachment_url($attachment_id);
-            ?>
-            <div class="container" style="height: 100%;">
-                <div class="row align-items-center" style="height: 100%;">
-                    <div class="col-md-6">
-                        <div class="banner-text">
-                            <h2 class="section-header"><?php the_title(); ?></h2>
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <?php 
-                endwhile;
-                wp_reset_query();
-            ?>
-        </div>
-    </div>
+    <?php get_template_part('template_parts/banner-video', 'digital', array('size' => '')); ?>
 
     <div class="support-phase-tabs py-5" style="padding-top: 130px!important;">
         <div class="container">
@@ -119,23 +76,38 @@
 
     <div class="products py-5" style="background-color: #f2f2f2;">
         <div class="container">
-            <h3 class="sub-header mb-4">Products</h3>
+            <?php 
+                $products = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1, 
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Products'
+                        )
+                    )
+                ));
+                while($products->have_posts()) : $products->the_post();
+            ?>
+            <h3 class="sub-header mb-4"><?php the_title(); ?></h3>
             <div class="row align-items-center">
                 <div class="col-md-6">
                     <div class="product-text">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/givebackrx-logo.png" alt="">
-                        <ul class="mt-4">
-                            <li>Pharmacy Discount Card and Health Store With Charity Organizations Partnership Platform</li>
-                            <li>Artificial Intelligence (AI)-Powered Clinical Contact Center</li>
-                        </ul>
+                        <?php the_content(); ?>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="product-img text-end">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/givebackrx.svg" alt="">
+                        <?php the_post_thumbnail('large'); ?>
                     </div>
                 </div>
             </div>
+            <?php endwhile; ?>
         </div>
     </div>
 

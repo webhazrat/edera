@@ -232,8 +232,9 @@
 
                 <?php 
                     $posts = new WP_Query(array(
-                        'post_type' => 'post',
+                        'post_type' => 'event',
                         'posts_per_page' => 3,
+                        'orderby' => 'event_date',
                         'order' => 'DESC'
                     ));
 
@@ -262,32 +263,50 @@
                
             </div>
             <div class="text-end mt-4">
-                <a href="insights-and-events.html" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
+                <a href="<?php echo site_url('/insights-events')?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
             </div>
         </div>
     </div>
 
     <div class="upcoming mb-5">
         <div class="container">
+            <?php 
+                $today = date( 'Y-m-d' );
+                $brightest_featured_upcoming = new WP_Query(array(
+                    'post_type' => 'event',
+                    'posts_per_page' => 1,
+                    'orderby' => 'event_date',
+                    'order' => 'ASC',
+                    'meta_query' => array(
+                        array(
+                            'key' => 'event_date',
+                            'compare' => '>',
+                            'value' => $today,
+                            'type' => 'date'
+                        )
+                    )
+                ));
+                while($brightest_featured_upcoming->have_posts()) : $brightest_featured_upcoming->the_post();
+                $event_date = date('F d, Y', strtotime(get_post_meta($post->ID, 'event_date', true)));
+            ?>
             <div class="row g-0">
                 <div class="col-md-4">
                     <div class="upcoming-logo p-5">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/upcoming-logo.png" alt="">
+                        <?php the_post_thumbnail('medium'); ?>
                     </div>
                 </div>
                 <div class="col-md-8">
                     <div class="upcoming-text">
-                        <span>Upcoming | March 18, 2022</span>
-                        <h3>Featured Upcoming Event</h3>
-                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Repellat ab ut nulla provident
-                            debitis, possimus facilis officia fugit qui expedita quos non facere tenetur, sapiente
-                            voluptatibus commodi soluta quae modi.</p>
-                        <a href="#" class="read-more secondary">Learn More <i class="bi bi-arrow-right-short"></i></a>
+                        <span>Upcoming | <?php echo $event_date; ?></span>
+                        <h3><?php the_title(); ?></h3>
+                        <p><?php echo wp_trim_words(get_the_content(), 30, ''); ?></p>
+                        <a href="<?php the_permalink(); ?>" class="read-more secondary">Learn More <i class="bi bi-arrow-right-short"></i></a>
                     </div>
                 </div>
             </div>
+            <?php endwhile; ?>
             <div class="text-end mt-4">
-                <a href="brightest-minds-webinars.html" class="read-more">See All Brightest Minds Events <i class="bi bi-arrow-right-short"></i></a>
+                <a href="<?php echo site_url('/insights-events/brightest-minds'); ?>" class="read-more">See All Brightest Minds Events <i class="bi bi-arrow-right-short"></i></a>
             </div>
         </div>
     </div>

@@ -12,7 +12,6 @@
             <h3 class="sub-header my-4">How We Work</h3>
         </div>
         <div class="container-fluid px-0">
-
             
             <div class="how-items d-flex">
 
@@ -62,21 +61,22 @@
     <div class="affiliate-brands py-5" style="background-color:#F2F2F2;">
         <div class="container">
             <ul class="nav nav-tabs">
+                <?php 
+                    $brands = new WP_Query(array(
+                        'post_type' => 'brands',
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    $i = 0;
+                    while($brands->have_posts()) : $brands->the_post();
+                    $i++;
+                ?>
                 <li class="nav-item">
-                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#ncc">
+                    <button class="nav-link <?php if($i == 1){ echo 'active'; } ?>" data-bs-toggle="tab" data-bs-target="#brands<?php echo $post->ID; ?>">
                         <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/ncc-logo.png" alt="">
                     </button>
                 </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#trusted-medical">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/trusted-medical-logo.png" alt="">
-                    </button>
-                </li>
-                <li class="nav-item">
-                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#givebackrx">
-                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/givebackrx-logo.png" alt="">
-                    </button>
-                </li>
+                <?php endwhile; ?>
             </ul>
 
             <div class="tab-content pt-5">

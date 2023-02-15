@@ -1,5 +1,24 @@
 <?php 
 
+    // clients_say
+    function clients_say_columns( $columns ){
+        unset( $columns['date'] );
+        $columns['page'] = 'Page';
+        $columns['date'] = 'Date';
+        return $columns;
+    }
+    add_filter( 'manage_clients_say_posts_columns', 'clients_say_columns');
+    function clients_say_columns_values($column, $post_id){
+        switch( $column ) {
+            case 'page' : 
+                echo get_the_title(get_post_meta($post_id, 'page_id', true));
+            break;
+        }
+    }
+    add_action( 'manage_clients_say_posts_custom_column', 'clients_say_columns_values', 10, 2);
+
+
+
     function order_custom_columns( $columns ){
         unset( $columns['date'] );
         $columns['menu_order'] = 'Order';

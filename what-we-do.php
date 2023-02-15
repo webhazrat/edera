@@ -3,6 +3,7 @@
     Template Name: What We Do
     */
     get_header();
+    $page_id = get_queried_object_id();
 ?>
 
 
@@ -101,8 +102,29 @@
 
     <div class="who-we-serve py-4" style="background-color:#0072B6;">
         <div class="container">
-            <h3 class="sub-header text-white mb-3">Who We Serve</h3>
-            <p class="text-white mb-0">Edera’s team of delivery-focused consulting professionals has extensive experience and expertise that spans the public and private sectors. Edera operates the <a href="">National Coordination Center (NCC)</a>. NCC’s IBPAs often partner with Edera’s consulting professionals to create a unique, bilateral repository of best practices and expertise, accelerating solutions for both government and commercial clients.</p>
+            <?php 
+                $who_we_serve = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Who We Serve'
+                        )
+                    )
+                ));
+                while($who_we_serve->have_posts()) : $who_we_serve->the_post();
+            ?>
+            <h3 class="sub-header text-white mb-3"><?php the_title(); ?></h3>
+            <div class="text-white">
+                <?php the_content(); ?>
+            </div>
+            <?php endwhile; ?>
         </div>
     </div>
 

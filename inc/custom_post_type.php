@@ -68,6 +68,7 @@
             'sort' => true
         ));
 
+        // client say
         register_post_type('clients_say', array(
             'labels' => array(
                 'name' => __('Clients Say'),
@@ -87,9 +88,23 @@
                 'singular_name' => __('How We Work'),
             ),
             'public' => true,
-            'menu_icon' => 'dashicons-rest-api',
+            'menu_icon' => 'dashicons-schedule',
             'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
             'show_in_rest' => true
+        ));
+
+        // affiliate brands
+        register_post_type('brands', array(
+            'labels' => array(
+                'name' => __('Affiliate Brands'),
+                'singular_name' => __('Affiliate Brand')
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-share',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'has_archive' => true,
+            'show_in_rest' => true, 
+            'hierachical' => true
         ));
 
         // for team
@@ -138,7 +153,8 @@
             'supports' => array('title', 'editor', 'thumbnail'),
             'has_archive' => true,
             'show_in_rest' => true, 
-            'hierachical' => true
+            'hierachical' => true, 
+            'taxonomies' => array('post_tag')
         ));
         // paper
         register_post_type('paper', array(
@@ -151,7 +167,8 @@
             'supports' => array('title', 'editor', 'thumbnail'),
             'has_archive' => true,
             'show_in_rest' => true, 
-            'hierachical' => true
+            'hierachical' => true, 
+            'taxonomies' => array('post_tag')
         ));
         // news
         register_post_type('news', array(
@@ -164,7 +181,8 @@
             'supports' => array('title', 'editor', 'thumbnail'),
             'has_archive' => true,
             'show_in_rest' => true, 
-            'hierachical' => true
+            'hierachical' => true, 
+            'taxonomies' => array('post_tag')
         ));
 
     }
