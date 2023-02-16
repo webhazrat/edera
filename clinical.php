@@ -108,6 +108,7 @@
         </div>
     </div>
 
+    
     <div class="clients-say py-5">
         <?php 
             $say = new WP_Query(array(
@@ -117,7 +118,9 @@
                 'orderby' => 'menu_order',
                 'order' => 'ASC'
             ));
+            if($say->have_posts()) : 
         ?>
+        
         <div class="container">
             <h3 class="sub-header mb-5">What Our Clients Say</h3>
 
@@ -145,8 +148,8 @@
             </div>
         </div>
         <?php 
+            endif;
             wp_reset_query();
         ?>
     </div>
-    
 <?php get_footer(); ?>
