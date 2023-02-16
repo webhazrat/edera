@@ -101,7 +101,7 @@
                         'post_type' => 'solutions',
                         'posts_per_page' => 3,
                         'taxonomy' => 'solutions_categories',
-                        'term' => 'offerings',
+                        'term' => 'services',
                         'orderby' => 'menu_order',
                         'order' => 'ASC'
                     ));
@@ -231,15 +231,25 @@
             <div class="row">
 
                 <?php 
+                    $today = date( 'Y-m-d' );
                     $posts = new WP_Query(array(
                         'post_type' => 'event',
                         'posts_per_page' => 3,
                         'orderby' => 'event_date',
-                        'order' => 'DESC'
+                        'order' => 'DESC',
+                        'meta_query' => array(
+                            array(
+                                'key' => 'event_date',
+                                'compare' => '<=',
+                                'value' => $today,
+                                'type' => 'date'
+                            )
+                        )
                     ));
 
                     if($posts->have_posts()) :
                         while($posts->have_posts()) : $posts->the_post(); 
+                        $event_date = date('F d, Y', strtotime(get_post_meta($post->ID, 'event_date', true)));
                 ?>
 
                 <div class="col-md-4">
@@ -249,7 +259,7 @@
                             <span><i class="bi bi-arrow-right"></i></span>
                         </div>
                         <div class="body">
-                            <strong><?php echo get_the_date(); ?></strong>
+                            <strong><?php echo $event_date; ?></strong>
                             <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h4>
                         </div>
                     </div>
@@ -263,7 +273,7 @@
                
             </div>
             <div class="text-end mt-4">
-                <a href="<?php echo site_url('/insights-events')?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
+                <a href="<?php echo site_url('/insights-events/')?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
             </div>
         </div>
     </div>
@@ -271,7 +281,6 @@
     <div class="upcoming mb-5">
         <div class="container">
             <?php 
-                $today = date( 'Y-m-d' );
                 $brightest_featured_upcoming = new WP_Query(array(
                     'post_type' => 'event',
                     'posts_per_page' => 1,
@@ -306,7 +315,7 @@
             </div>
             <?php endwhile; ?>
             <div class="text-end mt-4">
-                <a href="<?php echo site_url('/insights-events/brightest-minds'); ?>" class="read-more">See All Brightest Minds Events <i class="bi bi-arrow-right-short"></i></a>
+                <a href="<?php echo site_url('/insights-events/brightest-minds/'); ?>" class="read-more">See All Brightest Minds Events <i class="bi bi-arrow-right-short"></i></a>
             </div>
         </div>
     </div>
