@@ -129,12 +129,13 @@ dropdown.forEach(item => {
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
 if(contactSubmit){
-    contactSubmit.addEventListener('click', function(e){
-        e.preventDefault();
-        this.classList.add('active');
-        this.textContent = 'Submitted';
-    })
+    contactSubmit.outerHTML = `<button class="${contactSubmit.className}" type="submit" onClick="submitted(this)" id="${contactSubmit.id}">${contactSubmit.defaultValue}</button>`;
+    function submitted(e){
+        e.classList.add('active');
+        e.textContent ='Submitted';
+    }   
 }
+
 
 // tabs link active
 function tabLink(target){

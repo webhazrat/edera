@@ -98,5 +98,6 @@
         '<li class="page-item"><span aria-current="page" class="page-link active">', $paginate);
         echo $paginate;
     }
+    
 
 ?>

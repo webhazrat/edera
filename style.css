@@ -222,6 +222,9 @@ h1, h2, h3, h4, h5, h6{
     padding:0!important;
     position: relative;
 }
+.banner-navigation .nav-item:first-child{
+    padding-left:5px;
+}
 .main-navigation .nav-link:before, 
 .banner-navigation .nav-link:before{
     content:"";
@@ -302,6 +305,10 @@ h1, h2, h3, h4, h5, h6{
     padding:50px 0;
 }
 
+.read-more[type="submit"]{
+    background-color: transparent;
+    border:0;
+}
 a.read-more, .read-more{
     display: inline-block;
     color:#001733;
@@ -893,7 +900,7 @@ a.read-more, .read-more{
     box-shadow:inset 0px 0px 0px 1px #0083C1!important;
 }
 
-.contact-us form button[type="submit"]{
+.contact-us .read-more[type="submit"]{
     background-color: transparent;
     border:0;
     font-weight: 700;
@@ -902,7 +909,7 @@ a.read-more, .read-more{
     position: relative;
     padding-right: 22px;
 }
-.contact-us form button[type="submit"]:before {
+.contact-us .read-more[type="submit"]:before {
     content: "\F135";
     font-family: 'bootstrap-icons';
     position: absolute;
@@ -914,11 +921,11 @@ a.read-more, .read-more{
     height: 0;
     background: transparent;
 }
-.contact-us form button[type="submit"].active:before{
+.contact-us .read-more[type="submit"].active:before{
     content:"\F270";
     color:#94CC00;
 }
-.contact-us form button[type="submit"].active:after{
+.contact-us .read-more[type="submit"].active:after{
     width: 100%;
     background-color: #94CC00;
 }
@@ -1427,11 +1434,11 @@ audio{
 .how-we-make-difference .carousel-item .img{
     height: 100%;
 }
-.how-we-make-difference .carousel-item .full .img img{
+.how-we-make-difference .carousel-item .full .img img {
     min-width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
+    object-position: top;
 }
 .how-we-make-difference .carousel-item .full .row [class*='col-']:last-child{
     height: 100%;
@@ -1439,6 +1446,7 @@ audio{
 .how-we-make-difference .carousel-item .img img{
     max-width: 400px;
     width: 100%;
+    height: auto;
 }
 .how-we-make-difference .carousel-item.active {
     transform: scale(1);
@@ -1500,40 +1508,15 @@ audio{
 .how-we-make-difference .carousel-control-prev-icon::after{
     content: "\F12C";
 }
-
-.givebackrx-slide{
-    background: transparent linear-gradient(180deg, #16679A 0%, #0FF0B3 100%) 0% 0% no-repeat padding-box;
-    height: 100%;
-}
-.givebackrx-slide .body img{
-    filter: brightness(0) invert(1);
-}
-.how-we-make-difference .carousel-item .body img{
-    margin-bottom: 30px;
-    max-height:50px;
+.how-we-make-difference .carousel-item .body img {
     width: auto;
+    min-height: 50px;
 }
 .how-we-make-difference .carousel-item .body p{
     color:#fff;
 }
 .how-we-make-difference .carousel-item .body a{
     color:#fff;
-}
-
-.hubzone-slide{
-    background: transparent linear-gradient(180deg, #81D0FF 0%, #0072B6 100%) 0% 0% no-repeat padding-box;
-    height: 100%;
-}
-
-.give-slide{
-    background-color:#0072B6;
-}
-
-.leaders-slide{
-    background-color:#002E5F;
-}
-.leaders-slide .img img{
-    width: 100%;
 }
 
 

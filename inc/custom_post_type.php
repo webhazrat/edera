@@ -93,6 +93,18 @@
             'show_in_rest' => true
         ));
 
+        // difference
+        register_post_type('difference', array(
+            'labels' => array(
+                'name' => __('How We Make a Difference'),
+                'singular_name' => __('How We Make a Difference'),
+            ),
+            'public' => true,
+            'menu_icon' => 'dashicons-sos',
+            'supports' => array('title', 'editor', 'thumbnail', 'page-attributes'),
+            'show_in_rest' => true
+        ));
+
         // affiliate brands
         register_post_type('brands', array(
             'labels' => array(

@@ -5,7 +5,7 @@ function meta_boxes(){
     add_meta_box('section_page_list', __('Page'), 'page_list_meta_box_function', 'section', 'side', 'low');
     add_meta_box('section_video', __('Featured Video'), 'attachment_meta_box_function', 'section', 'side', 'high', array( 'type' => 'video'));
     add_meta_box('__section_name', __('Section'), 'custom_options', 'section', 'side', 'low', array( 
-        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'Products', 'Who We Serve', 'Media Contacts']
+        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'Products', 'Who We Serve', 'Media Contacts', 'What it Means to Be a Low Profit LLC']
     ));
     add_meta_box('__section_button', __('Button'), 'btn_text_link_meta_boxes_function', 'section', 'normal', 'high');
 
@@ -35,9 +35,22 @@ function meta_boxes(){
     // affiliate brands
     add_meta_box('brand_logo', __('Brand Logo'), 'attachment_meta_box_function', 'brands', 'side', 'high', array( 'type' => 'image'));
     add_meta_box('brand_text_link', __('Button'),  'btn_text_link_meta_boxes_function', 'brands', 'normal', 'high', array('type' => 'external_link'));
+
+    // difference
+    add_meta_box('difference_btn', __('Button'), 'btn_text_link_meta_boxes_function', 'difference', 'normal', 'high', array('type' => 'external_link'));
+    add_meta_box('difference_size', __('Size'), 'input', 'difference', 'normal', 'high', array('type' => 'checkbox'));
 }
 add_action('add_meta_boxes', 'meta_boxes');
 
+// difference
+function input($post, $arg){
+    $type = $arg['args']['type'];
+    wp_nonce_field(basename(__FILE__), 'wp_nonce');
+    $input = get_post_meta($post->ID, 'input', true);
+?>
+    <input type="<?php echo $type; ?>" name="input" id="input" <?php if($input){ echo 'checked'; } ?>> <label for="input">Full</label>
+<?php
+}
 // event
 function date_calendar($post){
     wp_nonce_field(basename(__FILE__), 'wp_nonce');
@@ -208,4 +221,7 @@ function save_meta_box($post_id, $post){
     // event
     $event_date = isset($_POST["event_date"]) ? sanitize_text_field($_POST["event_date"]) : "";
     update_post_meta($post_id, "event_date", $event_date);
+
+    $input = isset($_POST["input"]) ? sanitize_text_field($_POST["input"]) : "";
+    update_post_meta($post_id, "input", $input);
 }

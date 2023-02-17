@@ -3,54 +3,10 @@
         Template Name: Who We Are
     */
     get_header();
+    $page_id = get_queried_object_id();
 ?>
-    <div class="banner page-banner large">
-        <div class="banner-item">
-            <?php 
-                $page_id = get_queried_object_id();
-                $banner = new WP_Query(array(
-                    'post_type' => 'section',
-                    'posts_per_page' => 1,
-                    'meta_query' => array(
-                        'relation' => 'AND',
-                        array(
-                            'key' => 'page_id',
-                            'value' => $page_id
-                        ),
-                        array(
-                            'key' => 'section',
-                            'value' => 'Banner'
-                        )
-                    )
-                ));
-                while($banner->have_posts()) : $banner->the_post();
-                $btn_text = get_post_meta($post->ID, 'btn_text', true);
-                $btn_link = get_post_meta($post->ID, 'btn_link', true);
-                $attachment_id = get_post_meta($post->ID, 'attachment', true);
-                $attachment_url = wp_get_attachment_url($attachment_id);
-            ?>
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-lg-6">
-                        <div class="banner-text">
-                            <h2 class="section-header"><?php the_title(); ?></h2>
-                            <?php the_content(); ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="text-end">
-                <video autoplay="" muted="" loop="" id="video-banner">
-                    <source src="<?php echo $attachment_url; ?>" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-            <?php 
-                endwhile;
-                wp_reset_query();
-            ?>
-        </div>
-    </div>
+
+    <?php get_template_part('template_parts/banner-video', 'who_we_are', array('size' => 'large')); ?>
 
     <div class="why-we-exist py-5" style="background-color:#F2F2F2;">
         <div class="container">
@@ -73,10 +29,29 @@
     </div>
 
     <div class="what-means py-4" style="background-color:#0072B6;">
-        <div class="container">
-            <h3 class="sub-header text-white mb-4">What it Means to Be a Low Profit LLC</h3>
-            <p class="text-white mb-0">Edera is mission-driven and operates with a purpose-before-profit mindset. Profits beyond the sustainability goals of our organizations are reinvested into our communities (e.g., community improvement initiatives) and/or our clients (e.g., indirect rate reinvestment or alignment).</p>
+        <?php 
+            $means = new WP_Query(array(
+                'post_type' => 'section',
+                'posts_per_page' => 1,
+                'meta_query' => array(
+                    'relation' => 'AND',
+                    array(
+                        'key' => 'page_id',
+                        'value' => $page_id
+                    ),
+                    array(
+                        'key' => 'section', 
+                        'value' => 'What it Means to Be a Low Profit LLC'
+                    )
+                )
+            ));
+            while($means->have_posts()) : $means->the_post();
+        ?>
+        <div class="container text-white">
+            <h3 class="sub-header text-white mb-4"><?php the_title(); ?></h3>
+            <?php the_content(); ?>
         </div>
+        <?php endwhile; ?>
     </div>
 
     <div class="team-title pt-5">

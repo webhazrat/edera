@@ -13,93 +13,45 @@
         </div>
         <div class="container-fluid px-0">
             <div id="giveCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000000">
+                <?php 
+                    $difference = new WP_Query(array(
+                        'post_type' => 'difference',
+                        'posts_per_page' => -1, 
+                        'orderby' => 'menu_order',
+                        'order' => 'ASC'
+                    ));
+                    if($difference->have_posts()) :
+                ?>
                 <div class="carousel-inner">
-
-
-                    <div class="carousel-item active">
-                        <div class="givebackrx-slide">
-                            <div class="row justify-content-center align-items-center">
+                    <?php 
+                        $bg = ['transparent linear-gradient(180deg, #16679A 0%, #0FF0B3 100%) 0% 0% no-repeat padding-box', 'transparent linear-gradient(180deg, #81D0FF 0%, #0072B6 100%) 0% 0% no-repeat padding-box', '#0072B6', '#002E5F'];
+                        $i = -1;
+                        while($difference->have_posts()) : $difference->the_post();
+                        $size = get_post_meta($post->ID, 'input', true);
+                        $btn_text = get_post_meta($post->ID, 'btn_text', true);
+                        $btn_link = get_post_meta($post->ID, 'btn_link', true);
+                        $i++;
+                    ?>
+                    <div class="carousel-item <?php if($i == 0){ echo 'active'; } ?>">
+                        <div class="<?php if($size){ echo 'full'; } ?>" style="background:<?php echo $bg[$i]; ?>">
+                            <div class="row  <?php if($size){ echo 'justify-content-end'; } else{ echo 'justify-content-center'; } ?>  align-items-center">
                                 <div class="col-md-6">
                                     <div class="body p-5">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/givebackrx-logo.png" alt="">
-                                        <p>In an effort to give back in innovative ways, we launched GiveBackRx, a prescription discount program that not only provides savings on prescription drugs but also presents a unique opportunity for consumers to donate to their chosen charity.</p>
-                                        <a href="#" class="read-more orange default">Visit GiveBackRx.com <i class="bi bi-arrow-right-short"></i></a>
+                                        <?php the_content(); ?>
+                                        <?php if($btn_text) : ?>
+                                            <a href="<?php echo $btn_link; ?>" class="read-more orange default"><?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                                        <?php endif; ?>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="<?php if($size){ echo 'col-md-6'; }else{ echo 'col-md-4'; } ?>">
                                     <div class="img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/GiveBackRx Mockup with Card.svg" alt="">
+                                        <?php the_post_thumbnail('large'); ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
-                    <div class="carousel-item">
-                        <div class="hubzone-slide">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-md-4">
-                                    <div class="img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Hubzone Logo Large.svg" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="body p-5">
-                                        <p>Edera has United States Small Business Administration (SBA) historically underutilized business zone (HUBZone) certification, reflecting our desire to affect change through local economic growth and employment opportunities.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="give-slide full">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-md-7">
-                                    <div class="body p-5">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/Edera Give Logo White.svg" alt="">
-                                        <p>Edera gives its employees one paid volunteering day a year to give back to
-                                            their communities. Each month Edera showcases team members and how they have
-                                            given back to their community and supported Edera’s overall mission and
-                                            vision. Edera’s Community Involvement Committee (CIC) works to identify and
-                                            organize local, group non-profit volunteering opportunities and support
-                                            employees who volunteer for non-profits within their communities outside of
-                                            the Washington, DC area.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/give.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="carousel-item">
-                        <div class="leaders-slide full">
-                            <div class="row align-items-center">
-                                <div class="col-md-5">
-                                    <div class="body p-5">
-                                        <h3 class="sub-header text-white">Leaders of Tomorrow</h3>
-                                        <p>Edera participates in and sponsors events that align with our mission and
-                                            commitment to supporting our nation’s Veterans and service members, such as
-                                            Honor Flights to welcome Veterans to Washington, DC.</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <div class="img">
-                                        <img src="<?php echo get_template_directory_uri(); ?>/assets/attachment/HowWeGive_LeadersOfTomorrow.png" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <?php endwhile; ?>
                     
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#giveCarousel" data-bs-slide="prev">
@@ -110,6 +62,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+                <?php endif; ?>
             </div>
         </div>
     </div>
