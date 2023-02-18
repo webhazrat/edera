@@ -83,7 +83,7 @@
     }
     add_action('widgets_init', 'edera_widgets');
 
-    function bootstrap_pagination($total_pages, $current_page){
+    function bootstrap_pagination($total_pages, $current_page){        
         $paginate = paginate_links(array(
             'type' => 'list',
             'total' => $total_pages,
@@ -99,5 +99,12 @@
         echo $paginate;
     }
     
-
+    function my_post_count_queries($query){
+        if(!is_admin() && $query->is_main_query()){
+            if(is_home()){
+                $query->set('posts_per_page', 1);
+            }
+        }
+    }
+    add_action('pre_get_posts', 'my_post_count_queries');
 ?>

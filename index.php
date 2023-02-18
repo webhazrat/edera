@@ -90,11 +90,16 @@
                                 </div>
                             </div>
                         </div> 
-                        <?php endwhile; ?> 
+                        <?php 
+                            endwhile;
+                        ?> 
                         
                         <div class="pagination-area mt-4">
                             <nav>
-                                <?php bootstrap_pagination($total_pages, $current_page); ?>
+                                <?php 
+                                    bootstrap_pagination($total_pages, $current_page);
+                                    wp_reset_query();
+                                ?>
                             </nav>
                         </div>
                         

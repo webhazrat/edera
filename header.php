@@ -29,9 +29,9 @@
                     </div>
                 </nav>
                 <div class="search-form-area">
-                    <form action="">
+                    <form method="get" action="<?php echo esc_url(home_url('/')); ?>">
                         <div class="control-icon">
-                            <input type="search" name="search" id="search">
+                            <input type="search" name="s" id="search">
                             <button type="submit" id="searchBtn"><i class="bi bi-search"></i></button>
                             <button type="button" id="searchClose"><i class="bi bi-x"></i></button>
                         </div>

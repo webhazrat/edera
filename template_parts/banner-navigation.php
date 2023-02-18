@@ -18,9 +18,9 @@
                 </div>
             </nav>
             <div class="insight-search-area">
-                <form action="">
+                <form method="get" action="<?php echo esc_url(home_url('/')); ?>">
                     <div class="control-icon">
-                        <input type="search" name="searchText" id="searchText">
+                        <input type="search" name="s" id="searchText">
                         <button type="submit" id="insightSearchBtn"><i class="bi bi-search"></i></button>
                         <button type="button" id="insightSearchClose"><i class="bi bi-x"></i></button>
                     </div>

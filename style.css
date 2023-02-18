@@ -1651,9 +1651,19 @@ audio{
     left:15px;
     line-height: 35px;
 }
+.search-header{
+    border-bottom: 2px solid #ddd;
+}
 .search-result-item{
-    border-top:1px solid #ddd;
+    border-bottom:1px solid #ddd;
     padding:20px 0;
+}
+.search-result-item:nth-last-child(2){
+    border-bottom:0;
+}
+.search-result-item h3 a{
+    text-decoration: none;
+    color:#0072B6;
 }
 .search-result-item .tags span{
     color:#777;
@@ -1664,6 +1674,11 @@ audio{
     border-right: 1px solid #777;
     padding-right: 10px;
     margin-right: 10px;
+}
+.no-result{
+    margin:0;
+    padding-top: 20px;
+    color:#999;
 }
 
 .popular-searches ul{
