@@ -5,7 +5,7 @@ function meta_boxes(){
     add_meta_box('section_page_list', __('Page'), 'page_list_meta_box_function', 'section', 'side', 'low');
     add_meta_box('section_video', __('Featured Video'), 'attachment_meta_box_function', 'section', 'side', 'high', array( 'type' => 'video'));
     add_meta_box('__section_name', __('Section'), 'custom_options', 'section', 'side', 'low', array( 
-        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'Products', 'Who We Serve', 'Media Contacts', 'What it Means to Be a Low Profit LLC']
+        'options' => ['Banner', 'Our Contact Vehicles & Certifications', 'Products', 'Who We Serve', 'Who We Serve Items', 'Media Contacts', 'What it Means to Be a Low Profit LLC', 'How to Work with Us']
     ));
     add_meta_box('__section_button', __('Button'), 'btn_text_link_meta_boxes_function', 'section', 'normal', 'high');
 

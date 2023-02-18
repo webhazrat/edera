@@ -128,22 +128,29 @@
         </div>
     </div>
 
-    <div class="serve-items py-5" style="background-color: #338EC5;">
+    <div class="serve-items py-5 text-white" style="background-color: #338EC5;">
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-md-5">
-                    <div class="item">
-                       <h4 class="text-white mb-3">Government</h4> 
-                       <p class="text-white mb-0">Our IBPAs serve as trusted partners for the U.S. Department of Veterans Affairs (VA). The IBPAs’ vast clinical and technical experience enables them to guide VA toward best practice decision-making and workflow design, setting the foundation for system configuration and implementation. Our IBPAs also support the Office of Electronic Health Record Modernization (OEHRM) in developing processes for updated policies, standard operating procedures, memoranda, etc., to govern practices post-VA EHRM implementation.</p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="item">
-                       <h4 class="text-white mb-3">Commercial</h4> 
-                       <p class="text-white mb-0">Edera has developed the health care and life sciences market strategy for a customer relationship management product of a Top 10 Fortune Future 50 company. We leveraged our team of IBPAs across the provider, payer, and life sciences sectors to craft a comprehensive suite of marketing, functionality, and technology recommendations and roadmaps.</p>
-                    </div>
-                </div>
-            </div>
+            <?php 
+                $serve_items = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => '
+                            Who We Serve Items'
+                        )
+                    )
+                ));
+                while($serve_items->have_posts()) : $serve_items->the_post();
+            ?>
+            <?php the_content(); ?>
+            <?php endwhile; ?>
         </div>
     </div>
 

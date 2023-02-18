@@ -868,9 +868,6 @@ a.read-more, .read-more{
     background-repeat: no-repeat;
     background-position:top right;
 }
-.how-to-work-item .item:not(:last-child){
-    margin-bottom: 30px;
-}
 .how-to-work-with-us-bg{
     padding:150px 0;
     background-repeat: no-repeat;
@@ -966,12 +963,14 @@ a.read-more, .read-more{
     color:#fff;
 }
 
-
-.serve-items .row, 
-.serve-items .item{
+.serve-items .wp-block-column{
+    height: 100%;
+}
+.serve-items .wp-block-columns, 
+.serve-items .wp-block-column{
     position: relative;
 }
-.serve-items .row:after{
+.serve-items .wp-block-columns:after{
     content:"";
     position: absolute;
     top:0;
@@ -982,11 +981,8 @@ a.read-more, .read-more{
     border-radius: 33px;
     transform: translateX(-50%);
 }
-
-.serve-items .item{
-    height: 100%;
-}
-.serve-items .item:after{
+.serve-items .wp-block-column:first-child:after, 
+.serve-items .wp-block-column:last-child:after{
     content:"";
     position: absolute;
     right:-50px;
@@ -997,7 +993,7 @@ a.read-more, .read-more{
     background-size: contain;
     background-repeat: no-repeat;
 }
-.serve-items [class*='col-']:last-child .item:after{
+.serve-items .wp-block-column:last-child:after{
     background-image: url('assets/attachment/Commercial\ Icon\ White.svg');
     left:-50px;
 }
