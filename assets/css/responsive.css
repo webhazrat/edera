@@ -223,33 +223,23 @@
 
     /* what we do */
     .services-item, 
-    .serve-items .item{
+    .serve-items .wp-block-column{
         min-height:auto;
         height: auto;
     }
-    .serve-items .item:after {
-        right:0;
-        bottom:0;
-        width: 150px;
-        height: 150px;
-    }
-    .serve-items [class*='col-']:last-child .item:after {
-        left: 0;
+    .serve-items .wp-block-column:after {
+       display: none;
     }
     
-    .serve-items .row [class*='col-']:not(:last-child) .item{
-        margin-bottom: 50px;
-    }
 
     /* insights and events */
     .quiries [class*='col-']:not(:last-child):after, 
-    .serve-items .row:after, 
-    .why-we-exist .row:after{
+    .serve-items .wp-block-columns:after, 
+    .why-we-exist .wp-block-columns:after{
         display: none;
     }
     .quiries [class*='col-']:not(:last-child) .quiries-item, 
-    .services-and-capabilities .row [class*='col-']:not(:last-child) .services-item, 
-    .why-we-exist .row [class*='col-']:not(:last-child) .exist-item{
+    .services-and-capabilities .row [class*='col-']:not(:last-child) .services-item{
         margin-bottom: 30px;
     }
 }

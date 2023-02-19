@@ -172,3 +172,9 @@ if(readMore){
     document.querySelector('.vehicles p').insertAdjacentHTML('beforebegin', html);
 }
 
+const anchor = document.querySelectorAll('.queries .wp-block-column a');
+if(anchor){
+    anchor.forEach(e => {
+        e.setAttribute('class', 'read-more default');
+    })
+}

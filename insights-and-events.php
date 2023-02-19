@@ -200,9 +200,30 @@
         </div>
     </div>
 
-    <div class="quiries py-5" style="background-color:#94CC00;">
+    <div class="queries py-5" style="background-color:#94CC00;">
         <div class="container">
-            <div class="row">
+            <?php 
+                $queries = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section',
+                            'value' => 'Media Queries'
+                        )
+                    )
+                ));
+                while($queries->have_posts()) : $queries->the_post();
+                the_content();
+            ?>
+
+            <?php endwhile; ?>
+            <!-- <div class="row">
                 <div class="col-md-6">
                     <div class="quiries-item text-center">
                         <h4>Get in Touch with our thought leaders</h4>
@@ -215,7 +236,7 @@
                         <a href="contact.html" class="read-more default">Contact Us <i class="bi bi-arrow-right-short"></i></a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 

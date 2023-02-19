@@ -10,21 +10,27 @@
 
     <div class="why-we-exist py-5" style="background-color:#F2F2F2;">
         <div class="container">
-            <h3 class="sub-header mb-4">Why We Exist</h3>
-            <div class="row justify-content-between">
-                <div class="col-md-5">
-                    <div class="exist-item">
-                        <h4>Our Mission</h4>
-                        <p>With a heighted focus on delivery excellence and social impact, Edera partners with clients to ideate, build, implement and sustain innovative, human-centric business solutions.</p>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="exist-item">
-                        <h4>Our Purpose</h4>
-                        <p>Edera exists to help organizations build better businesses and effect positive change in society.</p>
-                    </div>
-                </div>
-            </div>
+            <?php 
+                $exist = new WP_Query(array(
+                    'post_type' => 'section',
+                    'posts_per_page' => 1,
+                    'meta_query' => array(
+                        'relation' => 'AND',
+                        array(
+                            'key' => 'page_id',
+                            'value' => $page_id
+                        ),
+                        array(
+                            'key' => 'section', 
+                            'value' => 'Why We Exist'
+                        )
+                    )
+                ));
+                while($exist->have_posts()) : $exist->the_post();
+            ?>
+            <h3 class="sub-header mb-4"><?php the_title(); ?></h3>
+            <?php the_content(); ?>
+            <?php endwhile; ?>
         </div>
     </div>
 
