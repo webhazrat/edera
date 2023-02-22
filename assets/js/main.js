@@ -176,5 +176,6 @@ const anchor = document.querySelectorAll('.queries .wp-block-column a');
 if(anchor){
     anchor.forEach(e => {
         e.setAttribute('class', 'read-more default');
+        e.innerHTML = e.textContent+' <i class="bi bi-arrow-right-short"></i>';
     })
 }
