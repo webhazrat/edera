@@ -671,6 +671,7 @@ a.read-more, .read-more{
     width: auto!important;
 }
 
+
 /* copyright */
 .copyright{
     background-color: #001733;
@@ -708,6 +709,12 @@ a.read-more, .read-more{
     color:#94CC00;
 }
 
+/* .floating-in{
+    position: fixed;
+    z-index: 2;
+    right:15%;
+    bottom:70px;
+} */
 
 
 /* affiliate brands */
@@ -1671,12 +1678,15 @@ audio{
     text-decoration: none;
     color:#0072B6;
 }
-.search-result-item .tags span{
+.search-result-item .tags span, 
+.search-result-item .tags a{
     color:#777;
     display: inline-block;
     line-height: 14px;
+    text-decoration: none;
 }
-.search-result-item .tags span:not(:last-child){
+.search-result-item .tags span:not(:last-child), 
+.search-result-item .tags a:not(:last-child){
     border-right: 1px solid #777;
     padding-right: 10px;
     margin-right: 10px;

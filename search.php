@@ -40,7 +40,9 @@
                             <p><?php echo wp_trim_words(get_the_content(), 20, '.'); ?></p>
                             <div class="tags">
                                 <span><?php echo get_the_date(); ?></span>
-                                <span>What Makes Us Different</span>
+                                <?php if(has_tag()) :
+                                    echo get_the_tag_list();
+                                endif; ?>
                             </div>
                         </div>
 
