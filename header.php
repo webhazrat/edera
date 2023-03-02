@@ -11,6 +11,26 @@
 
 <body <?php body_class(); ?>>
 
+    <div class="modal fade" id="newsletterModal">
+        <div class="modal-dialog modal-dialog-centered" style="max-width:600px">
+            <div class="modal-content">
+                <div class="modal-body text-center" style="padding:80px">
+                    <div class="modal-close d-flex justify-content-end"> 
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <h2><?php echo get_theme_mod('subscribe_title'); ?></h2>
+                    <p><?php echo get_theme_mod('subscribe_description'); ?></p>
+                    <?php echo do_shortcode(get_theme_mod('subscribe_form')); ?>
+                    <?php if(get_theme_mod('subscribe_note')) : ?>
+                    <div class="mt-3">
+                        <small><?php echo get_theme_mod('subscribe_note'); ?></small>
+                    </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="header-top-nav">
         <div class="container">
             <div class="top-nav-content">

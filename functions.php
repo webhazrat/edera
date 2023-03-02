@@ -36,6 +36,9 @@
         wp_enqueue_style('main', get_stylesheet_uri(), array(), '1.0');
 
         wp_enqueue_script('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js', array(), '5.2.3', true);
+        if(is_page_template('templates/careers.php')){
+            wp_enqueue_script('greenhouse-srcipt', 'https://boards.greenhouse.io/embed/job_board/js?for=ncc', array(), '1.0.0', true);
+        }
         wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0', true);
     }
     add_action('wp_enqueue_scripts', 'edera_theme_scripts');
@@ -43,6 +46,7 @@
     require 'inc/custom_post_type.php';
     require 'inc/custom_meta_boxes.php';
     require 'inc/custom_columns.php';
+    require 'inc/customizer.php';
 
     function edera_widgets(){
         register_sidebar(array(

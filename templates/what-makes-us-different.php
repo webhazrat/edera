@@ -52,7 +52,7 @@
         </div>
     </div>
 
-    <div class="affiliate-brands-title py-4" id="affiliatebrands" style="scroll-margin-top:90px;">
+    <div class="affiliate-brands-title py-4" id="affiliatebrands" style="scroll-margin-top:120px;">
         <div class="container">
             <h3 class="sub-header">Our Affiliate Brands</h3>
         </div>

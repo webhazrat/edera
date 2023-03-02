@@ -709,14 +709,6 @@ a.read-more, .read-more{
     color:#94CC00;
 }
 
-/* .floating-in{
-    position: fixed;
-    z-index: 2;
-    right:15%;
-    bottom:70px;
-} */
-
-
 /* affiliate brands */
 .affiliate-brands .nav-tabs{
     border:0;
@@ -1715,4 +1707,43 @@ audio{
 .not-found-area p{
     font-size:18px;
     color:#A2A2A2;
+}
+
+/* newsletter modal */
+#newsletterModal input[type="submit"]{
+    border-radius: 10px;
+    background-color: #0083C1;
+    color:#fff;
+    border:0; 
+    padding:0 20px;
+    height: 53px;
+}
+#newsletterModal .form-group, 
+#newsletterModal .form-group p{
+    display: flex;
+    gap:.3rem;
+    margin:0!important;
+    text-align: left;
+}
+#newsletterModal .wpcf7-spinner{
+    display: none;
+}
+#newsletterModal .form-control::placeholder{
+    font-size:14px;
+}
+#newsletterModal p{
+    margin: 20px 0;
+}
+#newsletterModal .wpcf7-response-output{
+    margin:0;
+}
+.modal-body .modal-close{
+    position: absolute;
+    top:30px;
+    right:30px;
+}
+.modal-body .btn-close{
+    width: .4rem;
+    height: .4rem;
+    box-shadow: 0 0 0;
 }
