@@ -11,8 +11,8 @@
 
     <div class="services-and-capabilities py-5" style="background-color: #F2F2F2;">
         <div class="container">
-            <h3 class="sub-header mb-4">Our Services and Capabilities</h3>
-            <h4 class="text-center mb-4">Sevice Offerings</h4>
+            <h3 class="sub-header mb-4"><?php echo get_theme_mod('services_capabilities'); ?></h3>
+            <h4 class="text-center mb-4"><?php echo get_theme_mod('service_title'); ?></h4>
 
             <div class="row mb-4">
                 <?php 
@@ -55,7 +55,7 @@
                 
             </div>
 
-            <h4 class="text-center mb-4">Capabilities</h4>
+            <h4 class="text-center mb-4"><?php echo get_theme_mod('capabilities_title'); ?></h4>
             <div class="row">
                 <?php
                     $capabilities = new WP_Query(array(

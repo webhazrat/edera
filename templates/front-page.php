@@ -59,7 +59,7 @@ get_header(); ?>
 
     <div class="consultancy py-5">
         <div class="container">
-            <h2 class="section-header">A Different Kind of Consultancy</h2>
+            <h2 class="section-header"><?php echo get_theme_mod('consultancy_title'); ?></h2>
             <div class="row">
                 <?php 
                     $consultancy = new WP_Query(array(
@@ -96,8 +96,8 @@ get_header(); ?>
 
     <div class="solution pb-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/home-bg-pattern.svg');">
         <div class="container">
-            <h2 class="section-header">Solution and Service</h2>
-            <h3 class="sub-header">Our Offerings</h3>
+            <h2 class="section-header"><?php echo get_theme_mod('sc_title'); ?></h2>
+            <h3 class="sub-header"><?php echo get_theme_mod('s_title'); ?></h3>
             <div class="row">
 
                 <?php 
@@ -145,7 +145,7 @@ get_header(); ?>
 
             </div>
 
-            <h3 class="sub-header">Our Capabilities</h3>
+            <h3 class="sub-header"><?php echo get_theme_mod('c_title'); ?></h3>
             <div class="row">
 
                 <?php 
@@ -231,7 +231,7 @@ get_header(); ?>
 
     <div class="insights-area py-5">
         <div class="container">
-            <h2 class="section-header mb-4">Insights & Events</h2>
+            <h2 class="section-header mb-4"><?php echo get_theme_mod('ie_title'); ?></h2>
             <div class="row">
 
                 <?php 
