@@ -9,7 +9,7 @@
 
     <div class="support-phase-tabs mb-5" style="padding-top: 100px!important;">
         <div class="container">
-            <h4 class="text-aqua mb-4">Service Offerings</h4>
+            <h4 class="text-aqua mb-4"><?php echo get_theme_mod('q_service_title'); ?></h4>
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">

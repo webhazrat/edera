@@ -9,7 +9,7 @@
 
     <div class="how-we-make-difference">
         <div class="container">
-            <h3 class="sub-header my-4">How We Make a Difference</h3>
+            <h3 class="sub-header my-4"><?php echo get_theme_mod('how_we_make_title'); ?></h3>
         </div>
         <div class="container-fluid px-0">
             <div id="giveCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="1000000">

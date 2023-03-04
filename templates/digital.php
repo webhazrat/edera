@@ -10,7 +10,7 @@
 
     <div class="support-phase-tabs py-5" style="padding-top: 130px!important;">
         <div class="container">
-            <h4 class="text-aqua mb-4">Services</h4>
+            <h4 class="text-aqua mb-4"><?php echo get_theme_mod('d_service_title'); ?></h4>
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">

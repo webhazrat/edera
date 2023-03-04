@@ -32,7 +32,22 @@
                         </div>
                         <?php
                             if(have_posts()) :
-                            while(have_posts()) : the_post();    
+
+                                $json_array = [];
+                                $json_file = get_template_directory_uri() . '/search-keywords.json';
+                                $response = wp_remote_get($json_file);
+                                if (!is_wp_error($response)) {
+                                    $json_data = wp_remote_retrieve_body($response);
+                                    $json_array = json_decode($json_data, true);
+                                }
+                                array_push($json_array, get_search_query());
+                                
+                                
+                                //file_put_contents($json_file, json_encode($json_array));
+
+                                var_dump($json_array);
+
+                            while(have_posts()) : the_post(); 
                         ?>
 
                         <div class="search-result-item">

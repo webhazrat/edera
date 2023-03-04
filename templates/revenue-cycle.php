@@ -27,7 +27,7 @@
             if($revenue_cycle->have_posts()) :
         ?>
         <div class="container">
-            <h4 class="text-aqua mb-4">Service Offerings</h4>
+            <h4 class="text-aqua mb-4"><?php echo get_theme_mod('r_service_title'); ?></h4>
             <div class="row justify-content-between">
                 <div class="col-md-4">
                     <div class="nav flex-column nav-pills">
@@ -84,7 +84,7 @@
             if($say->have_posts()) : 
         ?>
         <div class="container">
-            <h3 class="sub-header mb-5">What Our Clients Say</h3>
+            <h3 class="sub-header mb-5"><?php echo get_theme_mod('rc_client_say_title'); ?></h3>
             
             <div id="saysCarousel" class="says-area carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">

@@ -607,6 +607,7 @@ a.read-more, .read-more{
 }
 .upcoming-logo img{
     width: 100%;
+    height: auto;
 }
 .upcoming-text{
     padding:50px;
@@ -1649,12 +1650,14 @@ audio{
 .search-area .search-input{
     position: relative;
 }
-.search-area .search-input i{
+.search-area .search-input i {
     position: absolute;
     height: 35px;
-    top:0;
-    left:15px;
+    top: 0;
+    left: 15px;
     line-height: 35px;
+    display: flex;
+    align-items: center;
 }
 .search-header{
     border-bottom: 2px solid #ddd;

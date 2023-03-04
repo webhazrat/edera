@@ -11,7 +11,7 @@
     <div class="support-phase-area">
         <div class="container">
             <div class="support-phase-text text-center py-4">
-                <p class="mb-0">Our clinical IBPAs bring expertise that supports clients at every phase of the system-design lifecycle for EHR implementations and beyond, including:</p>
+                <p class="mb-0"><?php echo get_theme_mod('banner_bottom_description'); ?></p>
             </div>
         </div>
         <div class="phases py-3" style="background: rgba(0, 114, 182, 0.25);">
@@ -47,7 +47,7 @@
         </div>
         <div class="section-title-area py-3 text-center" style="background: rgba(0, 114, 182, 0.5);">
             <div class="container">
-                <h6 class="mb-0">Clinical Driven Revenue Cycle (CDRC)</h6>
+                <h6 class="mb-0"><?php echo get_theme_mod('tab_title'); ?></h6>
             </div>
         </div>
     </div>
@@ -122,7 +122,7 @@
         ?>
         
         <div class="container">
-            <h3 class="sub-header mb-5">What Our Clients Say</h3>
+            <h3 class="sub-header mb-5"><?php echo get_theme_mod('c_client_say_title'); ?></h3>
 
             <div id="saysCarousel" class="says-area carousel slide" data-bs-ride="carousel">
                 <div class="carousel-indicators">

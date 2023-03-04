@@ -9,7 +9,7 @@
     
     <div class="how-we-work">
         <div class="container">
-            <h3 class="sub-header my-4">How We Work</h3>
+            <h3 class="sub-header my-4"><?php echo get_theme_mod('how_we_work_title'); ?></h3>
         </div>
         <div class="container-fluid px-0">
             
@@ -54,7 +54,7 @@
 
     <div class="affiliate-brands-title py-4" id="affiliatebrands" style="scroll-margin-top:120px;">
         <div class="container">
-            <h3 class="sub-header">Our Affiliate Brands</h3>
+            <h3 class="sub-header"><?php echo get_theme_mod('affiliate_title'); ?></h3>
         </div>
     </div>
 
