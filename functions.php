@@ -112,5 +112,10 @@
     }
     add_action('pre_get_posts', 'my_post_count_queries');
     
+    function search_content_highlight($content){
+        $keys = implode('|', explode(' ', get_search_query()));
+        $content = preg_replace('/(' . $keys . ')/iu', '<strong class="search-highlight">\0</strong>', $content);
+        echo '<p>' . $content . '</p>';
+    }
 
 ?>

@@ -62,13 +62,13 @@
 
     <div class="team-title pt-5">
         <div class="container">
-            <h3 class="sub-header text-green">The Edera Team</h3>
+            <h3 class="sub-header text-green"><?php echo get_theme_mod('team_title'); ?></h3>
         </div>
     </div>
 
     <div class="team py-5" style="background-image: url('<?php echo get_template_directory_uri(); ?>/assets/attachment/who-we-are-bg-pattern.svg');">
         <div class="container">
-            <h4>At the wheel</h4>
+            <h4><?php echo get_theme_mod('at_the_wheel_title'); ?></h4>
 
             <div class="row justify-content-center mt-4">
                 <?php 
@@ -124,7 +124,7 @@
         </div>
         
         <div class="container mt-5">
-            <h4>Team Leads</h4>
+            <h4><?php echo get_theme_mod('team_leads_title'); ?></h4>
 
             <div class="row justify-content-center mt-4">
                 <?php 

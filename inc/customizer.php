@@ -23,6 +23,9 @@
         // how we give
         include 'section/how-we-give.php';
 
+        // Who we are
+        include 'section/who-we-are.php';
+
     }
     add_action( 'customize_register', 'edera_customizer_register' );
 ?>

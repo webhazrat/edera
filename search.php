@@ -33,26 +33,25 @@
                         <?php
                             if(have_posts()) :
 
+                                $base = dirname(__FILE__);
                                 $json_array = [];
-                                $json_file = get_template_directory_uri() . '/search-keywords.json';
-                                $response = wp_remote_get($json_file);
-                                if (!is_wp_error($response)) {
-                                    $json_data = wp_remote_retrieve_body($response);
-                                    $json_array = json_decode($json_data, true);
-                                }
-                                array_push($json_array, get_search_query());
-                                
-                                
-                                //file_put_contents($json_file, json_encode($json_array));
+                                $json_file = $base . '/search-keywords.json';
 
-                                var_dump($json_array);
+                                $json_array = json_decode(file_get_contents($json_file), true);
+
+                                if(is_array($json_array) && !in_array(get_search_query(), $json_array)){
+                                    array_push($json_array, get_search_query());
+                                    file_put_contents($json_file, json_encode($json_array));
+                                }
+                                
+                                
 
                             while(have_posts()) : the_post(); 
                         ?>
 
                         <div class="search-result-item">
                             <h3 class="sub-header"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-                            <p><?php echo wp_trim_words(get_the_content(), 20, '.'); ?></p>
+                            <p><?php search_content_highlight(wp_trim_words(get_the_content(), 20, '.')); ?></p>
                             <div class="tags">
                                 <span><?php echo get_the_date(); ?></span>
                                 <?php if(has_tag()) :

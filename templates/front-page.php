@@ -4,7 +4,7 @@
     */
 get_header(); ?>
 
-    <div class="banner">
+    <div class="banner" style="height:700px">
         <div class="banner-item">
             <?php
                 $page_id = get_queried_object_id();
@@ -38,7 +38,7 @@ get_header(); ?>
                             <h2 class="section-header"><?php the_title(); ?></h2>
                             <?php the_content(); ?>
                             <?php if($btn_text) : ?>
-                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"><?php echo $btn_text; ?> <i class="bi bi-arrow-right-short"></i></a>
+                            <a href="<?php echo get_permalink($btn_link); ?>" class="read-more"><?php echo $btn_text; ?> <i class="bi bi-arrow-right"></i></a>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -56,6 +56,47 @@ get_header(); ?>
             ?>
         </div>
     </div>
+
+    <?php
+        $newsletter = new WP_Query(array(
+            'post_type' => 'section',
+            'posts_per_page' => 1,
+            'meta_query' => array(
+                'relation' => 'AND',
+                array(
+                    'key' => 'page_id',
+                    'value' => $page_id
+                ),
+                array(
+                    'key' => 'section',
+                    'value' => 'Newsletter'
+                )
+            )
+        ));
+
+        while($newsletter->have_posts()) : $newsletter->the_post();
+    ?>
+    <div class="newsletter-form py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h4 class="mb-3"><?php the_title(); ?></h4>
+                    <?php the_content(); ?>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email">
+                            <input type="submit" value="Send">
+                            <!-- <button type="submit"><i class="bi bi-arrow-right"></i></button> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php 
+        endwhile;
+        wp_reset_query();
+    ?>
 
     <div class="consultancy py-5">
         <div class="container">
@@ -323,5 +364,29 @@ get_header(); ?>
             </div>
         </div>
     </div>
+
+    <?php
+        while($newsletter->have_posts()) : $newsletter->the_post();
+    ?>
+    <div class="newsletter-form py-4 text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <h4 class="mb-3"><?php the_title(); ?></h4>
+                    <?php the_content(); ?>
+                    <form action="">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email">
+                            <button type="submit"><i class="bi bi-arrow-right"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php 
+        endwhile;
+        wp_reset_query();
+    ?>
 
 <?php get_footer(); ?>
