@@ -76,19 +76,12 @@ get_header(); ?>
 
         while($newsletter->have_posts()) : $newsletter->the_post();
     ?>
-    <div class="newsletter-form py-4">
+    <div class="newsletter-form pt-4">
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <h4 class="mb-3"><?php the_title(); ?></h4>
                     <?php the_content(); ?>
-                    <form action="">
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
-                            <input type="submit" value="Send">
-                            <!-- <button type="submit"><i class="bi bi-arrow-right"></i></button> -->
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
@@ -368,18 +361,12 @@ get_header(); ?>
     <?php
         while($newsletter->have_posts()) : $newsletter->the_post();
     ?>
-    <div class="newsletter-form py-4 text-center">
+    <div class="newsletter-form pt-4 text-center">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <h4 class="mb-3"><?php the_title(); ?></h4>
                     <?php the_content(); ?>
-                    <form action="">
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Email">
-                            <button type="submit"><i class="bi bi-arrow-right"></i></button>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>

@@ -1,55 +1,14 @@
 <?php 
     /*
-        Template Name: Insights and Events
+        Template Name: Events
     */
     get_header();
 
     $page_id = get_queried_object_id();
 ?>
 
-    <?php get_template_part('template_parts/banner-video', 'insights_and_events', array('size' => '')); ?>
-
-    <?php get_template_part('template_parts/banner-navigation', 'insights_and_events'); ?>
-
-    <div class="insights-area py-5">
-        <div class="container">
-            <h3 class="sub-header text-green mb-4">Featured Insights</h3>
-            <div class="row">
-                <?php 
-                    $featured = new WP_Query(array(
-                        'post_type' => 'post',
-                        'posts_per_page' => 3,
-                        'orderby' => 'post_date',
-                        'order' => 'DESC'
-                    ));
-
-                    if($featured->have_posts()) :
-                        while($featured->have_posts()) : $featured->the_post(); 
-                ?>
-
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <?php the_post_thumbnail('medium'); ?>
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3"><?php echo get_the_date(); ?></div>
-                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h4>
-                            <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <?php 
-                        endwhile;
-                    endif;
-                ?>
-            </div>
-        </div>
-    </div>
-
+    <?php get_template_part('template_parts/banner-video', 'events', array('size' => '')); ?>
+    
     <div class="upcoming events-area mb-5">
         <div class="container">
             <h3 class="sub-header text-green mb-4">Brightest Minds Events</h3>
@@ -134,45 +93,12 @@
         </div>
     </div>
 
-    <div class="insights-area mb-5">
+    <div class="event-schedule py-5" style="background-color:#F2F2F2">
         <div class="container">
-            <h3 class="sub-header text-green mb-4">Edera In The News</h3>
-            <div class="row">
-
-                <?php 
-                    $in_the_news = new WP_Query(array(
-                        'post_type' => 'news',
-                        'posts_per_page' => 3,
-                        'orderby' => 'post_date',
-                        'order' => 'DESC'
-                    ));
-                    if($in_the_news->have_posts()) : 
-                        while($in_the_news->have_posts()) : $in_the_news->the_post();
-                ?>
-
-                <div class="col-md-4">
-                    <div class="item">
-                        <div class="feature-img">
-                            <?php the_post_thumbnail('medium'); ?>
-                            <span><i class="bi bi-arrow-right"></i></span>
-                        </div>
-                        <div class="body">
-                            <div class="date my-3"><?php echo get_the_date(); ?></div>
-                            <h4><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                            </h4>
-                            <a href="<?php the_permalink(); ?>" class="read-more">Read More <i class="bi bi-arrow-right-short"></i></a>
-                        </div>
-                    </div>
-                </div>
-                
-                <?php
-                        endwhile;
-                    endif;
-                ?>
-                
-            </div>
+            <h3 class="sub-header text-green mb-4">Event Schedule</h3>
         </div>
     </div>
+    
 
     <div class="media-contacts py-4" style="background-color: #f2f2f2;">
         <div class="container">
@@ -223,20 +149,7 @@
             ?>
 
             <?php endwhile; ?>
-            <!-- <div class="row">
-                <div class="col-md-6">
-                    <div class="quiries-item text-center">
-                        <h4>Get in Touch with our thought leaders</h4>
-                        <a href="contact.html" class="read-more default">Contact Us <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="quiries-item text-center">
-                        <h4>Media inquiries</h4>
-                        <a href="contact.html" class="read-more default">Contact Us <i class="bi bi-arrow-right-short"></i></a>
-                    </div>
-                </div>
-            </div> -->
+            
         </div>
     </div>
 

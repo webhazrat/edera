@@ -390,7 +390,7 @@ a.read-more, .read-more{
 }
 .newsletter-form .form-group .form-control::placeholder{
     font-size:15px;
-    color:#999;
+    color:#aaa;
 }
 .newsletter-form .form-group::before{
     content:"\F32F";
@@ -398,11 +398,19 @@ a.read-more, .read-more{
     top:0;
     bottom:0;
     font-family:'bootstrap-icons';
-    height: 100%;
+    height: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
     padding:0 15px;
+    color:#aaa;
+    z-index: 2;
+}
+.newsletter-form .form-group p{
+    margin:0;
+}
+.newsletter-form .wpcf7-response-output{
+    margin:0!important;
 }
 .newsletter-form .form-group [type="submit"]{
     position: absolute;
@@ -427,8 +435,6 @@ a.read-more, .read-more{
 .consultancy {
     background-color: #f2f2f2;
     position: relative;
-    /* top: -51.5px; */
-    padding-top:100px!important;
 }
 .consultancy .section-header{
     margin-bottom: 40px;

@@ -180,8 +180,12 @@ if(anchor){
     })
 }
 
-const inToBtn = document.querySelector('.newsletter-form [type="submit"]');
+const inToBtn = document.querySelectorAll('.newsletter-form [type="submit"]');
 if(inToBtn){
-    inToBtn.innerHTML = inToBtn.textContent+' <i class="bi bi-arrow-right-short"></i>';
+    inToBtn.forEach(e => {
+        const newsletterSubmit = document.createElement('button');
+        newsletterSubmit.setAttribute('type', 'submit');
+        newsletterSubmit.innerHTML = '<i class="bi bi-arrow-right"></i>';
+        e.replaceWith(newsletterSubmit);
+    })
 }
-console.dir(inToBtn)
