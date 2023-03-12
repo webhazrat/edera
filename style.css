@@ -674,6 +674,52 @@ a.read-more, .read-more{
     color:#94CC00;
 }
 
+/* event schedule */
+#event-schedule-slide .swiper-slide{
+    background-color: #fff;
+    cursor: pointer;
+}
+#event-schedule-slide .schedule:hover{
+    background-color: #94CC00;
+    color:#fff;
+}
+#event-schedule-slide .schedule p{
+    margin-bottom: 6px;
+}
+#event-schedule-slide .schedule h2{
+    font-size:40px;
+    margin-bottom: 20px;
+}
+#event-schedule-slide .schedule span, 
+#event-schedule-slide .schedule small{
+    color:#999;
+}
+#event-schedule-slide .schedule:hover span, 
+#event-schedule-slide .schedule:hover small, 
+#event-schedule-slide .swiper-slide.active span, 
+#event-schedule-slide .swiper-slide.active small{
+    color:#f2f2f2;
+}
+
+#event-schedule-slide .swiper-slide.active{
+    background-color: #0072B6;
+    color:#fff;
+}
+.swiper-button-next, 
+.swiper-button-prev {
+    height: 100%;
+    top: 0;
+    margin-top: 0;
+}
+.swiper-button-next:after, 
+.swiper-button-prev:after {
+    font-size: 26px;
+    color:#002E5F;
+}
+.swiper-button-disabled{
+    display: none;
+}
+
 /* upcoming event */
 .upcoming-logo{
     background-color: #0072B6;

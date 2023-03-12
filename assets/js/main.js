@@ -1,8 +1,8 @@
 // video play once
 const video = document.getElementById('video-banner');
-if(video){
-    video.addEventListener('timeupdate', function(){
-        if(Math.ceil(this.currentTime) >= Math.floor(this.duration)){
+if (video) {
+    video.addEventListener('timeupdate', function () {
+        if (Math.ceil(this.currentTime) >= Math.floor(this.duration)) {
             this.pause();
         }
     })
@@ -13,13 +13,13 @@ const searchBtn = document.getElementById('searchBtn');
 const searchInput = document.getElementById('search');
 const searchClose = document.getElementById('searchClose');
 const searchFrom = document.querySelector('.search-form-area');
-searchBtn.addEventListener('click', function(e){
-    if(!searchInput.value){
+searchBtn.addEventListener('click', function (e) {
+    if (!searchInput.value) {
         e.preventDefault();
     }
     searchFrom.classList.add('show');
 })
-searchClose.addEventListener('click', function(e){
+searchClose.addEventListener('click', function (e) {
     e.preventDefault();
     searchFrom.classList.remove('show');
 })
@@ -29,17 +29,17 @@ const insightSearchBtn = document.getElementById('insightSearchBtn');
 const searchText = document.getElementById('searchText');
 const insightSearchClose = document.getElementById('insightSearchClose');
 const searchFromArea = document.querySelector('.insight-search-area');
-if(insightSearchBtn){
-    insightSearchBtn.addEventListener('click', function(e){
-        if(!searchText.value){
+if (insightSearchBtn) {
+    insightSearchBtn.addEventListener('click', function (e) {
+        if (!searchText.value) {
             e.preventDefault();
         }
         searchFromArea.classList.add('show');
     })
 }
 
-if(insightSearchClose){
-    insightSearchClose.addEventListener('click', function(e){
+if (insightSearchClose) {
+    insightSearchClose.addEventListener('click', function (e) {
         e.preventDefault();
         searchFromArea.classList.remove('show');
     })
@@ -47,28 +47,28 @@ if(insightSearchClose){
 
 // main navigation scroll
 const mainNavigation = document.querySelector('.main-navigation');
-window.onscroll = function(){
-    if(document.documentElement.scrollTop > 50){
+window.onscroll = function () {
+    if (document.documentElement.scrollTop > 50) {
         mainNavigation.classList.add('scroll-menu');
-    }else{
+    } else {
         mainNavigation.classList.remove('scroll-menu')
     }
 }
 
 
 // team popup
-function isElementInViewport (el) {
+function isElementInViewport(el) {
     var rect = el.getBoundingClientRect();
     return {
-        'hV' : rect.bottom - window.innerHeight, 
-        'wL' : rect.left - window.innerWidth,
-        'wR' : rect.right - window.innerWidth
+        'hV': rect.bottom - window.innerHeight,
+        'wL': rect.left - window.innerWidth,
+        'wR': rect.right - window.innerWidth
     };
 }
 
 const team = document.querySelectorAll('.team-item');
 team.forEach(item => {
-    item.addEventListener('click', function(e){
+    item.addEventListener('click', function (e) {
 
         const teamItem = document.querySelectorAll('.team-item');
         teamItem.forEach(item2 => {
@@ -78,20 +78,20 @@ team.forEach(item => {
         })
 
         const overlay = item.querySelector('.overlay-pop');
-        if (!overlay.contains(e.target)){
+        if (!overlay.contains(e.target)) {
             item.classList.add('show');
         }
 
-        if(isElementInViewport(overlay).hV > 0){
-            document.documentElement.scrollTop += isElementInViewport(overlay).hV+10;
+        if (isElementInViewport(overlay).hV > 0) {
+            document.documentElement.scrollTop += isElementInViewport(overlay).hV + 10;
         }
-        
+
     })
 })
 
 const close = document.querySelectorAll('.close');
 close.forEach(item => {
-    item.addEventListener('click', function(e){
+    item.addEventListener('click', function (e) {
         e.preventDefault();
         this.closest('.team-item').classList.remove('show')
     })
@@ -101,7 +101,7 @@ close.forEach(item => {
 // What Makes Us Different
 const howItemTitle = document.querySelectorAll('.how-item-title');
 howItemTitle.forEach(item => {
-    item.addEventListener('click', function(e){
+    item.addEventListener('click', function (e) {
         e.preventDefault();
         const howItem = document.querySelectorAll('.how-item');
         howItem.forEach(item2 => {
@@ -113,9 +113,9 @@ howItemTitle.forEach(item => {
         })
         this.closest('.how-item').classList.add('expand');
         this.closest('.how-item').classList.remove('closing');
-        
+
         const siblingNum = document.querySelectorAll('.how-item.expand ~ .how-item').length;
-        this.closest('.how-item').style.width=`calc(100% - ${siblingNum}*110px)`;
+        this.closest('.how-item').style.width = `calc(100% - ${siblingNum}*110px)`;
     })
 })
 
@@ -128,37 +128,37 @@ dropdown.forEach(item => {
 
 // Removeable
 const contactSubmit = document.getElementById('contactSubmit');
-if(contactSubmit){
+if (contactSubmit) {
     contactSubmit.outerHTML = `<button class="${contactSubmit.className}" type="submit" onClick="submitted(this)" id="${contactSubmit.id}">${contactSubmit.defaultValue}</button>`;
-    function submitted(e){
+    function submitted(e) {
         e.classList.add('active');
-        e.textContent ='Submitted';
-    }   
+        e.textContent = 'Submitted';
+    }
 }
 
 
 // tabs link active
-function tabLink(target){
+function tabLink(target) {
     const tabList = document.querySelectorAll('.nav button');
     tabList.forEach(triggerEl => {
         triggerEl.classList.remove('active');
-        if(triggerEl.dataset.bsTarget == target){
+        if (triggerEl.dataset.bsTarget == target) {
             triggerEl.classList.add('active')
         }
-    })    
+    })
 }
 
 const triggerTabList = document.querySelectorAll('.nav button')
 triggerTabList.forEach(triggerEl => {
-    triggerEl.addEventListener('shown.bs.tab', function(e){
+    triggerEl.addEventListener('shown.bs.tab', function (e) {
         tabLink(triggerEl.dataset.bsTarget)
-        
+
         const tabPane = document.querySelectorAll('.clinical-tabs .tab-pane');
         tabPane.forEach(pane => {
             pane.classList.remove('active');
-            if('#'+pane.id == triggerEl.dataset.bsTarget){
+            if ('#' + pane.id == triggerEl.dataset.bsTarget) {
                 pane.classList.add('active');
-            }            
+            }
         })
     })
 })
@@ -166,22 +166,22 @@ triggerTabList.forEach(triggerEl => {
 
 // dom replace
 const readMore = document.querySelector('.vehicles .read-more');
-if(readMore){
+if (readMore) {
     const html = readMore.outerHTML;
     readMore.remove();
     document.querySelector('.vehicles p').insertAdjacentHTML('beforebegin', html);
 }
 
 const anchor = document.querySelectorAll('.queries .wp-block-column a');
-if(anchor){
+if (anchor) {
     anchor.forEach(e => {
         e.setAttribute('class', 'read-more default');
-        e.innerHTML = e.textContent+' <i class="bi bi-arrow-right-short"></i>';
+        e.innerHTML = e.textContent + ' <i class="bi bi-arrow-right-short"></i>';
     })
 }
 
 const inToBtn = document.querySelectorAll('.newsletter-form [type="submit"]');
-if(inToBtn){
+if (inToBtn) {
     inToBtn.forEach(e => {
         const newsletterSubmit = document.createElement('button');
         newsletterSubmit.setAttribute('type', 'submit');
@@ -189,3 +189,13 @@ if(inToBtn){
         e.replaceWith(newsletterSubmit);
     })
 }
+
+
+const swiper = new Swiper('.swiper', {
+    slidesPerView: 4,
+    spaceBetween: 30,
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    }
+})

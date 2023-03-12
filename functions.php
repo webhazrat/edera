@@ -31,6 +31,7 @@
     function edera_theme_scripts(){
         wp_enqueue_style('bootstrap', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css', array(), '5.2.3', 'all');
         wp_enqueue_style('bootstrap-icon', 'https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css', array(), '1.10.0', 'all');
+        wp_enqueue_style('swiper', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css', array(), '9.1.0', 'all');
         wp_enqueue_style('responsive', get_template_directory_uri() . '/assets/css/responsive.css', array('main'), '1.0', 'all');
 
         wp_enqueue_style('main', get_stylesheet_uri(), array(), '1.0');
@@ -39,6 +40,7 @@
         if(is_page_template('templates/careers.php')){
             wp_enqueue_script('greenhouse-srcipt', 'https://boards.greenhouse.io/embed/job_board/js?for=ncc', array(), '1.0.0', true);
         }
+        wp_enqueue_script('swiper', 'https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js', array(), '9.1.0', true);
         wp_enqueue_script('main', get_template_directory_uri() . '/assets/js/main.js', array(), '1.0', true);
     }
     add_action('wp_enqueue_scripts', 'edera_theme_scripts');

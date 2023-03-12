@@ -30,10 +30,11 @@
     .main-navigation li.dropdown > a ~ a{
         display: none;
     }
+    
 }
 
 @media(max-width:991px) {
-
+    
     .header-top-nav > .container{
         display: block!important;
     }
