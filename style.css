@@ -675,9 +675,10 @@ a.read-more, .read-more{
 }
 
 /* event schedule */
-#event-schedule-slide .swiper-slide{
+#event-schedule-slide .schedule{
     background-color: #fff;
     cursor: pointer;
+    transition: 0.3s;
 }
 #event-schedule-slide .schedule:hover{
     background-color: #94CC00;
@@ -701,7 +702,7 @@ a.read-more, .read-more{
     color:#f2f2f2;
 }
 
-#event-schedule-slide .swiper-slide.active{
+#event-schedule-slide .swiper-slide.active .schedule{
     background-color: #0072B6;
     color:#fff;
 }

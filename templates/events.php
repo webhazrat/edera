@@ -109,8 +109,8 @@
                             <small>10AM - 12AM</small>
                         </div>
 
-                        <div class="event-description d-none">
-                            <h6>Event Title</h6>
+                        <div class="description d-none">
+                            <h6>Event Title1</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
                             <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
                         </div>
@@ -125,8 +125,8 @@
                             <small>10AM - 12AM</small>
                         </div>
 
-                        <div class="event-description d-none">
-                            <h6>Event Title</h6>
+                        <div class="description d-none">
+                            <h6>Event Title2</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
                             <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
                         </div>
@@ -140,8 +140,8 @@
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                             <small>10AM - 12AM</small>
                         </div>
-                        <div class="event-description d-none">
-                            <h6>Event Title</h6>
+                        <div class="description d-none">
+                            <h6>Event Title3</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
                             <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
                         </div>
@@ -155,8 +155,8 @@
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                             <small>10AM - 12AM</small>
                         </div>
-                        <div class="event-description d-none">
-                            <h6>Event Title</h6>
+                        <div class="description d-none">
+                            <h6>Event Title4</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
                             <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
                         </div>
@@ -170,8 +170,8 @@
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.</p>
                             <small>10AM - 12AM</small>
                         </div>
-                        <div class="event-description d-none">
-                            <h6>Event Title</h6>
+                        <div class="description d-none">
+                            <h6>Event Title5</h6>
                             <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
                             <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
                         </div>
@@ -182,9 +182,7 @@
                 <div class="swiper-button-next"></div>
             </div>
             <div class="event-description">
-                <h6>Event Title</h6>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Porro quas ipsam velit saepe quia reprehenderit aliquam! Quos facilis placeat laboriosam autem fuga earum minus, vel quisquam possimus, officia ut ad.`</p>
-                <a href="#" class="read-more">Register for the Event <i class="bi bi-arrow-right-short"></i> </a>
+                
             </div>
         </div>
     </div>

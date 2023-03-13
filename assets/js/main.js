@@ -191,11 +191,38 @@ if (inToBtn) {
 }
 
 
+// event schedule
 const swiper = new Swiper('.swiper', {
-    slidesPerView: 4,
+    slidesPerView: 1,
     spaceBetween: 30,
     navigation: {
         nextEl: '.swiper-button-next',
         prevEl: '.swiper-button-prev',
+    },
+    breakpoints: {
+        991: {
+            slidesPerView: 4
+        },
+        767: {
+            slidesPerView: 3
+        }
     }
+})
+
+const eventSchedule = document.querySelectorAll('.swiper-slide');
+eventSchedule.forEach((item) => {
+    if(item.classList.contains('active')){
+        const html = item.querySelector('.description').innerHTML;
+        document.querySelector('.event-description').innerHTML = html;
+    }
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        let el = document.querySelector('.swiper-slide.active');
+        if(el){
+            el.classList.remove('active');
+        }
+        const html = item.querySelector('.description').innerHTML;
+        document.querySelector('.event-description').innerHTML = html;
+        item.classList.add('active');
+    })
 })
