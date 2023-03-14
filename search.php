@@ -31,21 +31,7 @@
                             </div>
                         </div>
                         <?php
-                            if(have_posts()) :
-
-                                $base = dirname(__FILE__);
-                                $json_array = [];
-                                $json_file = $base . '/search-keywords.json';
-
-                                $json_array = json_decode(file_get_contents($json_file), true);
-
-                                if(is_array($json_array) && !in_array(get_search_query(), $json_array)){
-                                    array_push($json_array, get_search_query());
-                                    file_put_contents($json_file, json_encode($json_array));
-                                }
-                                
-                                
-
+                            if(have_posts()) : 
                             while(have_posts()) : the_post(); 
                         ?>
 
